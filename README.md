@@ -1,6 +1,6 @@
 # hsg-project
 
-The new hsg3 spans many git repositories, which together form the applications and data published at history.state.gov. This project simplifies the tasks of getting these repositories, building the and creating application and data packages to load into eXist. 
+The new hsg3 spans many git repositories, which together form the applications and data published at history.state.gov. This project simplifies the tasks of getting these repositories and building and creating packages to install into eXist. 
 
 ## Goals
 
