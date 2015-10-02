@@ -10,7 +10,8 @@ To automate the following steps:
 - commit local edits
 - build packages √
 - deploy packages locally for preview
-- deploy packages to remote test or production servers
+- run unit tests (jenkins?)
+- deploy packages to remote test (travis?) and production servers
 
 (No check mark means this hasn't been automated and must still be done manually.)
 
