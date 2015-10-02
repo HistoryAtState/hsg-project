@@ -19,8 +19,8 @@ To automate the following steps:
 
 - Clone the repo
 - Open hsg-project.xpr in oXygen
-- From the External Tools menu, run "Update dependent repos". This checks out all dependent repos into a "repos" subdirectory.
-- Then run "Build packages". This runs each package's ant build file and copies the contents of its build file into a "xars" subdirectory.
+- From the External Tools menu, run "Update dependent repos" (or, from the command line, run `sh scripts/pull.sh`). This checks out all dependent repos into a "repos" subdirectory.
+- From the same menu, run "Build packages" (or, from the command line, run `sh scripts/build.sh`). This runs each package's ant build file and copies the contents of its build file into a "xars" subdirectory.
 - Then upload the packages via Dashboard > Package Manager.
 - To fetch new updates from repositories, repeat these steps again ("Update dependent repos", "Build packages", and upload)
 - In sum, this simplifies the process of checking out and previewing the latest files
