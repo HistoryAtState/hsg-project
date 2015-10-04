@@ -7,6 +7,7 @@ repos=(
   "pocom"
   "travels"
   "visits"
+  "rdcr"
   "gsh"
 )
 

@@ -11,6 +11,7 @@ repos=(
   "pocom"
   "travels"
   "visits"
+  "rdcr"
   "gsh"
 )
 
@@ -21,6 +22,7 @@ remotes=(
   "https://github.com/HistoryAtState/pocom.git"
   "https://github.com/HistoryAtState/travels.git"
   "https://github.com/HistoryAtState/visits.git"
+  "https://github.com/HistoryAtState/rdcr.git"
   "https://github.com/joewiz/gsh.git"
 )
 
