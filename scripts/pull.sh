@@ -28,11 +28,15 @@ remotes=(
 
 echo "Checking" ${#repos[@]} "repositories for updates"
 
-if cd repos; then cd repos; else mkdir repos; cd repos; fi
+if [ ! -d "repos" ]; then
+  mkdir repos
+fi
+
+cd repos
 
 for ((i=0;i<${#repos[@]};++i));
 do
-  echo "checking" ${repos[i]}
+  echo "Starting check of" ${repos[i]}
   if cd ${repos[i]};
     then echo "Pulling" ${repos[i]}; git pull; cd ..;
     else echo "Cloning" ${repos[i]} "from" ${remotes[i]}; git clone ${remotes[i]};
