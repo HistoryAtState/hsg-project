@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="HsgProject" default="build">
+    <property name="repos" value="repos"/>
+    <property name="xars" value="xars"/>
+    
+    <target name="build">
+        <mkdir dir="${xars}"/>
+        <iterate target="build-xar"/>
+    </target>
+    
+    <target name="clean">
+        <subant target="clean" failonerror="false">
+            <fileset dir=".">
+                <include name="${repos}/*/build.xml"/>
+            </fileset>
+        </subant>
+    </target>
+    
+    <!-- Called on each directory in repos to build it -->
+    <target name="build-xar">
+        <echo message="Building ${dir}"/>
+        <available file="${dir}/bower.json" property="bower.required"/>
+        <antcall target="bower-install"/>
+        <subant>
+            <fileset dir="${dir}">
+                <include name="build.xml"/>
+            </fileset>
+        </subant>
+        <copy todir="xars/">
+            <fileset dir="${dir}/build">
+                <include name="*.xar"/>
+            </fileset>
+        </copy>
+        <delete dir="${dir}" includes="*.xar"/>
+    </target>
+    
+    <!-- If bower.json is present in the directory, call bower install -->
+    <target name="bower-install" if="${bower.required}">
+        <echo message="Calling bower install..."/>
+        <exec dir="${dir}" executable="bower" outputproperty="bower.output">
+            <arg line="install"/>
+        </exec>
+        <echo message="${bower.output}"/>
+    </target>
+    
+    <!-- Iterate through directory of repos and call target for each -->
+    <scriptdef name="iterate" language="javascript">
+        <attribute name="target"/>
+        <![CDATA[
+            repos = project.getProperty("repos");
+            
+            fs = project.createDataType("fileset");
+            fs.setDir(new java.io.File(repos));
+            fs.setIncludes("*/expath-pkg.xml");
+            
+            ds = fs.getDirectoryScanner(project);
+            descriptors = ds.getIncludedFiles();
+            
+            var basedir = fs.getDir(project);
+            
+            for (i=0; i < descriptors.length; i++) {
+              var descriptor = new java.io.File(basedir, descriptors[i]);
+              var dir = descriptor.getParent();
+              
+              // create and use a Task via Ant API
+              antc = project.createTask("antcall");
+              var prop = antc.createParam();
+              prop.setName("dir");
+              prop.setValue(dir);
+
+              antc.setTarget(attributes.get("target"));
+              antc.perform();
+            }
+        ]]>
+    </scriptdef>
+</project>
