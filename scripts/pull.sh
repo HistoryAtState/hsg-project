@@ -12,6 +12,8 @@ repos=(
   "travels"
   "visits"
   "rdcr"
+  "wwdai"
+  "s3"
   "gsh"
 )
 
@@ -23,6 +25,8 @@ remotes=(
   "https://github.com/HistoryAtState/travels.git"
   "https://github.com/HistoryAtState/visits.git"
   "https://github.com/HistoryAtState/rdcr.git"
+  "https://github.com/HistoryAtState/wwdai.git"
+  "https://github.com/joewiz/s3.git"
   "https://github.com/joewiz/gsh.git"
 )
 
