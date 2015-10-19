@@ -1,6 +1,6 @@
 # hsg-project
 
-The new hsg3 spans many git repositories, which together form the applications and data published at history.state.gov. This project simplifies the tasks of getting these repositories and building and creating packages to install into eXist. 
+The new hsg3 spans many git repositories, which together form the applications and data published at history.state.gov. This project simplifies the tasks of getting these repositories and building and creating packages to install into eXist.
 
 ## Goals
 
@@ -15,7 +15,16 @@ To automate the following steps:
 
 (No check mark means this hasn't been automated and must still be done manually.)
 
-## Setup
+## Setup (via ant)
+
+You need the ant, git and bower executables installed. If git cannot be found, edit build.properties to set the correct path to the executable. To deploy everything to a running eXist instance, you also need to set `instance.uri`, `instance.user` and `instance.password` properly.
+
+- Clone the repo
+- Run `ant setup` once to pull required repositories
+- Run `ant` to build all xars and deploy them into the database
+- To only build the xars, call `ant build`
+
+## Setup (via shell scripts)
 
 - Clone the repo
 - Open hsg-project.xpr in oXygen
