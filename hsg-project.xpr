@@ -4,7 +4,7 @@
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
             <serialized version="17.0" xml:space="preserve">
-                <map>
+                <serializableOrderedMap>
                     <entry>
                         <String>external.tool.cmds</String>
                         <xsltCustomEngines-array>
@@ -19,13 +19,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh scripts/pull.sh</String>
+                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant build</String>
                                 </field>
                                 <field name="description">
-                                    <String>Pull (or clone) all repos</String>
+                                    <String>Pull required repositories</String>
                                 </field>
                                 <field name="name">
-                                    <String>Update dependent repos</String>
+                                    <String>Setup</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -78,11 +78,11 @@
                         <String>key.external.tools.option.pane</String>
                         <Boolean>true</Boolean>
                     </entry>
-                </map>
+                </serializableOrderedMap>
             </serialized>
         </options>
     </meta>
-    <projectTree name="hsg-deploy.xpr">
+    <projectTree name="hsg-project.xpr">
         <folder path="."/>
     </projectTree>
 </project>
