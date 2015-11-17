@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." name="HsgProject" default="all" xmlns:xdb="http://exist-db.org/ant">
     <property file="build.properties"/>
-    
+
     <property name="repos" value="repos"/>
     <property name="xars" value="xars"/>
     <property name="instance.uri" value="xmldb:exist://localhost:8080/exist/xmlrpc"/>
@@ -9,28 +9,28 @@
     <property name="instance.tempPath" value="/db/${instance.tempColl}"/>
     <property name="instance.temp" value="${instance.uri}${instance.tempPath}"/>
     <property name="libs" value="./lib"/>
-    
+
     <available file="${libs}/ivy-${ivy.version}.jar" property="ivy.available"/>
-    
+
     <target name="all" depends="update,build,deploy" description="Update, build, and deploy everything"/>
-    
+
     <target name="setup" depends="prepare" description="Clone required packages">
         <echo message="Cloning required packages into ${repos}..."/>
         <foreach property="remotes" target="git.clone"/>
     </target>
-    
+
     <target name="build" depends="prepare" description="Build all packages">
         <iterate target="build-xar"/>
     </target>
-    
+
     <target name="deploy" description="Deploy all packages" depends="ivy.download,deploy.init,deploy.upload,deploy.install-monex,deploy.deploy,deploy.cleanup"/>
-    
+
     <target name="prepare">
         <mkdir dir="${libs}"/>
         <mkdir dir="${xars}"/>
         <mkdir dir="${repos}"/>
     </target>
-    
+
     <target name="update" depends="prepare">
         <iterate target="git.pull"/>
     </target>
@@ -41,49 +41,49 @@
                 <include name="*.jar"/>
             </fileset>
         </path>
-        
+
         <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
             <classpath refid="exist.classpath"/>
         </typedef>
     </target>
-    
+
     <target name="deploy.upload">
         <echo message="Uploading packages ..."/>
-        <xdb:store uri="${instance.temp}" user="${instance.user}" password="${instance.password}" 
-            createcollection="true">
+        <xdb:store uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
+                   createcollection="true">
             <fileset dir="${xars}">
                 <include name="*.xar"/>
             </fileset>
         </xdb:store>
     </target>
-    
+
     <target name="deploy.deploy">
         <echo message="Installing packages ..."/>
         <iterate-xars target="deploy.deploy-xar"/>
     </target>
-    
+
     <target name="deploy.install-monex">
         <echo message="Installing monex ..."/>
         <xdb:xquery uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/apps/monex', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+                    query="repo:install-and-deploy('http://exist-db.org/apps/monex', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
     </target>
-    
+
     <target name="deploy.deploy-xar">
         <echo message="Deploying xar ${xar}"/>
         <xdb:xquery uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
-            queryFile="scripts/deploy.xql" outputproperty="deploy.output">
+                    queryFile="scripts/deploy.xql" outputproperty="deploy.output">
             <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
         </xdb:xquery>
         <echo message="${deploy.output}"/>
     </target>
-    
+
     <target name="deploy.cleanup">
         <echo message="Removing temporary collection ..."/>
         <xdb:remove uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
-            collection="${instance.tempPath}"/>
+                    collection="${instance.tempPath}"/>
     </target>
-    
+
     <target name="clean" description="Call clean on all package dirs; remove built xars">
         <delete>
             <fileset dir="${xars}">
@@ -96,12 +96,12 @@
             </fileset>
         </subant>
     </target>
-    
+
     <target name="clean-all" depends="clean" description="Clean everything, including libs">
         <delete dir="${libs}" failonerror="false"/>
         <delete dir="${repos}" failonerror="false"/>
     </target>
-    
+
     <!-- Called on each directory in repos to build it -->
     <target name="build-xar">
         <echo message="Building ${dir}"/>
@@ -119,7 +119,7 @@
         </copy>
         <delete dir="${dir}" includes="*.xar"/>
     </target>
-    
+
     <!-- If bower.json is present in the directory, call bower install -->
     <target name="bower-install" if="${bower.required}">
         <echo message="Calling bower install..."/>
@@ -128,33 +128,33 @@
         </exec>
         <echo message="${bower.output}"/>
     </target>
-    
+
     <target name="git.pull">
         <echo message="Updating ${dir}..."/>
         <exec executable="${git}" dir="${dir}">
             <arg line="pull"/>
         </exec>
     </target>
-    
+
     <!-- Iterate through directory of repos and call target for each -->
     <scriptdef name="iterate" language="javascript">
         <attribute name="target"/>
         <![CDATA[
             repos = project.getProperty("repos");
-            
+
             fs = project.createDataType("fileset");
             fs.setDir(new java.io.File(repos));
             fs.setIncludes("*/expath-pkg.xml");
-            
+
             ds = fs.getDirectoryScanner(project);
             descriptors = ds.getIncludedFiles();
-            
+
             var basedir = fs.getDir(project);
-            
+
             for (i=0; i < descriptors.length; i++) {
               var descriptor = new java.io.File(basedir, descriptors[i]);
               var dir = descriptor.getParent();
-              
+
               // create and use a Task via Ant API
               antc = project.createTask("antcall");
               var prop = antc.createParam();
@@ -166,35 +166,35 @@
             }
         ]]>
     </scriptdef>
-    
+
     <!-- Iterate through directory of xars and call target for each xar -->
     <scriptdef name="iterate-xars" language="javascript">
         <attribute name="target"/>
         <![CDATA[
             xarsDir = project.getProperty("xars");
-            
+
             fs = project.createDataType("fileset");
             fs.setDir(new java.io.File(xarsDir));
             fs.setIncludes("*.xar");
-            
+
             ds = fs.getDirectoryScanner(project);
             xars = ds.getIncludedFiles();
-            
+
             var basedir = fs.getDir(project);
-            
+
             for (i=0; i < xars.length; i++) {
               // create and use a Task via Ant API
               antc = project.createTask("antcall");
               var prop = antc.createParam();
               prop.setName("xar");
               prop.setValue(xars[i]);
-              
+
               antc.setTarget(attributes.get("target"));
               antc.perform();
             }
         ]]>
     </scriptdef>
-    
+
     <scriptdef name="foreach" language="javascript">
         <attribute name="target"/>
         <attribute name="property"/>
@@ -207,20 +207,20 @@
               var prop = antc.createParam();
               prop.setName("item");
               prop.setValue(items[i]);
-              
+
               antc.setTarget(attributes.get("target"));
               antc.perform();
             }
         ]]>
     </scriptdef>
-    
+
     <target name="ivy.setup" description="Download the Ivy dependency manager" unless="ivy.available">
         <echo>${ivy_url}</echo>
         <get src="${ivy_url}" dest="${libs}"/>
     </target>
-    
-    <target name="ivy.download" depends="prepare,ivy.setup" 
-        description="Download eXist JAR files required for deployment" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <target name="ivy.download" depends="prepare,ivy.setup"
+            description="Download eXist JAR files required for deployment" xmlns:ivy="antlib:org.apache.ivy.ant">
         <!-- Setup IVY download manager -->
         <path id="ivy.lib.path">
             <fileset dir="${libs}" includes="ivy*.jar" erroronmissingdir="false"/>
@@ -228,7 +228,7 @@
         <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
         <ivy:retrieve sync="true" pattern="${libs}/[artifact]-[revision](-[classifier]).[ext]"/>
     </target>
-    
+
     <target name="git.clone">
         <echo message="Cloning ${item}..."/>
         <exec executable="${git}" outputproperty="git.output" dir="${repos}">
@@ -236,5 +236,9 @@
             <arg line="${item}"/>
         </exec>
         <echo message="${git.output}"/>
+    </target>
+
+    <target name="test">
+        <ant antfile="repos/hsg-test/build.xml" target="test" useNativeBasedir="true"/>
     </target>
 </project>
