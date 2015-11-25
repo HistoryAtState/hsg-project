@@ -112,7 +112,7 @@
                 <include name="build.xml"/>
             </fileset>
         </subant>
-        <copy todir="xars/">
+        <copy todir="xars/" failonerror="false">
             <fileset dir="${dir}/build">
                 <include name="*.xar"/>
             </fileset>
