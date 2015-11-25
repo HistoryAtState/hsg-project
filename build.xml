@@ -133,6 +133,12 @@
         <echo message="Updating ${dir}..."/>
         <exec executable="${git}" dir="${dir}">
             <arg line="pull"/>
+            <arg line="--recurse-submodules"/>
+        </exec>
+        <exec executable="${git}" dir="${dir}">
+            <arg line="submodule"/>
+            <arg line="update"/>
+            <arg line="--recursive"/>
         </exec>
     </target>
 
@@ -144,7 +150,7 @@
 
             fs = project.createDataType("fileset");
             fs.setDir(new java.io.File(repos));
-            fs.setIncludes("*/expath-pkg.xml");
+            fs.setIncludes(("*/expath-pkg.xml", "*/expath-pkg.xml.tmpl"));
 
             ds = fs.getDirectoryScanner(project);
             descriptors = ds.getIncludedFiles();
@@ -233,6 +239,7 @@
         <echo message="Cloning ${item}..."/>
         <exec executable="${git}" outputproperty="git.output" dir="${repos}">
             <arg line="clone"/>
+            <arg line="--recursive"/>
             <arg line="${item}"/>
         </exec>
         <echo message="${git.output}"/>
