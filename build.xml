@@ -150,8 +150,9 @@
 
             fs = project.createDataType("fileset");
             fs.setDir(new java.io.File(repos));
-            fs.setIncludes(("*/expath-pkg.xml", "*/expath-pkg.xml.tmpl"));
-
+            fs.setIncludes("*/expath-pkg.xml");
+            fs.setIncludes("*/expath-pkg.xml.tmpl");
+            
             ds = fs.getDirectoryScanner(project);
             descriptors = ds.getIncludedFiles();
 
