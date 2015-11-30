@@ -23,7 +23,7 @@
         <iterate target="build-xar"/>
     </target>
 
-    <target name="deploy" description="Deploy all packages" depends="ivy.download,deploy.init,deploy.upload,deploy.install-monex,deploy.deploy,deploy.cleanup"/>
+    <target name="deploy" description="Deploy all packages" depends="ivy.download,deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
 
     <target name="prepare">
         <mkdir dir="${libs}"/>
@@ -62,10 +62,14 @@
         <iterate-xars target="deploy.deploy-xar"/>
     </target>
 
-    <target name="deploy.install-monex">
+    <target name="deploy.install-packages-from-public-repo">
+        <echo message="Installing packages from eXist-db.org public repo ..."/>
         <echo message="Installing monex ..."/>
         <xdb:xquery uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
                     query="repo:install-and-deploy('http://exist-db.org/apps/monex', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+        <echo message="Installing functx ..."/>
+        <xdb:xquery uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
+            query="repo:install-and-deploy('http://www.functx.com', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
     </target>
 
     <target name="deploy.deploy-xar">
