@@ -3,7 +3,10 @@
     <property file="build.properties"/>
 
     <property name="repos" value="repos"/>
-    <property name="xars" value="xars"/>
+    <!-- use "xars" unless called with a "repo-name" property -->
+    <condition property="xars" value="${repo-name}" else="xars">
+        <isset property="repo-name"/>
+    </condition>
     <property name="instance.uri" value="xmldb:exist://localhost:8080/exist/xmlrpc"/>
     <property name="instance.tempColl" value="hsg-temp"/>
     <property name="instance.tempPath" value="/db/${instance.tempColl}"/>
@@ -24,6 +27,8 @@
     </target>
 
     <target name="deploy" description="Deploy all packages" depends="ivy.download,deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
+
+    <target name="deploy-one" description="Deploy one package" depends="ivy.download,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
 
     <target name="prepare">
         <mkdir dir="${libs}"/>
@@ -52,6 +57,17 @@
         <xdb:store uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
                    createcollection="true">
             <fileset dir="${xars}">
+                <include name="*.xar"/>
+            </fileset>
+        </xdb:store>
+    </target>
+
+    <target name="deploy.upload-one">
+        <property name="repo-name" value="${repo-name}"/>
+        <echo message="Uploading package ${repo-name} ..."/>
+        <xdb:store uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
+            createcollection="true">
+            <fileset dir="repos/${repo-name}/build">
                 <include name="*.xar"/>
             </fileset>
         </xdb:store>
