@@ -41,6 +41,15 @@ ant -f repos/hsg-shell/build.xml
 ant deploy-one -Drepo-name=hsg-shell -Dxar=hsg-shell-0.1.xar
 ```
 
+- To start the day and ensure you have the latest version of all files (takes ~10 min):
+
+```bash
+git pull
+ant clean
+ant setup
+ant
+```
+
 ## Notes
 
 - This has been tested with Mac OS X 10.11 and Amazon Linux
