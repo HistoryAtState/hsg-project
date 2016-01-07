@@ -41,7 +41,7 @@ ant -f repos/hsg-shell/build.xml
 ant deploy-one -Drepo-name=hsg-shell -Dxar=hsg-shell-0.1.xar
 ```
 
-- To start the day and ensure you have the latest version of all files (takes ~10 min):
+- To start the day and ensure you have the latest version of all files (takes ~10 min; to shorten the time more, first run the `clean-default-data-dir` [build target](http://exist-db.org/exist/apps/doc/building.xml) on eXist - which wipes your database of all files and thus avoids the time required to *uninstall* old packages before installing the new ones):
 
 ```bash
 git pull
