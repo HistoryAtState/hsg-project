@@ -15,7 +15,7 @@
 
     <available file="${libs}/ivy-${ivy.version}.jar" property="ivy.available"/>
 
-    <target name="all" depends="update,build,deploy" description="Update, build, and deploy everything"/>
+    <target name="all" depends="clean,update,build,deploy" description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
 
     <target name="setup" depends="prepare" description="Clone required packages">
         <echo message="Cloning required packages into ${repos}..."/>
