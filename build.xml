@@ -125,8 +125,6 @@
     <!-- Called on each directory in repos to build it -->
     <target name="build-xar">
         <echo message="Building ${dir}"/>
-        <available file="${dir}/bower.json" property="bower.required"/>
-        <antcall target="bower-install"/>
         <subant>
             <fileset dir="${dir}">
                 <include name="build.xml"/>
@@ -138,15 +136,6 @@
             </fileset>
         </copy>
         <delete dir="${dir}" includes="*.xar"/>
-    </target>
-
-    <!-- If bower.json is present in the directory, call bower install -->
-    <target name="bower-install" if="${bower.required}">
-        <echo message="Calling bower install..."/>
-        <exec dir="${dir}" executable="${bower}" outputproperty="bower.output">
-            <arg line="install"/>
-        </exec>
-        <echo message="${bower.output}"/>
     </target>
 
     <target name="git.pull">
