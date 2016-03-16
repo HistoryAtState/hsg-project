@@ -31,14 +31,15 @@ To automate the following steps:
 - To pull the latest updates for all repos, call `ant update`
 - To only build the packages (and not deploy them), call `ant build`
 - To clean the project of all generated packages, call `ant clean`. This also calls each repository's own `clean` targets.
+- To pull the latest updates for a single repo, call `ant update-one -Drepo-name=REPO_NAME`
 - To build a single repo's package, call `ant -f repos/REPO_NAME/build.xml`
 - To deploy a single repo's package, call `ant deploy-one -Drepo-name=REPO_NAME -Dxar=REPO_NAME-X_Y.xar`
 - For example, to build and deploy the latest `hsg-shell` code, enter:
 
 ```bash
-ant update
-ant -f repos/hsg-shell/build.xml
-ant deploy-one -Drepo-name=hsg-shell -Dxar=hsg-shell-0.1.xar
+ant update-one -Drepo-name=hsg-shell
+ant -f repos/hsg-shell
+ant deploy-one -Drepo-name=hsg-shell -Dxar=hsg-shell-0.2.xar
 ```
 
 - To start the day and ensure you have the latest version of all files (takes ~10 min; to shorten the time more, first run the `clean-default-data-dir` [build target](http://exist-db.org/exist/apps/doc/building.xml) on eXist - which wipes your database of all files and thus avoids the time required to *uninstall* old packages before installing the new ones):
