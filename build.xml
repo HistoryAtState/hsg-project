@@ -40,6 +40,12 @@
         <iterate target="git.pull"/>
     </target>
 
+    <target name="update-one" depends="prepare">
+        <antcall target="git.pull">
+            <param name="dir" value="repos/${repo-name}"/>
+        </antcall>
+    </target>
+    
     <target name="deploy.init">
         <path id="exist.classpath">
             <fileset dir="${libs}">
