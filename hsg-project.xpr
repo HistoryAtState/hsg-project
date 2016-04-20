@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="17.0">
+<project version="17.1">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="17.0" xml:space="preserve">
+            <serialized version="17.1" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>external.tool.cmds</String>
@@ -19,10 +19,10 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant build</String>
+                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant setup</String>
                                 </field>
                                 <field name="description">
-                                    <String>Pull required repositories</String>
+                                    <String>Clone all repositories</String>
                                 </field>
                                 <field name="name">
                                     <String>Setup</String>
@@ -51,13 +51,77 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh scripts/build.sh</String>
+                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant update</String>
                                 </field>
                                 <field name="description">
-                                    <String>Build all packages</String>
+                                    <String>Fetch updates to all repositories</String>
                                 </field>
                                 <field name="name">
-                                    <String>Build packages</String>
+                                    <String>Update</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant</String>
+                                </field>
+                                <field name="description">
+                                    <String>Build and deploy all packages</String>
+                                </field>
+                                <field name="name">
+                                    <String>Build</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant clean</String>
+                                </field>
+                                <field name="description">
+                                    <String>Delete generated packages</String>
+                                </field>
+                                <field name="name">
+                                    <String>Clean</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
