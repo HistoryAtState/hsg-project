@@ -14,6 +14,9 @@
     <property name="libs" value="./lib"/>
 
     <available file="${libs}/ivy-${ivy.version}.jar" property="ivy.available"/>
+    
+    <!-- needed for "if" task used in "upload-current-file-to-localhost" -->
+    <typedef resource="net/sf/antcontrib/antlib.xml" classpath="${libs}/ant-contrib-1.0b3.jar"/>
 
     <target name="all" depends="clean,update,build,deploy" description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
 
@@ -264,4 +267,41 @@
     <target name="test">
         <ant antfile="repos/hsg-test/build.xml" target="test" useNativeBasedir="true"/>
     </target>
+    
+    <!-- ================================================= -->
+    <!-- Targets for uploading files from oXygen to the db -->
+    <!-- ================================================= -->
+    
+    <target name="upload-current-file-to-localhost" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db localhost" depends="ivy.download,deploy.init">
+        <property name="parent-directory" value="${arg1}"/>
+        <property name="file-name" value="${arg2}"/>
+        <property name="file-path" value="${parent-directory}/${file-name}"/>
+        <echo message="Uploading ${file-name} from ${parent-directory} to eXist-db localhost"/>
+        <path id="parent-dir">
+            <pathelement path="${parent-directory}"/>
+        </path>
+        <fileset file="${file-path}" id="file"/>
+        <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
+            <map from="c:" to=""/>
+        </pathconvert>
+        <if>
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <then>
+                <propertyregex property="target-collection" input="${file-path.unix}"
+                    regexp=".*?/hsg-project/repos/(.*)"
+                    select="/db/apps/\1"
+                    defaultvalue="Error"
+                    override="true"/>
+                <property name="target-xmldb-collection-uri" value="${instance.uri}${target-collection}"/>
+                <xdb:store user="${instance.user}" password="${instance.password}"
+                    uri="${target-xmldb-collection-uri}" createcollection="true" createsubcollections="true">
+                    <fileset refid="file"/>
+                </xdb:store>
+            </then>
+            <else>
+                <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>
+            </else>
+        </if>
+    </target>
+    
 </project>
