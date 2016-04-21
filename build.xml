@@ -304,4 +304,36 @@
         </if>
     </target>
     
+    <target name="upload-current-file-to-production" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db on the production history.state.gov server" depends="ivy.download,deploy.init">
+        <property name="parent-directory" value="${arg1}"/>
+        <property name="file-name" value="${arg2}"/>
+        <property name="file-path" value="${parent-directory}/${file-name}"/>
+        <echo message="Uploading ${file-name} from ${parent-directory} to eXist-db on history.state.gov"/>
+        <path id="parent-dir">
+            <pathelement path="${parent-directory}"/>
+        </path>
+        <fileset file="${file-path}" id="file"/>
+        <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
+            <map from="c:" to=""/>
+        </pathconvert>
+        <if>
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <then>
+                <propertyregex property="target-collection" input="${file-path.unix}"
+                    regexp=".*?/hsg-project/repos/(.*)"
+                    select="/db/apps/\1"
+                    defaultvalue="Error"
+                    override="true"/>
+                <property name="target-xmldb-collection-uri" value="${production.instance.uri}${target-collection}"/>
+                <xdb:store user="${production.instance.username}" password="${production.instance.password}"
+                    uri="${target-xmldb-collection-uri}" ssl="true" createcollection="true" createsubcollections="true">
+                    <fileset refid="file"/>
+                </xdb:store>
+            </then>
+            <else>
+                <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>
+            </else>
+        </if>
+    </target>
+    
 </project>

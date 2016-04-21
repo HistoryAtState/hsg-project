@@ -141,7 +141,7 @@
                                     <null/>
                                 </field>
                                 <field name="outContentType">
-                                    <null/>
+                                    <String>text/plain</String>
                                 </field>
                                 <field name="errEncoding">
                                     <null/>
@@ -154,6 +154,38 @@
                                 </field>
                                 <field name="name">
                                     <String>Upload current file to localhost</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" upload-current-file-to-production -Darg1="${cfd}" -Darg2="${cfne}"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Upload the currently open working copy file to eXist-db on history.state.gov</String>
+                                </field>
+                                <field name="name">
+                                    <String>Upload current file to history.state.gov</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
