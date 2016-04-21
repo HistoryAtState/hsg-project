@@ -9,8 +9,8 @@
     </condition>
     <property name="instance.uri" value="xmldb:exist://localhost:8080/exist/xmlrpc"/>
     <property name="instance.tempColl" value="hsg-temp"/>
-    <property name="instance.tempPath" value="/db/${local.instance.tempColl}"/>
-    <property name="instance.temp" value="${local.instance.uri}${local.instance.tempPath}"/>
+    <property name="instance.tempPath" value="/db/${instance.tempColl}"/>
+    <property name="local.instance.temp" value="${local.instance.uri}${instance.tempPath}"/>
     <property name="libs" value="./lib"/>
 
     <available file="${libs}/ivy-${ivy.version}.jar" property="ivy.available"/>
@@ -101,7 +101,7 @@
         <echo message="Deploying xar ${xar}"/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
                     queryFile="scripts/deploy.xql" outputproperty="deploy.output">
-            <variable name="temp" value="${local.instance.tempPath}"/>
+            <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
         </xdb:xquery>
         <echo message="${deploy.output}"/>
@@ -110,7 +110,7 @@
     <target name="deploy.cleanup">
         <echo message="Removing temporary collection ..."/>
         <xdb:remove uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
-                    collection="${local.instance.tempPath}"/>
+                    collection="${instance.tempPath}"/>
     </target>
 
     <target name="clean" description="Call clean on all package dirs; remove built xars">
@@ -329,6 +329,72 @@
                     uri="${target-xmldb-collection-uri}" ssl="true" createcollection="true" createsubcollections="true">
                     <fileset refid="file"/>
                 </xdb:store>
+            </then>
+            <else>
+                <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>
+            </else>
+        </if>
+    </target>
+    
+    <target name="update-this-repo" description="Updates the parent repo of the file currently open in oXygen XML Editor" depends="ivy.download,deploy.init">
+        <property name="parent-directory" value="${arg1}"/>
+        <path id="parent-dir">
+            <pathelement path="${parent-directory}"/>
+        </path>
+        <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
+            <map from="c:" to=""/>
+        </pathconvert>
+        <if>
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <then>
+                <propertyregex property="repo-name" input="${file-path.unix}"
+                    regexp=".*/hsg-project/repos/([^/]+)"
+                    select="\1"
+                    defaultvalue="Error"
+                    override="true"/>
+                <antcall target="git.pull">
+                    <param name="dir" value="repos/${repo-name}"/>
+                </antcall>
+            </then>
+            <else>
+                <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>
+            </else>
+        </if>
+    </target>
+    
+    <target name="deploy-current-repo-to-localhost" description="Packages and deploys the package of the file currently open in oXygen XML Editor" depends="ivy.download,deploy.init">
+        <property name="parent-directory" value="${arg1}"/>
+        <path id="parent-dir">
+            <pathelement path="${parent-directory}"/>
+        </path>
+        <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
+            <map from="c:" to=""/>
+        </pathconvert>
+        <if>
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <then>
+                <propertyregex property="repo-name" input="${file-path.unix}"
+                    regexp=".*/hsg-project/repos/([^/]+)"
+                    select="\1"
+                    defaultvalue="Error"
+                    override="true"/>
+                <echo>repo-name: ${repo-name}</echo>
+                <subant>
+                    <fileset dir="repos/${repo-name}">
+                        <include name="build.xml"/>
+                    </fileset>
+                </subant>
+                <antcall target="deploy.upload-one"/>
+                <path id="xar-path">
+                    <fileset dir="repos/${repo-name}/build">
+                        <include name="*.xar"/>
+                    </fileset>
+                </path>
+                <property name="xar-path" refid="xar-path"/>
+                <basename property="xar" file="${xar-path}"/>
+                <antcall target="deploy.deploy-xar">
+                    <param name="xar" value="${xar}"/>
+                </antcall>
             </then>
             <else>
                 <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>

@@ -19,45 +19,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant setup</String>
-                                </field>
-                                <field name="description">
-                                    <String>Clone all repositories</String>
-                                </field>
-                                <field name="name">
-                                    <String>Setup</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
                                     <String>sh ${oxygenInstallDir}/tools/ant/bin/ant update</String>
                                 </field>
                                 <field name="description">
                                     <String>Fetch updates to all repositories</String>
                                 </field>
                                 <field name="name">
-                                    <String>Update</String>
+                                    <String>Fetch updates to all repositories</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -83,13 +51,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant</String>
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" update-this-repo -Darg1="${cfd}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Build and deploy all packages</String>
+                                    <String>Fetch updates to the parent repository of the working file in the active tab to eXist-db on localhost</String>
                                 </field>
                                 <field name="name">
-                                    <String>Build</String>
+                                    <String>Fetch updates to current repository</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -115,13 +83,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant clean</String>
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" deploy-current-repo-to-localhost -Darg1="${cfd}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Delete generated packages</String>
+                                    <String>Build and deploy the parent repository of the working file in the active tab to eXist-db on localhost</String>
                                 </field>
                                 <field name="name">
-                                    <String>Clean</String>
+                                    <String>Deploy current repository to localhost</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -150,7 +118,7 @@
                                     <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" upload-current-file-to-localhost -Darg1="${cfd}" -Darg2="${cfne}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Upload the currently open working copy file to eXist-db on localhost 8080</String>
+                                    <String>Upload the working file in the active tab to eXist-db on localhost</String>
                                 </field>
                                 <field name="name">
                                     <String>Upload current file to localhost</String>
@@ -182,10 +150,138 @@
                                     <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" upload-current-file-to-production -Darg1="${cfd}" -Darg2="${cfne}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Upload the currently open working copy file to eXist-db on history.state.gov</String>
+                                    <String>Upload the working file in the active tab to eXist-db on history.state.gov</String>
                                 </field>
                                 <field name="name">
                                     <String>Upload current file to history.state.gov</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <null/>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>echo "Sorry this isn't a command!"</String>
+                                </field>
+                                <field name="description">
+                                    <String>(Divider)</String>
+                                </field>
+                                <field name="name">
+                                    <String>---</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>.</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>false</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant setup</String>
+                                </field>
+                                <field name="description">
+                                    <String>Clone all repositories</String>
+                                </field>
+                                <field name="name">
+                                    <String>Clone all repositories</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant</String>
+                                </field>
+                                <field name="description">
+                                    <String>Build and deploy all repositories to eXist-db on localhost</String>
+                                </field>
+                                <field name="name">
+                                    <String>Deploy all repositories to localhost</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant clean</String>
+                                </field>
+                                <field name="description">
+                                    <String>Delete generated packages</String>
+                                </field>
+                                <field name="name">
+                                    <String>Delete generated packages</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
