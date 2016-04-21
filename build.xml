@@ -9,8 +9,8 @@
     </condition>
     <property name="instance.uri" value="xmldb:exist://localhost:8080/exist/xmlrpc"/>
     <property name="instance.tempColl" value="hsg-temp"/>
-    <property name="instance.tempPath" value="/db/${instance.tempColl}"/>
-    <property name="instance.temp" value="${instance.uri}${instance.tempPath}"/>
+    <property name="instance.tempPath" value="/db/${local.instance.tempColl}"/>
+    <property name="instance.temp" value="${local.instance.uri}${local.instance.tempPath}"/>
     <property name="libs" value="./lib"/>
 
     <available file="${libs}/ivy-${ivy.version}.jar" property="ivy.available"/>
@@ -63,7 +63,7 @@
 
     <target name="deploy.upload">
         <echo message="Uploading packages ..."/>
-        <xdb:store uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
+        <xdb:store uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
                    createcollection="true">
             <fileset dir="${xars}">
                 <include name="*.xar"/>
@@ -74,7 +74,7 @@
     <target name="deploy.upload-one">
         <property name="repo-name" value="${repo-name}"/>
         <echo message="Uploading package ${repo-name} ..."/>
-        <xdb:store uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
+        <xdb:store uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
             createcollection="true">
             <fileset dir="repos/${repo-name}/build">
                 <include name="*.xar"/>
@@ -90,18 +90,18 @@
     <target name="deploy.install-packages-from-public-repo">
         <echo message="Installing packages from eXist-db.org public repo ..."/>
         <echo message="Installing monex ..."/>
-        <xdb:xquery uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
                     query="repo:install-and-deploy('http://exist-db.org/apps/monex', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
         <echo message="Installing functx ..."/>
-        <xdb:xquery uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
             query="repo:install-and-deploy('http://www.functx.com', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
     </target>
 
     <target name="deploy.deploy-xar">
         <echo message="Deploying xar ${xar}"/>
-        <xdb:xquery uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
                     queryFile="scripts/deploy.xql" outputproperty="deploy.output">
-            <variable name="temp" value="${instance.tempPath}"/>
+            <variable name="temp" value="${local.instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
         </xdb:xquery>
         <echo message="${deploy.output}"/>
@@ -109,8 +109,8 @@
 
     <target name="deploy.cleanup">
         <echo message="Removing temporary collection ..."/>
-        <xdb:remove uri="${instance.temp}" user="${instance.user}" password="${instance.password}"
-                    collection="${instance.tempPath}"/>
+        <xdb:remove uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
+                    collection="${local.instance.tempPath}"/>
     </target>
 
     <target name="clean" description="Call clean on all package dirs; remove built xars">
@@ -272,7 +272,7 @@
     <!-- Targets for uploading files from oXygen to the db -->
     <!-- ================================================= -->
     
-    <target name="upload-current-file-to-localhost" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db localhost" depends="ivy.download,deploy.init">
+    <target name="upload-current-file-to-localhost" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db on the localhost development server" depends="ivy.download,deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
         <property name="file-path" value="${parent-directory}/${file-name}"/>
@@ -292,8 +292,8 @@
                     select="/db/apps/\1"
                     defaultvalue="Error"
                     override="true"/>
-                <property name="target-xmldb-collection-uri" value="${instance.uri}${target-collection}"/>
-                <xdb:store user="${instance.user}" password="${instance.password}"
+                <property name="target-xmldb-collection-uri" value="${local.instance.uri}${target-collection}"/>
+                <xdb:store user="${local.instance.user}" password="${local.instance.password}"
                     uri="${target-xmldb-collection-uri}" createcollection="true" createsubcollections="true">
                     <fileset refid="file"/>
                 </xdb:store>
