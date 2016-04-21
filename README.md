@@ -7,11 +7,12 @@ The new hsg3 spans many git repositories, which together form the applications a
 To automate the following steps:
 
 - check out latest files √
-- commit local edits
 - build packages √
-- deploy packages locally for preview
+- publish local edits to local (development) & remote (production) servers √
+- deploy packages to local (development) server for preview √
+- deploy packages to remote (production) servers
+- commit local edits to git
 - run unit tests (jenkins?)
-- deploy packages to remote test (travis?) and production servers
 
 (No check mark means this hasn't been automated and must still be done manually.)
 
@@ -23,10 +24,27 @@ To automate the following steps:
 ## Setup
 
 - Clone this repo
-- Run `ant setup` once to pull required repositories (and any time new repositories are added). (If git cannot be found, edit `build.properties` to set the correct path to the executable.)
-- Run `ant` to build all packages and deploy them into the database. (Edit `build.properties` to ensure that `instance.uri`, `instance.user`, and `instance.password` are correct for your eXist instance.)
+- For oXygen users:
+    - Open the `hsg-project.xpr` file in oXygen
+    - From the External Tools toolbar menu (or Tools > External Tools): 
+    - Select `Clone all repositories` once to pull required repositories (and any time new repositories are added). 
+    - Select `Deploy all repositories to localhost` to build all packages and deploy them into the database.
+- For command line users:
+    - Run `ant setup` once to pull required repositories (and any time new repositories are added). 
+    - Run `ant` to build all packages and deploy them into the database. 
 
-## Other targets
+## Troubleshooting
+    - In the case of authentication errors, check `build.properties` to ensure that `local.instance.uri`, `local.instance.user`, and `local.instance.password` are correct for your eXist instance.
+    - In the case of errors that git cannot be found, edit `build.properties` to set the correct path to the executable.
+
+## Other External Tools entries for oXygen users
+
+- To pull the latest updates for all repos, select `Fetch updates to all repositories`
+- To pull the latest updates for a single repo, open a file from that repo and select `Fetch updates to current repository`
+- To deploy a single repo's package, open a file from that repo and select `Deploy current repository to localhost`
+- To clean the project of all generated packages, select `Delete generated packages` (This also calls each repository's `clean` targets.)
+
+## Other Ant targets for command line users
 
 - To pull the latest updates for all repos, call `ant update`
 - To only build the packages (and not deploy them), call `ant build`
@@ -42,7 +60,7 @@ ant -f repos/hsg-shell
 ant deploy-one -Drepo-name=hsg-shell -Dxar=hsg-shell-0.2.xar
 ```
 
-- To start the day and ensure you have the latest version of all files (takes ~10 min; to shorten the time more, first run the `clean-default-data-dir` [build target](http://exist-db.org/exist/apps/doc/building.xml) on eXist - which wipes your database of all files and thus avoids the time required to *uninstall* old packages before installing the new ones):
+- To start the day and ensure you have the latest version of all files (takes ~10 min; to shorten the time more, first run eXist's `clean-default-data-dir` [build target](http://exist-db.org/exist/apps/doc/building.xml) - which wipes your database of all files and thus avoids the time required to *uninstall* old packages before installing the new ones):
 
 ```bash
 git pull
@@ -53,6 +71,6 @@ ant
 
 ## Notes
 
-- This has been tested with Mac OS X 10.11 and Amazon Linux
+- This has been tested with Mac OS X 10.11, Amazon Linux, and oXygen 17.1
 - To add a repository, add its info to build.properties
 - Pull requests welcome
