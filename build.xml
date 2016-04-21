@@ -15,9 +15,6 @@
 
     <available file="${libs}/ivy-${ivy.version}.jar" property="ivy.available"/>
     
-    <!-- needed for "if" task used in "upload-current-file-to-localhost" -->
-    <typedef resource="net/sf/antcontrib/antlib.xml" classpath="${libs}/ant-contrib-1.0b3.jar"/>
-
     <target name="all" depends="clean,update,build,deploy" description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
 
     <target name="setup" depends="prepare" description="Clone required packages">
@@ -57,6 +54,9 @@
         </path>
 
         <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
+            <classpath refid="exist.classpath"/>
+        </typedef>
+        <typedef resource="net/sf/antcontrib/antlib.xml">
             <classpath refid="exist.classpath"/>
         </typedef>
     </target>
