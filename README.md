@@ -34,8 +34,9 @@ To automate the following steps:
     - Run `ant` to build all packages and deploy them into the database. 
 
 ## Troubleshooting
-    - In the case of authentication errors, check `build.properties` to ensure that `local.instance.uri`, `local.instance.user`, and `local.instance.password` are correct for your eXist instance.
-    - In the case of errors that git cannot be found, edit `build.properties` to set the correct path to the executable.
+
+- In the case of authentication errors, check `build.properties` to ensure that `local.instance.uri`, `local.instance.user`, and `local.instance.password` are correct for your eXist instance.
+- In the case of errors that git cannot be found, edit `build.properties` to set the correct path to the executable.
 
 ## Other External Tools entries for oXygen users
 
