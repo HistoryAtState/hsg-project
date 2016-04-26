@@ -328,6 +328,70 @@
                                     <Boolean>true</Boolean>
                                 </field>
                             </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" start-exist</String>
+                                </field>
+                                <field name="description">
+                                    <String>Start eXist</String>
+                                </field>
+                                <field name="name">
+                                    <String>Start eXist</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" wipe-exist-data</String>
+                                </field>
+                                <field name="description">
+                                    <String>Wipe eXist data</String>
+                                </field>
+                                <field name="name">
+                                    <String>Wipe eXist data</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
                         </xsltCustomEngines-array>
                     </entry>
                     <entry>

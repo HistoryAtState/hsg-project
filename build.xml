@@ -409,4 +409,41 @@
         </exec>
     </target>
     
+    <!-- =================================================================== -->
+    <!-- Wipe eXist-db database; perform only with eXist-db shut down        -->
+    <!-- =================================================================== -->
+    <target name="wipe-exist-data" description="Wipe eXist data">
+        <condition property="exist-running">
+            <http requestmethod="GET" url="http://localhost:8080/exist/status"/>
+        </condition>
+        <fail if="${exist-running}"
+            message="eXist is still running. Please shut down eXist and try again."/>
+        <echo message="-------------------------"/>
+        <echo message="Wiping eXist data"/>
+        <echo message="-------------------------"/>
+        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/backup"/>
+        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/expathrepo"/>
+        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/fs"/>
+        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/fs.journal"/>
+        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/journal"/>
+        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/lucene"/>
+        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/range"/>
+        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/sanity"/>
+        <delete>
+            <fileset dir="${eXist.HOME}/webapp/WEB-INF/data" includes="*.dbx,*.log,*.lck,spatial_index.*,counters,restxq.registry"
+                excludes=".DO_NOT_DELETE"/>
+        </delete>
+    </target>
+    
+    <target name="start-exist" description="Start eXist">
+        <condition property="exist-running">
+            <http requestmethod="GET" url="http://localhost:8080/exist/status"/>
+        </condition>
+        <fail if="${exist-running}"
+            message="eXist is still running. Please shut down eXist and try again."/>
+        <exec executable="open" dir="${eXist.HOME}">
+            <arg line="start.jar"/>
+        </exec>
+    </target>
+    
 </project>
