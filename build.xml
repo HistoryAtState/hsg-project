@@ -325,7 +325,7 @@
                     defaultvalue="Error"
                     override="true"/>
                 <property name="target-xmldb-collection-uri" value="${production.instance.uri}${target-collection}"/>
-                <xdb:store user="${production.instance.username}" password="${production.instance.password}"
+                <xdb:store user="${production.instance.user}" password="${production.instance.password}"
                     uri="${target-xmldb-collection-uri}" ssl="true" createcollection="true" createsubcollections="true">
                     <fileset refid="file"/>
                 </xdb:store>
