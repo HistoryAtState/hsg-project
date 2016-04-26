@@ -445,5 +445,21 @@
             <arg line="start.jar"/>
         </exec>
     </target>
+
+    <target name="rebuild-exist" description="Rebuild eXist-LTS hsg-shell">
+        <condition property="exist-running">
+            <http requestmethod="GET" url="http://localhost:8080/exist/status"/>
+        </condition>
+        <fail if="${exist-running}"
+            message="eXist is still running. Please shut down eXist and try again."/>
+        <exec executable="${git}" dir="${eXist.HOME}">
+            <arg line="checkout"/>
+            <arg line="hsg-shell"/>
+        </exec>
+        <exec executable="sh" dir="${eXist.HOME}">
+            <arg line="build.sh"/>
+            <arg line="rebuild"/>
+        </exec>
+    </target>
     
 </project>
