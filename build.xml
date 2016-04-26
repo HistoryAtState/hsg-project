@@ -402,4 +402,11 @@
         </if>
     </target>
     
+    <target name="open-current-repo-in-github-desktop" description="Opens the repo belonging to the file currently open in oXygen XML Editor">
+        <property name="parent-directory" value="${arg1}"/>
+        <exec executable="${github}" dir="${arg1}">
+            <arg line="."/>
+        </exec>
+    </target>
+    
 </project>

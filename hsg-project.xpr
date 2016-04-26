@@ -22,10 +22,10 @@
                                     <String>sh ${oxygenInstallDir}/tools/ant/bin/ant update</String>
                                 </field>
                                 <field name="description">
-                                    <String>Fetch updates to all repositories</String>
+                                    <String>Fetch updates for all repositories</String>
                                 </field>
                                 <field name="name">
-                                    <String>Fetch updates to all repositories</String>
+                                    <String>Fetch updates for all repositories</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -54,10 +54,10 @@
                                     <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" update-this-repo -Darg1="${cfd}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Fetch updates to the parent repository of the working file in the active tab to eXist-db on localhost</String>
+                                    <String>Fetch updates for the parent repository of the working file in the active tab to eXist-db on localhost</String>
                                 </field>
                                 <field name="name">
-                                    <String>Fetch updates to current repository</String>
+                                    <String>Fetch updates for current repository</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -83,13 +83,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" deploy-current-repo-to-localhost -Darg1="${cfd}"</String>
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" open-current-repo-in-github-desktop -Darg1="${cfd}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Build and deploy the parent repository of the working file in the active tab to eXist-db on localhost</String>
+                                    <String>Open the parent repository of the working file in the active tab in GitHub Desktop</String>
                                 </field>
                                 <field name="name">
-                                    <String>Deploy current repository to localhost</String>
+                                    <String>Open current repository in GitHub Desktop</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -218,6 +218,38 @@
                                 </field>
                                 <field name="name">
                                     <String>Clone all repositories</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" deploy-current-repo-to-localhost -Darg1="${cfd}"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Build and deploy the parent repository of the working file in the active tab to eXist-db on localhost</String>
+                                </field>
+                                <field name="name">
+                                    <String>Deploy current repository to localhost</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
