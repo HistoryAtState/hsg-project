@@ -329,6 +329,11 @@
                     uri="${target-xmldb-collection-uri}" ssl="true" createcollection="true" createsubcollections="true">
                     <fileset refid="file"/>
                 </xdb:store>
+                <property name="target-xmldb-collection-uri2" value="${production2.instance.uri}${target-collection}"/>
+                <xdb:store user="${production2.instance.user}" password="${production2.instance.password}"
+                    uri="${target-xmldb-collection-uri2}" ssl="true" createcollection="true" createsubcollections="true">
+                    <fileset refid="file"/>
+                </xdb:store>
             </then>
             <else>
                 <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>
