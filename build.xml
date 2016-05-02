@@ -407,9 +407,21 @@
         </if>
     </target>
     
-    <target name="open-current-repo-in-github-desktop" description="Opens the repo belonging to the file currently open in oXygen XML Editor">
+    <target name="open-current-repo-in-github-desktop" description="Opens the repo belonging to the file currently open in oXygen XML Editor" depends="deploy.init">
         <property name="parent-directory" value="${arg1}"/>
-        <exec executable="${github}" dir="${arg1}">
+        <path id="parent-dir">
+            <pathelement path="${parent-directory}"/>
+        </path>
+        <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
+            <map from="c:" to=""/>
+        </pathconvert>
+        <propertyregex property="repo-basepath" input="${file-path.unix}"
+            regexp="(.*?/hsg-project/repos/[^/]*)"
+            select="\1"
+            defaultvalue="Error"
+            override="true"/>
+        <echo message="repo-basepath: ${repo-basepath}"/>
+        <exec executable="${github}" dir="${repo-basepath}">
             <arg line="."/>
         </exec>
     </target>
