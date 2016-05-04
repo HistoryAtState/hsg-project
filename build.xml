@@ -439,16 +439,16 @@
         <echo message="-------------------------"/>
         <echo message="Wiping eXist data"/>
         <echo message="-------------------------"/>
-        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/backup"/>
-        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/expathrepo"/>
-        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/fs"/>
-        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/fs.journal"/>
-        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/journal"/>
-        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/lucene"/>
-        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/range"/>
-        <delete dir="${eXist.HOME}/webapp/WEB-INF/data/sanity"/>
+        <delete dir="${eXist.data}/backup"/>
+        <delete dir="${eXist.data}/expathrepo"/>
+        <delete dir="${eXist.data}/fs"/>
+        <delete dir="${eXist.data}/fs.journal"/>
+        <delete dir="${eXist.data}/journal"/>
+        <delete dir="${eXist.data}/lucene"/>
+        <delete dir="${eXist.data}/range"/>
+        <delete dir="${eXist.data}/sanity"/>
         <delete>
-            <fileset dir="${eXist.HOME}/webapp/WEB-INF/data" includes="*.dbx,*.log,*.lck,spatial_index.*,counters,restxq.registry"
+            <fileset dir="${eXist.data}" includes="*.dbx,*.log,*.lck,spatial_index.*,counters,restxq.registry"
                 excludes=".DO_NOT_DELETE"/>
         </delete>
     </target>
