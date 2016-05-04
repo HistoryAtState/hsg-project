@@ -452,6 +452,20 @@
                 excludes=".DO_NOT_DELETE"/>
         </delete>
     </target>
+    
+    <target name="prepare-local-build-properties" description="Create a local copy of build.properties and supply with needed information">
+        <copy file="build.properties" tofile="local.build.properties"/>
+        <property name="arg1" value="${arg1}"/>
+        <property name="arg2" value="${arg2}"/>
+        <property name="arg3" value="${arg3}"/>
+        <propertyfile
+            file="local.build.properties"
+            comment="hsg settings for ${arg3}">
+            <entry key="production.instance.password" value="${arg1}"/>
+            <entry key="production2.instance.password" value="${arg2}"/>
+            <entry key="eXist.data" value="${arg3}/Library/Application Support/org.exist"/>
+        </propertyfile>
+        
     </target>
     
 </project>

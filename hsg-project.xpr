@@ -211,6 +211,38 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
+                                    <String>sh ${oxygenInstallDir}/tools/ant/bin/ant prepare-local-build-properties -Darg1="${ask('Please enter the password for 1861.history.state.gov', string, '')}" -Darg2="${ask('Please enter the password for 1991.history.state.gov', string, '')}" -Darg3="${homeDir}"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Enter server credentials</String>
+                                </field>
+                                <field name="name">
+                                    <String>Enter server credentials</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
                                     <String>sh ${oxygenInstallDir}/tools/ant/bin/ant setup</String>
                                 </field>
                                 <field name="description">
