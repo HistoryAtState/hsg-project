@@ -273,7 +273,7 @@
     <!-- Targets for uploading files from oXygen to the db -->
     <!-- ================================================= -->
 
-    <target name="upload-current-file-to-localhost" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db on the localhost development server" depends="ivy.download,deploy.init">
+    <target name="upload-current-file-to-localhost" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db on the localhost development server" depends="deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
         <property name="file-path" value="${parent-directory}/${file-name}"/>
@@ -305,7 +305,7 @@
         </if>
     </target>
 
-    <target name="upload-current-file-to-production" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db on the production history.state.gov server" depends="ivy.download,deploy.init">
+    <target name="upload-current-file-to-production" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db on the production history.state.gov server" depends="deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
         <property name="file-path" value="${parent-directory}/${file-name}"/>
