@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." name="HsgProject" default="all" xmlns:xdb="http://exist-db.org/ant">
+    <property file="local.build.properties"/>
     <property file="build.properties"/>
 
     <property name="repos" value="repos"/>
@@ -14,7 +15,7 @@
     <property name="libs" value="./lib"/>
 
     <available file="${libs}/ivy-${ivy.version}.jar" property="ivy.available"/>
-    
+
     <target name="all" depends="clean,update,build,deploy" description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
 
     <target name="setup" depends="prepare" description="Clone required packages">
@@ -45,7 +46,7 @@
             <param name="dir" value="repos/${repo-name}"/>
         </antcall>
     </target>
-    
+
     <target name="deploy.init">
         <path id="exist.classpath">
             <fileset dir="${libs}">
@@ -170,7 +171,7 @@
             fs.setDir(new java.io.File(repos));
             fs.setIncludes("*/expath-pkg.xml");
             fs.setIncludes("*/expath-pkg.xml.tmpl");
-            
+
             ds = fs.getDirectoryScanner(project);
             descriptors = ds.getIncludedFiles();
 
@@ -267,11 +268,11 @@
     <target name="test">
         <ant antfile="repos/hsg-test/build.xml" target="test" useNativeBasedir="true"/>
     </target>
-    
+
     <!-- ================================================= -->
     <!-- Targets for uploading files from oXygen to the db -->
     <!-- ================================================= -->
-    
+
     <target name="upload-current-file-to-localhost" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db on the localhost development server" depends="ivy.download,deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
@@ -303,7 +304,7 @@
             </else>
         </if>
     </target>
-    
+
     <target name="upload-current-file-to-production" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db on the production history.state.gov server" depends="ivy.download,deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
@@ -340,7 +341,7 @@
             </else>
         </if>
     </target>
-    
+
     <target name="update-this-repo" description="Updates the parent repo of the file currently open in oXygen XML Editor" depends="ivy.download,deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <path id="parent-dir">
@@ -366,7 +367,7 @@
             </else>
         </if>
     </target>
-    
+
     <target name="deploy-current-repo-to-localhost" description="Packages and deploys the package of the file currently open in oXygen XML Editor" depends="ivy.download,deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <path id="parent-dir">
@@ -406,7 +407,7 @@
             </else>
         </if>
     </target>
-    
+
     <target name="open-current-repo-in-github-desktop" description="Opens the repo belonging to the file currently open in oXygen XML Editor" depends="deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <path id="parent-dir">
@@ -425,7 +426,7 @@
             <arg line="."/>
         </exec>
     </target>
-    
+
     <!-- =================================================================== -->
     <!-- Wipe eXist-db database; perform only with eXist-db shut down        -->
     <!-- =================================================================== -->
@@ -451,7 +452,7 @@
                 excludes=".DO_NOT_DELETE"/>
         </delete>
     </target>
-    
+
     <target name="start-exist" description="Start eXist">
         <condition property="exist-running">
             <http requestmethod="GET" url="http://localhost:8080/exist/status"/>
@@ -478,5 +479,5 @@
             <arg line="rebuild"/>
         </exec>
     </target>
-    
+
 </project>
