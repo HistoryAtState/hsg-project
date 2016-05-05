@@ -367,6 +367,14 @@
             </else>
         </if>
     </target>
+    
+    <target name="update-hsg-project" description="Updates the hsg-project repository">
+        <property name="dir" value="${arg1}"/>
+        <echo message="Updating hsg-project..."/>
+        <exec executable="${git}" dir="${dir}">
+            <arg line="pull"/>
+        </exec>
+    </target>
 
     <target name="deploy-current-repo-to-localhost" description="Packages and deploys the package of the file currently open in oXygen XML Editor" depends="ivy.download,deploy.init">
         <property name="parent-directory" value="${arg1}"/>
