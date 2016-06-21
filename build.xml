@@ -330,11 +330,6 @@
                     uri="${target-xmldb-collection-uri}" ssl="true" createcollection="true" createsubcollections="true">
                     <fileset refid="file"/>
                 </xdb:store>
-                <property name="target-xmldb-collection-uri2" value="${production2.instance.uri}${target-collection}"/>
-                <xdb:store user="${production2.instance.user}" password="${production2.instance.password}"
-                    uri="${target-xmldb-collection-uri2}" ssl="true" createcollection="true" createsubcollections="true">
-                    <fileset refid="file"/>
-                </xdb:store>
             </then>
             <else>
                 <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>
@@ -465,13 +460,11 @@
         <copy file="build.properties" tofile="local.build.properties"/>
         <property name="arg1" value="${arg1}"/>
         <property name="arg2" value="${arg2}"/>
-        <property name="arg3" value="${arg3}"/>
         <propertyfile
             file="local.build.properties"
-            comment="hsg settings for ${arg3}">
+            comment="hsg settings for ${arg2}">
             <entry key="production.instance.password" value="${arg1}"/>
-            <entry key="production2.instance.password" value="${arg2}"/>
-            <entry key="eXist.data" value="${arg3}/Library/Application Support/org.exist"/>
+            <entry key="eXist.data" value="${arg2}/Library/Application Support/org.exist"/>
         </propertyfile>
         
     </target>
