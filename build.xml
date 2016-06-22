@@ -8,10 +8,10 @@
     <condition property="xars" value="${repo-name}" else="xars">
         <isset property="repo-name"/>
     </condition>
-    <property name="instance.uri" value="xmldb:exist://localhost:8080/exist/xmlrpc"/>
     <property name="instance.tempColl" value="hsg-temp"/>
     <property name="instance.tempPath" value="/db/${instance.tempColl}"/>
     <property name="local.instance.temp" value="${local.instance.uri}${instance.tempPath}"/>
+    <property name="production.instance.temp" value="${production.instance.uri}${instance.tempPath}"/>
     <property name="libs" value="./lib"/>
 
     <available file="${libs}/ivy-${ivy.version}.jar" property="ivy.available"/>
@@ -82,6 +82,17 @@
             </fileset>
         </xdb:store>
     </target>
+    
+    <target name="deploy.upload-one-to-production">
+        <property name="repo-name" value="${repo-name}"/>
+        <echo message="Uploading package ${repo-name} ..."/>
+        <xdb:store uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
+            createcollection="true">
+            <fileset dir="repos/${repo-name}/build">
+                <include name="*.xar"/>
+            </fileset>
+        </xdb:store>
+    </target>
 
     <target name="deploy.deploy">
         <echo message="Installing packages ..."/>
@@ -108,12 +119,28 @@
         <echo message="${deploy.output}"/>
     </target>
 
+    <target name="deploy.deploy-xar-to-production">
+        <echo message="Deploying xar ${xar}"/>
+        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
+            queryFile="scripts/deploy.xql" outputproperty="deploy.output">
+            <variable name="temp" value="${instance.tempPath}"/>
+            <variable name="xar" value="${xar}"/>
+        </xdb:xquery>
+        <echo message="${deploy.output}"/>
+    </target>
+
     <target name="deploy.cleanup">
         <echo message="Removing temporary collection ..."/>
         <xdb:remove uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
-                    collection="${instance.tempPath}"/>
+            collection="${instance.tempPath}"/>
     </target>
 
+    <target name="deploy.cleanup-production">
+        <echo message="Removing temporary collection ..."/>
+        <xdb:remove uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
+            collection="${instance.tempPath}"/>
+    </target>
+    
     <target name="clean" description="Call clean on all package dirs; remove built xars">
         <delete>
             <fileset dir="${xars}">
@@ -273,7 +300,7 @@
     <!-- Targets for uploading files from oXygen to the db -->
     <!-- ================================================= -->
 
-    <target name="upload-current-file-to-localhost" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db on the localhost development server" depends="deploy.init">
+    <target name="upload-file-to-localhost" description="Upload a file from an hsg-project repo to eXist-db on localhost" depends="deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
         <property name="file-path" value="${parent-directory}/${file-name}"/>
@@ -285,27 +312,23 @@
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
             <map from="c:" to=""/>
         </pathconvert>
-        <if>
+        <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
-            <then>
-                <propertyregex property="target-collection" input="${file-path.unix}"
-                    regexp=".*?/hsg-project/repos/(.*)"
-                    select="/db/apps/\1"
-                    defaultvalue="Error"
-                    override="true"/>
-                <property name="target-xmldb-collection-uri" value="${local.instance.uri}${target-collection}"/>
-                <xdb:store user="${local.instance.user}" password="${local.instance.password}"
-                    uri="${target-xmldb-collection-uri}" createcollection="true" createsubcollections="true">
-                    <fileset refid="file"/>
-                </xdb:store>
-            </then>
-            <else>
-                <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>
-            </else>
-        </if>
+        </condition>
+        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
+        <propertyregex property="target-collection" input="${file-path.unix}"
+            regexp=".*?/hsg-project/repos/(.*)"
+            select="/db/apps/\1"
+            defaultvalue="Error"
+            override="true"/>
+        <property name="target-xmldb-collection-uri" value="${local.instance.uri}${target-collection}"/>
+        <xdb:store user="${local.instance.user}" password="${local.instance.password}"
+            uri="${target-xmldb-collection-uri}" createcollection="true" createsubcollections="true">
+            <fileset refid="file"/>
+        </xdb:store>
     </target>
 
-    <target name="upload-current-file-to-production" description="Uploads the working copy file currently open in oXygen XML Editor to eXist-db on the production history.state.gov server" depends="deploy.init">
+    <target name="upload-file-to-production" description="Upload a file from an hsg-project repo to eXist-db on history.state.gov" depends="deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
         <property name="file-path" value="${parent-directory}/${file-name}"/>
@@ -317,27 +340,77 @@
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
             <map from="c:" to=""/>
         </pathconvert>
-        <if>
+        <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
-            <then>
-                <propertyregex property="target-collection" input="${file-path.unix}"
-                    regexp=".*?/hsg-project/repos/(.*)"
-                    select="/db/apps/\1"
-                    defaultvalue="Error"
-                    override="true"/>
-                <property name="target-xmldb-collection-uri" value="${production.instance.uri}${target-collection}"/>
-                <xdb:store user="${production.instance.user}" password="${production.instance.password}"
-                    uri="${target-xmldb-collection-uri}" ssl="true" createcollection="true" createsubcollections="true">
-                    <fileset refid="file"/>
-                </xdb:store>
-            </then>
-            <else>
-                <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>
-            </else>
-        </if>
+        </condition>
+        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
+        <propertyregex property="target-collection" input="${file-path.unix}"
+            regexp=".*?/hsg-project/repos/(.*)"
+            select="/db/apps/\1"
+            defaultvalue="Error"
+            override="true"/>
+        <property name="target-xmldb-collection-uri" value="${production.instance.uri}${target-collection}"/>
+        <xdb:store user="${production.instance.user}" password="${production.instance.password}"
+            uri="${target-xmldb-collection-uri}" ssl="true" createcollection="true" createsubcollections="true">
+            <fileset refid="file"/>
+        </xdb:store>
+    </target>
+    
+    <target name="delete-file-from-localhost" description="Delete a file from an hsg-project repo from eXist-db on localhost" depends="deploy.init">
+        <property name="parent-directory" value="${arg1}"/>
+        <property name="file-name" value="${arg2}"/>
+        <property name="file-path" value="${parent-directory}/${file-name}"/>
+        <echo message="Deleting ${file-name} from ${parent-directory} on eXist-db localhost"/>
+        <path id="parent-dir">
+            <pathelement path="${parent-directory}"/>
+        </path>
+        <fileset file="${file-path}" id="file"/>
+        <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
+            <map from="c:" to=""/>
+        </pathconvert>
+        <condition property="is-hsg-project-repo">
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+        </condition>
+        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
+        <propertyregex property="target-collection" input="${file-path.unix}"
+            regexp=".*?/hsg-project/repos/(.*)"
+            select="/db/apps/\1"
+            defaultvalue="Error"
+            override="true"/>
+        <property name="target-xmldb-collection-uri" value="${local.instance.uri}${target-collection}"/>
+        <xdb:remove user="${local.instance.user}" password="${local.instance.password}"
+            uri="${target-xmldb-collection-uri}" resource="${file-name}">
+        </xdb:remove>
     </target>
 
-    <target name="update-this-repo" description="Updates the parent repo of the file currently open in oXygen XML Editor" depends="ivy.download,deploy.init">
+    <target name="delete-file-from-production" description="Delete a file from an hsg-project repo from eXist-db on history.state.gov" depends="deploy.init">
+        <property name="parent-directory" value="${arg1}"/>
+        <property name="file-name" value="${arg2}"/>
+        <property name="file-path" value="${parent-directory}/${file-name}"/>
+        <echo message="Deleting ${file-name} from ${parent-directory} on eXist-db localhost"/>
+        <path id="parent-dir">
+            <pathelement path="${parent-directory}"/>
+        </path>
+        <fileset file="${file-path}" id="file"/>
+        <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
+            <map from="c:" to=""/>
+        </pathconvert>
+        <condition property="is-hsg-project-repo">
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+        </condition>
+        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
+        <propertyregex property="target-collection" input="${file-path.unix}"
+            regexp=".*?/hsg-project/repos/(.*)"
+            select="/db/apps/\1"
+            defaultvalue="Error"
+            override="true"/>
+        <property name="target-xmldb-collection-uri" value="${production.instance.uri}${target-collection}"/>
+        <xdb:remove user="${production.instance.user}" password="${production.instance.password}"
+            uri="${target-xmldb-collection-uri}" resource="${file-name}">
+        </xdb:remove>
+    </target>
+    
+    <target name="update-repo" description="Fetch updates for the parent repo of a file (from an hsg-project repo)" depends="ivy.download,deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
@@ -345,33 +418,39 @@
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
             <map from="c:" to=""/>
         </pathconvert>
-        <if>
+        <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
-            <then>
-                <propertyregex property="repo-name" input="${file-path.unix}"
-                    regexp=".*/hsg-project/repos/([^/]+)"
-                    select="\1"
-                    defaultvalue="Error"
-                    override="true"/>
-                <antcall target="git.pull">
-                    <param name="dir" value="repos/${repo-name}"/>
-                </antcall>
-            </then>
-            <else>
-                <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>
-            </else>
-        </if>
+        </condition>
+        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
+        <propertyregex property="repo-name" input="${file-path.unix}"
+            regexp=".*/hsg-project/repos/([^/]+)"
+            select="\1"
+            defaultvalue="Error"
+            override="true"/>
+        <antcall target="git.pull">
+            <param name="dir" value="repos/${repo-name}"/>
+        </antcall>
     </target>
     
-    <target name="update-hsg-project" description="Updates the hsg-project repository">
-        <property name="dir" value="${arg1}"/>
+    <target name="update-hsg-project" description="Updates the hsg-project repo">
+        <property name="project-directory" value="${arg1}"/>
+        <path id="project-dir">
+            <pathelement path="${project-directory}"/>
+        </path>
+        <pathconvert targetos="unix" property="file-path.unix" refid="project-dir">
+            <map from="c:" to=""/>
+        </pathconvert>
+        <condition property="is-hsg-project-repo">
+            <contains string="${file-path.unix}" substring="/hsg-project" />
+        </condition>
+        <fail message="ERROR: The directory ${project-directory} is not the hsg-project repo" unless="${is-hsg-project-repo}"/>
         <echo message="Updating hsg-project..."/>
-        <exec executable="${git}" dir="${dir}">
+        <exec executable="${git}" dir="${file-path.unix}">
             <arg line="pull"/>
         </exec>
     </target>
 
-    <target name="deploy-current-repo-to-localhost" description="Packages and deploys the package of the file currently open in oXygen XML Editor" depends="ivy.download,deploy.init">
+    <target name="deploy-repo-to-localhost" description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on localhost" depends="ivy.download,deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
@@ -379,39 +458,73 @@
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
             <map from="c:" to=""/>
         </pathconvert>
-        <if>
+        <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
-            <then>
-                <propertyregex property="repo-name" input="${file-path.unix}"
-                    regexp=".*/hsg-project/repos/([^/]+)"
-                    select="\1"
-                    defaultvalue="Error"
-                    override="true"/>
-                <echo>repo-name: ${repo-name}</echo>
-                <subant>
-                    <fileset dir="repos/${repo-name}">
-                        <include name="build.xml"/>
-                    </fileset>
-                </subant>
-                <antcall target="deploy.upload-one"/>
-                <path id="xar-path">
-                    <fileset dir="repos/${repo-name}/build">
-                        <include name="*.xar"/>
-                    </fileset>
-                </path>
-                <property name="xar-path" refid="xar-path"/>
-                <basename property="xar" file="${xar-path}"/>
-                <antcall target="deploy.deploy-xar">
-                    <param name="xar" value="${xar}"/>
-                </antcall>
-            </then>
-            <else>
-                <echo>ERROR: The directory ${parent-directory} is not from the working copy directory of files for the eXist-db database</echo>
-            </else>
-        </if>
+        </condition>
+        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
+        <propertyregex property="repo-name" input="${file-path.unix}"
+            regexp=".*/hsg-project/repos/([^/]+)"
+            select="\1"
+            defaultvalue="Error"
+            override="true"/>
+        <echo>repo-name: ${repo-name}</echo>
+        <subant>
+            <fileset dir="repos/${repo-name}">
+                <include name="build.xml"/>
+            </fileset>
+        </subant>
+        <antcall target="deploy.upload-one"/>
+        <path id="xar-path">
+            <fileset dir="repos/${repo-name}/build">
+                <include name="*.xar"/>
+            </fileset>
+        </path>
+        <property name="xar-path" refid="xar-path"/>
+        <basename property="xar" file="${xar-path}"/>
+        <antcall target="deploy.deploy-xar">
+            <param name="xar" value="${xar}"/>
+        </antcall>
+        <antcall target="deploy.cleanup"/>
+    </target>
+    
+    <target name="deploy-repo-to-production" description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on history.state.gov" depends="ivy.download,deploy.init">
+        <property name="parent-directory" value="${arg1}"/>
+        <path id="parent-dir">
+            <pathelement path="${parent-directory}"/>
+        </path>
+        <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
+            <map from="c:" to=""/>
+        </pathconvert>
+        <condition property="is-hsg-project-repo">
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+        </condition>
+        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
+        <propertyregex property="repo-name" input="${file-path.unix}"
+            regexp=".*/hsg-project/repos/([^/]+)"
+            select="\1"
+            defaultvalue="Error"
+            override="true"/>
+        <echo>repo-name: ${repo-name}</echo>
+        <subant>
+            <fileset dir="repos/${repo-name}">
+                <include name="build.xml"/>
+            </fileset>
+        </subant>
+        <antcall target="deploy.upload-one-to-production"/>
+        <path id="xar-path">
+            <fileset dir="repos/${repo-name}/build">
+                <include name="*.xar"/>
+            </fileset>
+        </path>
+        <property name="xar-path" refid="xar-path"/>
+        <basename property="xar" file="${xar-path}"/>
+        <antcall target="deploy.deploy-xar-to-production">
+            <param name="xar" value="${xar}"/>
+        </antcall>
+        <antcall target="deploy.cleanup-production"/>
     </target>
 
-    <target name="open-current-repo-in-github-desktop" description="Opens the repo belonging to the file currently open in oXygen XML Editor" depends="deploy.init">
+    <target name="open-repo-in-github-desktop" description="Opens an hsg-project repo in oXygen XML Editor" depends="deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
@@ -422,9 +535,13 @@
         <propertyregex property="repo-basepath" input="${file-path.unix}"
             regexp="(.*?/hsg-project/repos/[^/]*)"
             select="\1"
-            defaultvalue="Error"
-            override="true"/>
-        <echo message="repo-basepath: ${repo-basepath}"/>
+            defaultvalue="ERROR"
+            override=""/>
+        <fail message="ERROR: The directory ${file-path.unix} is not an hsg-project repo">
+            <condition>
+                <equals arg1="${repo-basepath}" arg2="ERROR"/>
+            </condition>
+        </fail>
         <exec executable="${github}" dir="${repo-basepath}">
             <arg line="."/>
         </exec>
