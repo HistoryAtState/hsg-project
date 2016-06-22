@@ -1,8 +1,13 @@
 xquery version "3.0";
 
 import module namespace console="http://exist-db.org/xquery/console";
+import module namespace dbutil="http://exist-db.org/xquery/dbutil";
 
 declare namespace expath="http://expath.org/ns/pkg";
+declare namespace repo="http://exist-db.org/xquery/repo";
+
+(: functions from replication.xql are pasted in below, since xdb:query can't import modules that aren't on the remote server :)
+declare namespace ru="http://exist-db.org/xquery/replication-util";
 
 declare variable $temp external;
 declare variable $xar external;
@@ -28,7 +33,7 @@ declare function local:remove($package-url as xs:string) as xs:boolean {
 
 declare %private function local:entry-filter($path as xs:anyURI, $type as xs:string, $param as item()*) as xs:boolean
 {
-	$path = "expath-pkg.xml"
+	$path = ("expath-pkg.xml", "repo.xml")
 };
 
 declare %private function local:entry-data($path as xs:anyURI, $type as xs:string, $data as item()?, $param as item()*) as item()?
@@ -38,6 +43,41 @@ declare %private function local:entry-data($path as xs:anyURI, $type as xs:strin
     	<type>{$type}</type>
     	<data>{$data}</data>
     </entry>
+};
+
+declare variable $ru:sync-metadata :=
+    let $tryImport :=
+        try {
+            util:import-module(xs:anyURI("http://exist-db.org/xquery/replication"), "replication",
+                xs:anyURI("java:org.exist.jms.xquery.ReplicationModule")),
+            true()
+        } catch * {
+            false()
+        }
+    return
+        if ($tryImport) then
+            function-lookup(xs:QName("replication:sync-metadata"), 1)
+        else
+            ()
+;
+
+declare function ru:sync($root as xs:anyURI, $delay as xs:long) {
+    util:wait($delay),
+    ru:sync($root)
+};
+
+declare function ru:sync($root as xs:anyURI) {
+    if (exists($ru:sync-metadata)) then
+        dbutil:scan($root, function($collection, $resource) {
+            if ($resource) then
+                $ru:sync-metadata($resource)
+            else if ($collection != $root) then
+                $ru:sync-metadata($collection)
+            else
+                ()
+        })
+    else
+        ()
 };
 
 let $xarPath := $temp || "/" || $xar
@@ -52,10 +92,12 @@ let $meta :=
             "Failed to unpack archive")
     }
 let $package := $meta//expath:package/string(@name)
+let $target := $meta//repo:target
 let $log := console:log($package)
 let $removed := local:remove($package)
 return
     (
         console:log("Installing package " || $package),
-        repo:install-and-deploy-from-db($temp || "/" || $xar, $repo)
+        repo:install-and-deploy-from-db($temp || "/" || $xar, $repo),
+        ru:sync(xs:anyURI("/db/" || $target), 3000)
     )
