@@ -87,7 +87,7 @@
         <property name="repo-name" value="${repo-name}"/>
         <echo message="Uploading package ${repo-name} ..."/>
         <xdb:store uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
-            createcollection="true">
+            createcollection="true" ssl="true">
             <fileset dir="repos/${repo-name}/build">
                 <include name="*.xar"/>
             </fileset>
@@ -122,7 +122,7 @@
     <target name="deploy.deploy-xar-to-production">
         <echo message="Deploying xar ${xar}"/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
-            queryFile="scripts/deploy.xql" outputproperty="deploy.output">
+            queryFile="scripts/deploy.xql" outputproperty="deploy.output" ssl="true">
             <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
         </xdb:xquery>
@@ -379,8 +379,7 @@
             override="true"/>
         <property name="target-xmldb-collection-uri" value="${local.instance.uri}${target-collection}"/>
         <xdb:remove user="${local.instance.user}" password="${local.instance.password}"
-            uri="${target-xmldb-collection-uri}" resource="${file-name}">
-        </xdb:remove>
+            uri="${target-xmldb-collection-uri}" resource="${file-name}"/>
     </target>
 
     <target name="delete-file-from-production" description="Delete a file from an hsg-project repo from eXist-db on history.state.gov" depends="deploy.init">
@@ -406,8 +405,7 @@
             override="true"/>
         <property name="target-xmldb-collection-uri" value="${production.instance.uri}${target-collection}"/>
         <xdb:remove user="${production.instance.user}" password="${production.instance.password}"
-            uri="${target-xmldb-collection-uri}" resource="${file-name}">
-        </xdb:remove>
+            uri="${target-xmldb-collection-uri}" resource="${file-name}" ssl="true"/>
     </target>
     
     <target name="update-repo" description="Fetch updates for the parent repo of a file (from an hsg-project repo)" depends="ivy.download,deploy.init">
