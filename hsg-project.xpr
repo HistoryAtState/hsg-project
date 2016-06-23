@@ -340,13 +340,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" deploy-repo-to-localhost -Darg1="${cfd}"</String>
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Build and deploy the parent repository of the working file in the active tab to eXist-db on localhost</String>
+                                    <String>Build and deploy all repositories to eXist-db on localhost</String>
                                 </field>
                                 <field name="name">
-                                    <String>Deploy current repository to localhost</String>
+                                    <String>Deploy all repositories to localhost</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -372,13 +372,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant"</String>
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" deploy-repo-to-localhost -Darg1="${cfd}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Build and deploy all repositories to eXist-db on localhost</String>
+                                    <String>Build and deploy the parent repository of the working file in the active tab to eXist-db on localhost</String>
                                 </field>
                                 <field name="name">
-                                    <String>Deploy all repositories to localhost</String>
+                                    <String>Deploy current repository to localhost</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
