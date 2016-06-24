@@ -496,6 +496,21 @@
                         <Boolean>true</Boolean>
                     </entry>
                     <entry>
+                        <String>key.trusted.hosts.option.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>trusted.hosts</String>
+                        <String-array>
+                            <String>*oxygenxml.com</String>
+                            <String>*w3c.org</String>
+                            <String>*w3.org</String>
+                            <String>*.sharepoint.com</String>
+                            <String>*saxonica.com</String>
+                            <String>history.state.gov:443</String>
+                        </String-array>
+                    </entry>
+                    <entry>
                         <String>validation.scenario.associations</String>
                         <scenarioAssociation-array>
                             <scenarioAssociation>
