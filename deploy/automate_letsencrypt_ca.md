@@ -59,7 +59,7 @@ To let `letsencrypt` run its own web server; stop `nginx`.
 service nginx stop
 ~~~
 
-To start the `letsencrypt` process the first time run the `letsencrypt-auto` script in the `ltesencrypt` directory with debugging enabled for each subdomain. (Change `$SUBDOMAIN` to actual subdomain!)
+To start the `letsencrypt` process the first time run the `letsencrypt-auto` script in the `letsencrypt` directory with debugging enabled for each subdomain. (Change `$SUBDOMAIN` to actual subdomain!)
 The certificates will be generated in `/etc/letsencrypt/live/$SUBDOMAIN.history.state.gov/`.
 
 ~~~shell
