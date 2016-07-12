@@ -1,8 +1,8 @@
 #!/bin/bash
 
-config_file='/letsencrypt/cli-1991.history.state.gov.ini'
+config_file="$HOME/letsencrypt/cli-1861.history.state.gov.ini"
 
-le_path='/opt/letsencrypt'
+le_path="/opt/letsencrypt"
 exp_limit=30;
 
 if [ ! -f $config_file ]; then
