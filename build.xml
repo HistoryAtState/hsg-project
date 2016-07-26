@@ -103,7 +103,7 @@
         <echo message="Installing packages from eXist-db.org public repo ..."/>
         <echo message="Installing monex ..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
-                    query="repo:install-and-deploy('http://exist-db.org/apps/monex', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+                    query="repo:install-and-deploy('http://exist-db.org/apps/monex', '0.9.3', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
         <echo message="Installing functx ..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
             query="repo:install-and-deploy('http://www.functx.com', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
