@@ -543,41 +543,11 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>repos/pocom/positions-principals/</String>
+                                    <String>repos/frus-not-yet-reviewed/volumes/</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>POCOM positions-principals</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>Validation_scenario</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/pocom/missions-orgs/</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>POCOM missions-orgs</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>Validation_scenario</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/pocom/missions-countries/</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>POCOM missions-countries</String>
+                                        <String>FRUS TEI</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -603,11 +573,56 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>repos/pocom/missions-countries/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>POCOM missions-countries</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/pocom/positions-principals/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>POCOM positions-principals</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>repos/pocom/people/</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
                                         <String>POCOM person</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/pocom/missions-orgs/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>POCOM missions-orgs</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
