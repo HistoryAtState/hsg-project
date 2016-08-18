@@ -467,6 +467,12 @@
         <fail message="ERROR: The directory ${project-directory} is not the hsg-project repo" unless="${is-hsg-project-repo}"/>
         <echo message="Updating hsg-project..."/>
         <exec executable="${git}" dir="${file-path.unix}">
+            <arg line="checkout"/>
+            <arg line="HEAD"/>
+            <arg line="--"/>
+            <arg line="hsg-project.xpr"/>
+        </exec>
+        <exec executable="${git}" dir="${file-path.unix}">
             <arg line="pull"/>
         </exec>
     </target>
