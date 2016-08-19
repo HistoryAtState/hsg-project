@@ -543,6 +543,36 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>repos/frus/bibliography/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FRUS bibliography</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/frus/volumes/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FRUS TEI</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>repos/visits/data/</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -604,21 +634,6 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>repos/hsg-staging/frus/volumes/</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>FRUS TEI</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>Validation_scenario</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/frus/volumes/</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
