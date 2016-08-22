@@ -611,7 +611,7 @@
     </target>
     
     <target name="prepare-local-build-properties" description="Create a local copy of build.properties and supply with needed information">
-        <copy file="build.properties" tofile="local.build.properties"/>
+        <copy file="build.properties" tofile="local.build.properties" overwrite="yes"/>
         <property name="arg1" value="${arg1}"/>
         <property name="arg2" value="${arg2}"/>
         <property name="arg3" value="${arg3}"/>
