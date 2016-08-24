@@ -583,6 +583,37 @@
             <arg line="."/>
         </exec>
     </target>
+    
+    <target name="open-repo-in-atom" description="Opens an hsg-project repo in Atom" depends="deploy.init">
+        <property name="parent-directory" value="${arg1}"/>
+        <path id="parent-dir">
+            <pathelement path="${parent-directory}"/>
+        </path>
+        <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
+            <map from="c:" to=""/>
+        </pathconvert>
+        <propertyregex property="repo-basepath" input="${file-path.unix}"
+            regexp="(.*?/hsg-project/repos/[^/]*)"
+            select="\1"
+            defaultvalue="ERROR"
+            override=""/>
+        <fail message="ERROR: The directory ${file-path.unix} is not an hsg-project repo">
+            <condition>
+                <equals arg1="${repo-basepath}" arg2="ERROR"/>
+            </condition>
+        </fail>
+        <propertyregex property="repo" input="${file-path.unix}"
+            regexp=".*?/hsg-project/repos/([^/]*)"
+            select="\1"
+            override=""/>
+        <copy file="atom-existdb_tmpl.json" tofile="${repo-basepath}/.existdb.json" overwrite="yes"/>
+        <replace file="${repo-basepath}/.existdb.json" token="@@@" value="${repo}"/>
+        <exec executable="open" dir="${repo-basepath}">
+            <arg line="-a"/>
+            <arg line="Atom"/>
+            <arg line="."/>
+        </exec>
+    </target>
 
     <!-- =================================================================== -->
     <!-- Wipe eXist-db database; perform only with eXist-db shut down        -->
