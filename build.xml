@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." name="HsgProject" default="all" xmlns:xdb="http://exist-db.org/ant">
-    <property file="local.build.properties"/>
-    <property file="build.properties"/>
+    <property file="build/local.build.properties"/>
+    <property file="build/build.properties"/>
 
     <property name="repos" value="repos"/>
     <!-- use "xars" unless called with a "repo-name" property -->
@@ -15,7 +15,7 @@
     <property name="libs" value="./lib"/>
 
     <available file="${libs}/ivy-${ivy.version}.jar" property="ivy.available"/>
-
+    
     <target name="all" depends="clean,update,build,deploy" description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
     
     <condition property="remotes.include-private">
@@ -125,7 +125,7 @@
     <target name="deploy.deploy-xar">
         <echo message="Deploying xar ${xar}"/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
-                    queryFile="scripts/deploy.xql" outputproperty="deploy.output">
+                    queryFile="build/deploy.xql" outputproperty="deploy.output">
             <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
         </xdb:xquery>
@@ -135,7 +135,7 @@
     <target name="deploy.deploy-xar-to-production">
         <echo message="Deploying xar ${xar}"/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
-            queryFile="scripts/deploy.xql" outputproperty="deploy.output" ssl="true">
+            queryFile="build/deploy.xql" outputproperty="deploy.output" ssl="true">
             <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
         </xdb:xquery>
@@ -606,7 +606,7 @@
             regexp=".*?/hsg-project/repos/([^/]*)"
             select="\1"
             override=""/>
-        <copy file="atom-existdb_tmpl.json" tofile="${repo-basepath}/.existdb.json" overwrite="yes"/>
+        <copy file="build/atom-existdb_tmpl.json" tofile="${repo-basepath}/.existdb.json" overwrite="yes"/>
         <replace file="${repo-basepath}/.existdb.json" token="@@@" value="${repo}"/>
         <exec executable="open" dir="${repo-basepath}">
             <arg line="-a"/>
@@ -642,12 +642,12 @@
     </target>
     
     <target name="prepare-local-build-properties" description="Create a local copy of build.properties and supply with needed information">
-        <copy file="build.properties" tofile="local.build.properties" overwrite="yes"/>
+        <copy file="build/build.properties" tofile="build/local.build.properties" overwrite="yes"/>
         <property name="arg1" value="${arg1}"/>
         <property name="arg2" value="${arg2}"/>
         <property name="arg3" value="${arg3}"/>
         <propertyfile
-            file="local.build.properties"
+            file="build/local.build.properties"
             comment="hsg settings for ${arg3}">
             <entry key="production.instance.password" value="${arg1}"/>
             <entry key="remotes.include-private" value="${arg2}"/>
