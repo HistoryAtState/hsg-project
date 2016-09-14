@@ -392,6 +392,7 @@
                                     <Boolean>true</Boolean>
                                 </field>
                             </xsltCustomEngines>
+                            <!--
                             <xsltCustomEngines>
                                 <field name="outEncoding">
                                     <null/>
@@ -424,6 +425,7 @@
                                     <Boolean>true</Boolean>
                                 </field>
                             </xsltCustomEngines>
+                            -->
                             <xsltCustomEngines>
                                 <field name="outEncoding">
                                     <null/>
