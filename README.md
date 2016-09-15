@@ -23,6 +23,10 @@ To automate the following steps:
 
 ## Setup
 
+For Office of the Historian staff, see the [hsg-project wiki](https://github.com/HistoryAtState/hsg-project/wiki), especially the article [Setting up a history.state.gov development environment on your computer](https://github.com/HistoryAtState/hsg-project/wiki/setup) and [Using version control with history.state.gov publications and datasets](https://github.com/HistoryAtState/hsg-project/wiki/version-control].
+
+For the general developer community:
+
 - Clone this repo
 - For oXygen users:
     - Open the `hsg-project.xpr` file in oXygen
@@ -35,8 +39,8 @@ To automate the following steps:
 
 ## Troubleshooting
 
-- In the case of authentication errors, check `build.properties` to ensure that `local.instance.uri`, `local.instance.user`, and `local.instance.password` are correct for your eXist instance.
-- In the case of errors that git cannot be found, edit `build.properties` to set the correct path to the executable.
+- In the case of authentication errors, check `build/build.properties` to ensure that `local.instance.uri`, `local.instance.user`, and `local.instance.password` are correct for your eXist instance.
+- In the case of errors that git cannot be found, edit `build/build.properties` to set the correct path to the executable.
 
 ## Other External Tools entries for oXygen users
 
@@ -73,5 +77,5 @@ ant
 ## Notes
 
 - This has been tested with Mac OS X 10.11, Amazon Linux, and oXygen 17.1
-- To add a repository, add its info to build.properties
+- To add a repository, add its info to `build/build.properties`
 - Pull requests welcome

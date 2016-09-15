@@ -392,6 +392,7 @@
                                     <Boolean>true</Boolean>
                                 </field>
                             </xsltCustomEngines>
+                            <!--
                             <xsltCustomEngines>
                                 <field name="outEncoding">
                                     <null/>
@@ -410,6 +411,39 @@
                                 </field>
                                 <field name="name">
                                     <String>Deploy current repository to history.state.gov</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            -->
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" open-repo-in-atom -Darg1="${cfd}"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Open the parent repository of the working file in the active tab in Atom</String>
+                                </field>
+                                <field name="name">
+                                    <String>Open current repository in Atom</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -543,6 +577,36 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>repos/frus/bibliography/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FRUS bibliography</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/frus/volumes/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FRUS TEI</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>repos/visits/data/</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -604,21 +668,6 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>repos/hsg-staging/frus/volumes/</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>FRUS TEI</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>Validation_scenario</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/frus/volumes/</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
