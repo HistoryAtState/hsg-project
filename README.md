@@ -23,7 +23,7 @@ To automate the following steps:
 
 ## Setup
 
-For Office of the Historian staff, see the [hsg-project wiki](https://github.com/HistoryAtState/hsg-project/wiki), especially the article [Setting up a history.state.gov development environment on your computer](https://github.com/HistoryAtState/hsg-project/wiki/setup) and [Using version control with history.state.gov publications and datasets](https://github.com/HistoryAtState/hsg-project/wiki/version-control].
+For Office of the Historian staff, see the [hsg-project wiki](https://github.com/HistoryAtState/hsg-project/wiki), especially the article [Setting up a history.state.gov development environment on your computer](https://github.com/HistoryAtState/hsg-project/wiki/setup) and [Using version control with history.state.gov publications and datasets](https://github.com/HistoryAtState/hsg-project/wiki/version-control).
 
 For the general developer community:
 
