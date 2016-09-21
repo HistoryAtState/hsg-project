@@ -3,3 +3,4 @@ xars
 lib
 local.build.properties
 build/local.build.properties
+.DS_Store
