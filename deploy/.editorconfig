@@ -7,6 +7,11 @@ insert_final_newline = true
 charset = utf-8
 
 # server config
-[nginx.*]
-indent_style = tab
+[*.{config,conf}]
+indent_style = space
 indent_size = 4
+insert_final_newline = true
+[nginx.*]
+indent_style = space
+indent_size = 4
+insert_final_newline = true
