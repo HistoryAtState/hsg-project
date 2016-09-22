@@ -6,6 +6,10 @@
             <serialized version="17.1" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
+                        <String>enable.xquery.backup</String>
+                        <Boolean>false</Boolean>
+                    </entry>
+                    <entry>
                         <String>external.tool.cmds</String>
                         <xsltCustomEngines-array>
                             <xsltCustomEngines>
@@ -503,6 +507,14 @@
                         <Boolean>true</Boolean>
                     </entry>
                     <entry>
+                        <String>key.xquery.option.pane.group</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>key.xquery.saxon.option.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
                         <String>open.find.resource.indexing.options</String>
                         <openFindResourceIndexingOptions>
                             <field name="searchInContent">
@@ -524,6 +536,10 @@
                                 <String>a, an, and, are, as, at, be, but, by, for, if, in, into, is, it, no, not, of, on, or, such, that, the, their, then, there, these, they, this, to, was, will, with</String>
                             </field>
                         </openFindResourceIndexingOptions>
+                    </entry>
+                    <entry>
+                        <String>saxon.enable.xquery.update</String>
+                        <Boolean>true</Boolean>
                     </entry>
                     <entry>
                         <String>trusted.hosts</String>
@@ -1791,6 +1807,10 @@
                                 </field>
                             </validationScenario>
                         </validationScenario-array>
+                    </entry>
+                    <entry>
+                        <String>xquery.options.transformation.engine.v9</String>
+                        <String>Saxon-EE XQuery</String>
                     </entry>
                 </serializableOrderedMap>
             </serialized>
