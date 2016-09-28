@@ -311,8 +311,16 @@
     <!-- ================================================= -->
     <!-- Targets for uploading files from oXygen to the db -->
     <!-- ================================================= -->
+    
+    <condition property="is-xml">
+        <contains string="${arg2}" substring=".xml"/>
+    </condition>
+    
+    <target name="validate-if-xml" if="${is-xml}">
+        <xmlvalidate file="${arg1}/${arg2}" lenient="true" failonerror="true"/>
+    </target>
 
-    <target name="upload-file-to-localhost" description="Upload a file from an hsg-project repo to eXist-db on localhost" depends="deploy.init">
+    <target name="upload-file-to-localhost" description="Upload a file from an hsg-project repo to eXist-db on localhost" depends="deploy.init,validate-if-xml">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
         <property name="file-path" value="${parent-directory}/${file-name}"/>
@@ -343,7 +351,7 @@
         </xdb:store>
     </target>
 
-    <target name="upload-file-to-production" description="Upload a file from an hsg-project repo to eXist-db on history.state.gov" depends="deploy.init">
+    <target name="upload-file-to-production" description="Upload a file from an hsg-project repo to eXist-db on history.state.gov" depends="deploy.init,validate-if-xml">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
         <property name="file-path" value="${parent-directory}/${file-name}"/>
