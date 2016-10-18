@@ -24,12 +24,12 @@
 
     <target name="clone-private-repos" if="${remotes.include-private}" description="Clone private packages">
         <echo message="Cloning private packages into ${repos}..."/>
-        <foreach property="remotes.private" target="git.clone"/>
+        <foreach-js property="remotes.private" target="git.clone"/>
     </target>
     
     <target name="clone-public-repos">
         <echo message="Cloning required packages into ${repos}..." description="Clone public packages"/>
-        <foreach property="remotes" target="git.clone"/>
+        <foreach-js property="remotes" target="git.clone"/>
     </target>
 
     <target name="setup" depends="prepare,clone-public-repos,clone-private-repos" description="Clone required packages">
@@ -260,7 +260,7 @@
         ]]>
     </scriptdef>
 
-    <scriptdef name="foreach" language="javascript">
+    <scriptdef name="foreach-js" language="javascript">
         <attribute name="target"/>
         <attribute name="property"/>
         <![CDATA[
