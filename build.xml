@@ -649,6 +649,15 @@
         </delete>
     </target>
     
+    <target name="wipe-exist-data-with-confirmation" description="Wipe eXist data">
+        <property name="are-you-sure" value="${arg1}"/>
+        <condition property="proceed">
+            <equals arg1="${are-you-sure}" arg2="true"/>
+        </condition>
+        <fail unless="${proceed}" message="Halted 'Wipe eXist database' thanks to your selection of 'No'."/>
+        <antcall target="wipe-exist-data"/>
+    </target>
+    
     <target name="prepare-local-build-properties" description="Create a local copy of build.properties and supply with needed information">
         <copy file="build/build.properties" tofile="build/local.build.properties" overwrite="yes"/>
         <property name="arg1" value="${arg1}"/>

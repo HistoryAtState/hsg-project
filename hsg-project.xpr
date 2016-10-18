@@ -471,7 +471,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" wipe-exist-data</String>
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" wipe-exist-data-with-confirmation -Darg1="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
                                 </field>
                                 <field name="description">
                                     <String>Wipe eXist database (in preparation for a fresh start)</String>
