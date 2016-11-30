@@ -375,7 +375,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" deploy-repo-to-localhost -Darg1="${cfd}"</String>
+                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant" deploy-repo-to-localhost -Dparent-directory="${cfd}"</String>
                                 </field>
                                 <field name="description">
                                     <String>Build and deploy the parent repository of the working file in the active tab to eXist-db on localhost</String>

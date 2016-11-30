@@ -85,26 +85,16 @@
         </xdb:store>
     </target>
 
-    <target name="deploy.upload-one">
-        <property name="repo-name" value="${repo-name}"/>
+    <target name="deploy.upload-one" depends="deploy.get-xar-filename">
         <echo message="Uploading package ${repo-name} ..."/>
         <xdb:store uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
-            createcollection="true">
-            <fileset dir="repos/${repo-name}/build">
-                <include name="*.xar"/>
-            </fileset>
-        </xdb:store>
+            createcollection="true" srcfile="${repos}/${repo-name}/build/${xar}"/>
     </target>
     
-    <target name="deploy.upload-one-to-production">
-        <property name="repo-name" value="${repo-name}"/>
+    <target name="deploy.upload-one-to-production" depends="deploy.get-xar-filename">
         <echo message="Uploading package ${repo-name} ..."/>
         <xdb:store uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
-            createcollection="true" ssl="true">
-            <fileset dir="repos/${repo-name}/build">
-                <include name="*.xar"/>
-            </fileset>
-        </xdb:store>
+            createcollection="true" ssl="true" srcfile="${repos}/${repo-name}/build/${xar}"/>
     </target>
 
     <target name="deploy.deploy">
@@ -122,7 +112,14 @@
             query="repo:install-and-deploy('http://www.functx.com', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
     </target>
 
-    <target name="deploy.deploy-xar">
+    <target name="deploy.get-xar-filename">
+        <xmlproperty file="${repos}/${repo-name}/expath-pkg.xml"/>
+        <property name="project.version" value="${package(version)}"/>
+        <property name="project.app" value="${package(abbrev)}"/>
+        <property name="xar" value="${project.app}-${project.version}.xar"/>
+    </target>
+
+    <target name="deploy.deploy-xar" depends="deploy.get-xar-filename">
         <echo message="Deploying xar ${xar}"/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
                     queryFile="build/deploy.xql" outputproperty="deploy.output">
@@ -132,7 +129,7 @@
         <echo message="${deploy.output}"/>
     </target>
 
-    <target name="deploy.deploy-xar-to-production">
+    <target name="deploy.deploy-xar-to-production" depends="deploy.get-xar-filename">
         <echo message="Deploying xar ${xar}"/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
             queryFile="build/deploy.xql" outputproperty="deploy.output" ssl="true">
@@ -333,11 +330,11 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging" />
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging"/>
         </condition>
         <propertyregex property="target-collection" input="${file-path.unix}"
             regexp=".*?/hsg-project/repos/(hsg-staging/)?(.*)"
@@ -364,11 +361,11 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging" />
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be uploaded to the production server" if="${is-hsg-staging-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
@@ -396,7 +393,7 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
@@ -422,11 +419,11 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging" />
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be uploaded to the production server" if="${is-hsg-staging-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
@@ -448,7 +445,7 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <contains string="${file-path.unix}" substring="/hsg-project/repos/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
@@ -462,31 +459,19 @@
     </target>
     
     <target name="update-hsg-project" description="Updates the hsg-project repo">
-        <property name="project-directory" value="${arg1}"/>
-        <path id="project-dir">
-            <pathelement path="${project-directory}"/>
-        </path>
-        <pathconvert targetos="unix" property="file-path.unix" refid="project-dir">
-            <map from="c:" to=""/>
-        </pathconvert>
-        <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project" />
-        </condition>
-        <fail message="ERROR: The directory ${project-directory} is not the hsg-project repo" unless="${is-hsg-project-repo}"/>
         <echo message="Updating hsg-project..."/>
-        <exec executable="${git}" dir="${file-path.unix}">
+        <exec executable="${git}" dir=".">
             <arg line="checkout"/>
             <arg line="HEAD"/>
             <arg line="--"/>
             <arg line="hsg-project.xpr"/>
         </exec>
-        <exec executable="${git}" dir="${file-path.unix}">
+        <exec executable="${git}" dir=".">
             <arg line="pull"/>
         </exec>
     </target>
 
     <target name="deploy-repo-to-localhost" description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on localhost" depends="ivy.download,deploy.init">
-        <property name="parent-directory" value="${arg1}"/>
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
         </path>
@@ -494,40 +479,30 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging" />
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be deployed" if="${is-hsg-staging-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
-            regexp=".*/hsg-project/repos/([^/]+)"
+            regexp=".*/hsg-project/${repos}/([^/]+)"
             select="\1"
             defaultvalue="Error"
             override="true"/>
         <echo>repo-name: ${repo-name}</echo>
         <subant>
-            <fileset dir="repos/${repo-name}">
+            <fileset dir="${repos}/${repo-name}">
                 <include name="build.xml"/>
             </fileset>
         </subant>
         <antcall target="deploy.upload-one"/>
-        <path id="xar-path">
-            <fileset dir="repos/${repo-name}/build">
-                <include name="*.xar"/>
-            </fileset>
-        </path>
-        <property name="xar-path" refid="xar-path"/>
-        <basename property="xar" file="${xar-path}"/>
-        <antcall target="deploy.deploy-xar">
-            <param name="xar" value="${xar}"/>
-        </antcall>
+        <antcall target="deploy.deploy-xar"/>
         <antcall target="deploy.cleanup"/>
     </target>
     
     <target name="deploy-repo-to-production" description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on history.state.gov" depends="ivy.download,deploy.init">
-        <property name="parent-directory" value="${arg1}"/>
         <!-- for hsg-shell's npm start process, we need to pass NODE_ENV=production -->
         <property name="NODE_ENV" value="production"/>
         <path id="parent-dir">
@@ -537,11 +512,11 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/" />
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo" unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging" />
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be deployed" if="${is-hsg-staging-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
@@ -551,21 +526,12 @@
             override="true"/>
         <echo>repo-name: ${repo-name}</echo>
         <subant>
-            <fileset dir="repos/${repo-name}">
+            <fileset dir="${repos}/${repo-name}">
                 <include name="build.xml"/>
             </fileset>
         </subant>
         <antcall target="deploy.upload-one-to-production"/>
-        <path id="xar-path">
-            <fileset dir="repos/${repo-name}/build">
-                <include name="*.xar"/>
-            </fileset>
-        </path>
-        <property name="xar-path" refid="xar-path"/>
-        <basename property="xar" file="${xar-path}"/>
-        <antcall target="deploy.deploy-xar-to-production">
-            <param name="xar" value="${xar}"/>
-        </antcall>
+        <antcall target="deploy.deploy-xar-to-production"/>
         <antcall target="deploy.cleanup-production"/>
     </target>
 
