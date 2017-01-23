@@ -2,7 +2,7 @@
 
 config_file="$HOME/letsencrypt/cli-1991.history.state.gov.ini"
 
-le_path="$HOME/opt/letsencrypt"
+le_path="/opt/letsencrypt"
 exp_limit=30;
 
 if [ ! -f $config_file ]; then
