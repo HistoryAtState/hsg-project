@@ -104,12 +104,15 @@
 
     <target name="deploy.install-packages-from-public-repo">
         <echo message="Installing packages from eXist-db.org public repo ..."/>
-        <echo message="Installing monex ..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
-                    query="repo:install-and-deploy('http://exist-db.org/apps/monex', '0.9.3', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
         <echo message="Installing functx ..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
             query="repo:install-and-deploy('http://www.functx.com', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+        <echo message="Installing TEI Simple PM..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
+            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+        <echo message="Installing TEI Publisher Libraries..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
+            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
     </target>
 
     <target name="deploy.get-xar-filename">
