@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="17.1">
+<project version="18.1">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="17.1" xml:space="preserve">
+            <serialized version="18.1" xml:space="preserve">
                 <serializableOrderedMap>
+                    <entry>
+                        <String>editor.detect.indent.on.open</String>
+                        <Boolean>false</Boolean>
+                    </entry>
+                    <entry>
+                        <String>editor.format.break.long.attributes</String>
+                        <Boolean>false</Boolean>
+                    </entry>
+                    <entry>
+                        <String>editor.format.preserve.not.normalize.attribute.values</String>
+                        <Boolean>false</Boolean>
+                    </entry>
+                    <entry>
+                        <String>editor.format.whitespace</String>
+                        <String-array>
+                            <String>0009</String>
+                            <String>000A</String>
+                            <String>000D</String>
+                            <String>0020</String>
+                            <String>3000</String>
+                        </String-array>
+                    </entry>
                     <entry>
                         <String>enable.xquery.backup</String>
                         <Boolean>false</Boolean>
@@ -495,6 +517,18 @@
                         </xsltCustomEngines-array>
                     </entry>
                     <entry>
+                        <String>key.editor.format.option.pane.group</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>key.editor.format.whitespace.option.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>key.editor.format.xml.option.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
                         <String>key.external.tools.option.pane</String>
                         <Boolean>true</Boolean>
                     </entry>
@@ -534,6 +568,9 @@
                             </field>
                             <field name="stopWords">
                                 <String>a, an, and, are, as, at, be, but, by, for, if, in, into, is, it, no, not, of, on, or, such, that, the, their, then, there, these, they, this, to, was, will, with</String>
+                            </field>
+                            <field name="lang">
+                                <String>CURRENT_APPLICATION_LANGUAGE</String>
                             </field>
                         </openFindResourceIndexingOptions>
                     </entry>
@@ -2561,6 +2598,10 @@
                                 </field>
                             </validationScenario>
                         </validationScenario-array>
+                    </entry>
+                    <entry>
+                        <String>xquery.format.transformer.output</String>
+                        <Boolean>false</Boolean>
                     </entry>
                     <entry>
                         <String>xquery.options.transformation.engine.v9</String>
