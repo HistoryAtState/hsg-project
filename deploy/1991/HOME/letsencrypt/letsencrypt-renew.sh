@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 config_file="$HOME/letsencrypt/cli-1991.history.state.gov.ini"
 
