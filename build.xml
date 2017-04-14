@@ -3,9 +3,9 @@
     <property file="build/local.build.properties"/>
     <property file="build/build.properties"/>
 
-    <property name="repos" value="./repos"/>
-    <property name="libs" value="./lib"/>
-    <property name="build" value="./build"/>
+    <property name="repos" value="repos"/>
+    <property name="libs" value="lib"/>
+    <property name="build" value="build"/>
     
     <!-- use "xars" unless called with a "repo-name" property -->
     <condition property="xars" value="${repo-name}" else="xars">
@@ -64,7 +64,7 @@
 
     <target name="update-one" depends="prepare">
         <antcall target="git.pull">
-            <param name="dir" value="repos/${repo-name}"/>
+            <param name="dir" value="${repos}/${repo-name}"/>
         </antcall>
     </target>
 
@@ -360,15 +360,15 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/"/>
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging"/>
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <propertyregex property="target-collection" input="${file-path.unix}"
-            regexp=".*?/hsg-project/repos/(hsg-staging/)?(.*)" select="/db/apps/\2"
+            regexp=".*?/hsg-project/${repos}/(hsg-staging/)?(.*)" select="/db/apps/\2"
             defaultvalue="Error" override="true"/>
         <property name="target-xmldb-collection-uri"
             value="${local.instance.uri}${target-collection}"/>
@@ -394,18 +394,18 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/"/>
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging"/>
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail
             message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be uploaded to the production server"
             if="${is-hsg-staging-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
-            regexp=".*?/hsg-project/repos/(.*)" select="/db/apps/\1" defaultvalue="Error"
+            regexp=".*?/hsg-project/${repos}/(.*)" select="/db/apps/\1" defaultvalue="Error"
             override="true"/>
         <property name="target-xmldb-collection-uri"
             value="${production.instance.uri}${target-collection}"/>
@@ -431,12 +431,12 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/"/>
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
-            regexp=".*?/hsg-project/repos/(hsg-staging/)?(.*)" select="/db/apps/\2"
+            regexp=".*?/hsg-project/${repos}/(hsg-staging/)?(.*)" select="/db/apps/\2"
             defaultvalue="Error" override="true"/>
         <property name="target-xmldb-collection-uri"
             value="${local.instance.uri}${target-collection}"/>
@@ -459,12 +459,12 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/"/>
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/hsg-staging"/>
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail
             message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be uploaded to the production server"
@@ -489,14 +489,14 @@
             <map from="c:" to=""/>
         </pathconvert>
         <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/repos/"/>
+            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
-            regexp=".*/hsg-project/repos/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
+            regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
         <antcall target="git.pull">
-            <param name="dir" value="repos/${repo-name}"/>
+            <param name="dir" value="${repos}/${repo-name}"/>
         </antcall>
     </target>
 
@@ -570,7 +570,7 @@
             message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be deployed"
             if="${is-hsg-staging-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
-            regexp=".*/hsg-project/repos/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
+            regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
         <echo>repo-name: ${repo-name}</echo>
         <subant>
             <fileset dir="${repos}/${repo-name}">
@@ -592,7 +592,7 @@
             <map from="c:" to=""/>
         </pathconvert>
         <propertyregex property="repo-basepath" input="${file-path.unix}"
-            regexp="(.*?/hsg-project/repos/[^/]*)" select="\1" defaultvalue="ERROR" override=""/>
+            regexp="(.*?/hsg-project/${repos}/[^/]*)" select="\1" defaultvalue="ERROR" override=""/>
         <fail message="ERROR: The directory ${file-path.unix} is not an hsg-project repo">
             <condition>
                 <equals arg1="${repo-basepath}" arg2="ERROR"/>
@@ -613,14 +613,14 @@
             <map from="c:" to=""/>
         </pathconvert>
         <propertyregex property="repo-basepath" input="${file-path.unix}"
-            regexp="(.*?/hsg-project/repos/[^/]*)" select="\1" defaultvalue="ERROR" override=""/>
+            regexp="(.*?/hsg-project/${repos}/[^/]*)" select="\1" defaultvalue="ERROR" override=""/>
         <fail message="ERROR: The directory ${file-path.unix} is not an hsg-project repo">
             <condition>
                 <equals arg1="${repo-basepath}" arg2="ERROR"/>
             </condition>
         </fail>
         <propertyregex property="repo" input="${file-path.unix}"
-            regexp=".*?/hsg-project/repos/([^/]*)" select="\1" override=""/>
+            regexp=".*?/hsg-project/${repos}/([^/]*)" select="\1" override=""/>
         <copy file="${build}/atom-existdb_tmpl.json" tofile="${repo-basepath}/.existdb.json"
             overwrite="yes"/>
         <replace file="${repo-basepath}/.existdb.json" token="@@@" value="${repo}"/>
