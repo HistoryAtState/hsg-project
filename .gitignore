@@ -3,6 +3,7 @@ xars
 lib
 local.build.properties
 build/local.build.properties
+build/ivy-*.jar
 .DS_Store
 
 Icon
