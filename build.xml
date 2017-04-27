@@ -121,18 +121,6 @@
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://www.functx.com', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
-<<<<<<< HEAD
-=======
-        <echo message="Installing TEI Simple PM..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
-        <echo message="Installing TEI Publisher Libraries..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
-        />
->>>>>>> 5ffe4e9... prevent ivy.jar from bring redownloaded
     </target>
 
     <target name="deploy.get-xar-filename">
