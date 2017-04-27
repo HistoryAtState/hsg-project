@@ -544,8 +544,6 @@
     <target name="deploy-repo-to-production"
         description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on history.state.gov"
         depends="ivy.download,deploy.init">
-        <!-- for hsg-shell's npm start process, we need to pass NODE_ENV=production -->
-        <property name="NODE_ENV" value="production"/>
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
         </path>
@@ -566,7 +564,9 @@
         <propertyregex property="repo-name" input="${file-path.unix}"
             regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
         <echo>repo-name: ${repo-name}</echo>
-        <subant>
+        <!-- for hsg-shell's npm start process, we need to set NODE_ENV to "production" and ensure this property is inherited by subant -->
+        <property name="NODE_ENV" value="production"/>
+        <subant inheritall="true">
             <fileset dir="${repos}/${repo-name}">
                 <include name="build.xml"/>
             </fileset>
