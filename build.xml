@@ -674,7 +674,17 @@
             <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
             <entry key="eXist.data" value="${arg3}/Library/Application Support/org.exist"/>
         </propertyfile>
-
     </target>
 
+    <target name="prepare-production-build-properties"
+        description="Create a local copy of build.properties and supply with needed information">
+        <copy file="${build}/build.properties" tofile="${build}/local.build.properties" overwrite="yes"/>
+        <property name="arg1" value="${arg1}"/>
+        <propertyfile file="${build}/local.build.properties" comment="hsg settings for production">
+            <entry key="local.instance.password" value="${arg1}"/>
+            <entry key="production.instance.password" value="${arg1}"/>
+            <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
+        </propertyfile>
+    </target>
+    
 </project>
