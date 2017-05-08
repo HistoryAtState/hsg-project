@@ -686,5 +686,32 @@
             <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
         </propertyfile>
     </target>
-
+    
+    <target name="prepare-hsg-project-for-upgrade-to-exist-3.2.0"
+        description="Prepare hsg-project for the upgrade to eXist 3.2.0"
+        depends="wipe-exist-data-with-confirmation,delete-old-repos,regenerate-local-build-properties,setup"/>
+    <target name="delete-old-repos" description="Delete cloned repositories used before upgrade to eXist 3.2.0">
+        <echo message="------------------------------------------------------------------"/>
+        <echo message="Deleting old repositories (eXide, shared-resources, tei-simple-pm)"/>
+        <echo message="------------------------------------------------------------------"/>
+        <delete includeemptydirs="true" dir="${repos}/eXide"/>
+        <delete includeemptydirs="true" dir="${repos}/shared-resources"/>
+        <delete includeemptydirs="true" dir="${repos}/tei-simple-pm"/>
+    </target>
+    <target name="regenerate-local-build-properties"
+        description="Regenerate local.build.properties file while preserving passwords for upgrade to eXist 3.2.0">
+        <echo message="---------------------------------------------------------------"/>
+        <echo message="Regenerating local.build.properties file (preserving passwords)"/>
+        <echo message="---------------------------------------------------------------"/>
+        <copy file="${build}/build.properties" tofile="${build}/local.build.properties"
+            overwrite="yes"/>
+        <propertyfile file="${build}/local.build.properties" comment="hsg settings for production">
+            <entry key="eXist.data" value="${eXist.data}"/>
+            <entry key="git" value="${git}"/>
+            <entry key="github" value="${github}"/>
+            <entry key="local.instance.password" value="${local.instance.password}"/>
+            <entry key="production.instance.password" value="${production.instance.password}"/>
+            <entry key="remotes.include-private" value="${remotes.include-private}"/>
+        </propertyfile>
+    </target>
 </project>
