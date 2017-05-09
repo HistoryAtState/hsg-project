@@ -37,7 +37,7 @@
         <foreach-js property="remotes" target="git.clone"/>
     </target>
 
-    <target name="setup" depends="prepare,clone-public-repos,clone-private-repos"
+    <target name="setup" depends="prepare,ivy.download,clone-public-repos,clone-private-repos"
         description="Clone required packages">
         <echo message="Completed cloning of packages..."/>
     </target>
@@ -47,10 +47,10 @@
     </target>
 
     <target name="deploy" description="Deploy all packages"
-        depends="ivy.download,deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
+        depends="deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
 
     <target name="deploy-one" description="Deploy one package"
-        depends="ivy.download,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
+        depends="deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
 
     <target name="prepare">
         <mkdir dir="${libs}"/>
@@ -474,7 +474,7 @@
 
     <target name="update-repo"
         description="Fetch updates for the parent repo of a file (from an hsg-project repo)"
-        depends="ivy.download,deploy.init">
+        depends="deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
@@ -509,7 +509,7 @@
 
     <target name="deploy-repo-to-localhost"
         description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on localhost"
-        depends="ivy.download,deploy.init">
+        depends="deploy.init">
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
         </path>
@@ -543,7 +543,7 @@
 
     <target name="deploy-repo-to-production"
         description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on history.state.gov"
-        depends="ivy.download,deploy.init">
+        depends="deploy.init">
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
         </path>
