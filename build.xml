@@ -127,6 +127,9 @@
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
         />
+        <echo message="Installing Messaging and Replication..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
     </target>
 
     <target name="deploy.get-xar-filename">
