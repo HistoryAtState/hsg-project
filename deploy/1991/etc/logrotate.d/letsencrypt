@@ -1,0 +1,7 @@
+/var/log/letsencrypt/*log {
+    rotate 10
+    missingok
+    notifempty
+    compress
+    sharedscripts
+}
