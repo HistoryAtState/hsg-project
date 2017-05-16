@@ -327,7 +327,7 @@
     </target>
 
     <target name="test">
-        <ant antfile="repos/hsg-test/build.xml" target="test" useNativeBasedir="true"/>
+        <ant antfile="${repos}/hsg-test/build.xml" target="test" useNativeBasedir="true"/>
     </target>
 
     <!-- ================================================= -->
