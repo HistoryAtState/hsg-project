@@ -186,9 +186,11 @@
         </subant>
     </target>
 
-    <target name="clean-all" depends="clean" description="Clean everything, including libs">
+    <target name="clean-all" depends="clean"
+        description="Clean everything, including checked out repos, downloaded libs, and built xars">
         <delete dir="${libs}" failonerror="false"/>
         <delete dir="${repos}" failonerror="false"/>
+        <delete dir="${xars}" failonerror="false"/>
     </target>
 
     <!-- Called on each directory in repos to build it -->
