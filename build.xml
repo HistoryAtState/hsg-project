@@ -37,7 +37,7 @@
         <foreach-js property="remotes" target="git.clone"/>
     </target>
 
-    <target name="setup" depends="prepare,clone-public-repos,clone-private-repos"
+    <target name="setup" depends="prepare,ivy.download,clone-public-repos,clone-private-repos"
         description="Clone required packages">
         <echo message="Completed cloning of packages..."/>
     </target>
@@ -47,10 +47,10 @@
     </target>
 
     <target name="deploy" description="Deploy all packages"
-        depends="ivy.download,deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
+        depends="deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
 
     <target name="deploy-one" description="Deploy one package"
-        depends="ivy.download,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
+        depends="deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
 
     <target name="prepare">
         <mkdir dir="${libs}"/>
@@ -114,13 +114,26 @@
 
     <target name="deploy.install-packages-from-public-repo">
         <echo message="Installing packages from eXist-db.org public repo ..."/>
-        <echo message="Installing monex ..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
-                    query="repo:install-and-deploy('http://exist-db.org/apps/monex', '0.9.8', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
         <echo message="Installing functx ..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://www.functx.com', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+        <echo message="Installing TEI Simple PM..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+        <echo message="Installing TEI Publisher Libraries..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+        />
+        <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment, 
+            but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
+        <!--
+        <echo message="Installing Messaging and Replication..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+        -->
     </target>
 
     <target name="deploy.get-xar-filename">
@@ -177,9 +190,11 @@
         </subant>
     </target>
 
-    <target name="clean-all" depends="clean" description="Clean everything, including libs">
+    <target name="clean-all" depends="clean"
+        description="Clean everything, including checked out repos, downloaded libs, and built xars">
         <delete dir="${libs}" failonerror="false"/>
         <delete dir="${repos}" failonerror="false"/>
+        <delete dir="${xars}" failonerror="false"/>
     </target>
 
     <!-- Called on each directory in repos to build it -->
@@ -318,7 +333,7 @@
     </target>
 
     <target name="test">
-        <ant antfile="repos/hsg-test/build.xml" target="test" useNativeBasedir="true"/>
+        <ant antfile="${repos}/hsg-test/build.xml" target="test" useNativeBasedir="true"/>
     </target>
 
     <!-- ================================================= -->
@@ -468,7 +483,7 @@
 
     <target name="update-repo"
         description="Fetch updates for the parent repo of a file (from an hsg-project repo)"
-        depends="ivy.download,deploy.init">
+        depends="deploy.init">
         <property name="parent-directory" value="${arg1}"/>
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
@@ -503,7 +518,7 @@
 
     <target name="deploy-repo-to-localhost"
         description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on localhost"
-        depends="ivy.download,deploy.init">
+        depends="deploy.init">
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
         </path>
@@ -537,7 +552,7 @@
 
     <target name="deploy-repo-to-production"
         description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on history.state.gov"
-        depends="ivy.download,deploy.init">
+        depends="deploy.init">
         <path id="parent-dir">
             <pathelement path="${parent-directory}"/>
         </path>
@@ -668,7 +683,44 @@
             <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
             <entry key="eXist.data" value="${arg3}/Library/Application Support/org.exist"/>
         </propertyfile>
-
     </target>
 
+    <target name="prepare-production-build-properties"
+        description="Create a local copy of build.properties and supply with needed information">
+        <copy file="${build}/build.properties" tofile="${build}/local.build.properties" overwrite="yes"/>
+        <property name="arg1" value="${arg1}"/>
+        <propertyfile file="${build}/local.build.properties" comment="hsg settings for production">
+            <entry key="local.instance.password" value="${arg1}"/>
+            <entry key="production.instance.password" value="${arg1}"/>
+            <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
+        </propertyfile>
+    </target>
+    
+    <target name="prepare-hsg-project-for-upgrade-to-exist-3.1.1"
+        description="Prepare hsg-project for the upgrade to eXist 3.1.1"
+        depends="wipe-exist-data-with-confirmation,delete-old-repos,regenerate-local-build-properties,setup"/>
+    <target name="delete-old-repos" description="Delete cloned repositories used before upgrade to eXist 3.1.1">
+        <echo message="------------------------------------------------------------------"/>
+        <echo message="Deleting old repositories (eXide, shared-resources, tei-simple-pm)"/>
+        <echo message="------------------------------------------------------------------"/>
+        <delete includeemptydirs="true" dir="${repos}/eXide"/>
+        <delete includeemptydirs="true" dir="${repos}/shared-resources"/>
+        <delete includeemptydirs="true" dir="${repos}/tei-simple-pm"/>
+    </target>
+    <target name="regenerate-local-build-properties"
+        description="Regenerate local.build.properties file while preserving passwords">
+        <echo message="---------------------------------------------------------------"/>
+        <echo message="Regenerating local.build.properties file (preserving passwords)"/>
+        <echo message="---------------------------------------------------------------"/>
+        <copy file="${build}/build.properties" tofile="${build}/local.build.properties"
+            overwrite="yes"/>
+        <propertyfile file="${build}/local.build.properties" comment="hsg settings for production">
+            <entry key="eXist.data" value="${eXist.data}"/>
+            <entry key="git" value="${git}"/>
+            <entry key="github" value="${github}"/>
+            <entry key="local.instance.password" value="${local.instance.password}"/>
+            <entry key="production.instance.password" value="${production.instance.password}"/>
+            <entry key="remotes.include-private" value="${remotes.include-private}"/>
+        </propertyfile>
+    </target>
 </project>
