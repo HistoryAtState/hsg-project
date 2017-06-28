@@ -696,10 +696,10 @@
         </propertyfile>
     </target>
     
-    <target name="prepare-hsg-project-for-upgrade-to-exist-3.2.0"
-        description="Prepare hsg-project for the upgrade to eXist 3.2.0"
+    <target name="prepare-hsg-project-for-upgrade-to-exist-3.1.1"
+        description="Prepare hsg-project for the upgrade to eXist 3.1.1"
         depends="wipe-exist-data-with-confirmation,delete-old-repos,regenerate-local-build-properties,setup"/>
-    <target name="delete-old-repos" description="Delete cloned repositories used before upgrade to eXist 3.2.0">
+    <target name="delete-old-repos" description="Delete cloned repositories used before upgrade to eXist 3.1.1">
         <echo message="------------------------------------------------------------------"/>
         <echo message="Deleting old repositories (eXide, shared-resources, tei-simple-pm)"/>
         <echo message="------------------------------------------------------------------"/>
@@ -708,7 +708,7 @@
         <delete includeemptydirs="true" dir="${repos}/tei-simple-pm"/>
     </target>
     <target name="regenerate-local-build-properties"
-        description="Regenerate local.build.properties file while preserving passwords for upgrade to eXist 3.2.0">
+        description="Regenerate local.build.properties file while preserving passwords">
         <echo message="---------------------------------------------------------------"/>
         <echo message="Regenerating local.build.properties file (preserving passwords)"/>
         <echo message="---------------------------------------------------------------"/>

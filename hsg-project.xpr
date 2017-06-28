@@ -525,13 +525,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" prepare-hsg-project-for-upgrade-to-exist-3.2.0 -Darg1="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" prepare-hsg-project-for-upgrade-to-exist-3.1.1 -Darg1="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
                                 </field>
                                 <field name="description">
-                                    <String>Prepare hsg-project for the upgrade to eXist 3.2.0</String>
+                                    <String>Prepare hsg-project for the upgrade to eXist 3.1.1</String>
                                 </field>
                                 <field name="name">
-                                    <String>Prepare upgrade to eXist 3.2.0</String>
+                                    <String>Prepare upgrade to eXist 3.1.1</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
