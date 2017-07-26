@@ -611,6 +611,26 @@
                         <Boolean>true</Boolean>
                     </entry>
                     <entry>
+                        <String>scenario.associations</String>
+                        <scenarioAssociation-array>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/frus/volumes/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>Update FRUS document dates</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                        </scenarioAssociation-array>
+                    </entry>
+                    <entry>
                         <String>scenarios</String>
                         <scenario-array>
                             <scenario>
