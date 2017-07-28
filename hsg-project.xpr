@@ -703,7 +703,7 @@
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="configSystemID">
-                                                    <String>file:/Users/joe/workspace/hsg-project/repos/frus/schema/saxon-configuration.xml</String>
+                                                    <String>${pdu}/repos/frus/schema/saxon-configuration.xml</String>
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
