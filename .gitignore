@@ -7,3 +7,4 @@ build/ivy-*.jar
 .DS_Store
 
 Icon
+*.log
