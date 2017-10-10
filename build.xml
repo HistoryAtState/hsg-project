@@ -18,7 +18,7 @@
     
     <available file="${build}/ivy-${ivy.version}.jar" property="ivy.available"/>
 
-    <target name="all" depends="clean,update,build,deploy"
+    <target name="all" depends="ping-localhost,clean,update,build,deploy"
         description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
 
     <condition property="remotes.include-private">
@@ -47,7 +47,7 @@
     </target>
 
     <target name="deploy" description="Deploy all packages"
-        depends="deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
+        depends="ping-localhost,deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
 
     <target name="deploy-one" description="Deploy one package"
         depends="deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
@@ -350,7 +350,7 @@
 
     <target name="upload-file-to-localhost"
         description="Upload a file from an hsg-project repo to eXist-db on localhost"
-        depends="deploy.init,validate-if-xml">
+        depends="deploy.init,validate-if-xml,ping-localhost">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
         <property name="file-path" value="${parent-directory}/${file-name}"/>
@@ -383,7 +383,7 @@
 
     <target name="upload-file-to-production"
         description="Upload a file from an hsg-project repo to eXist-db on history.state.gov"
-        depends="deploy.init,validate-if-xml">
+        depends="deploy.init,validate-if-xml,ping-production">
         <property name="parent-directory" value="${arg1}"/>
         <property name="file-name" value="${arg2}"/>
         <property name="file-path" value="${parent-directory}/${file-name}"/>
@@ -633,7 +633,21 @@
             <arg line="."/>
         </exec>
     </target>
+    
+    <target name="ping-localhost">
+        <condition property="exist-running">
+            <http requestmethod="HEAD" url="http://localhost:8080/exist/status"/>
+        </condition>
+        <fail unless="${exist-running}" message="eXist is not running. Please start eXist and try again."/>
+    </target>
 
+    <target name="ping-production">
+        <condition property="exist-running">
+            <http requestmethod="GET" url="https://1861.history.state.gov/test" />
+        </condition>
+        <fail unless="${exist-running}" message="The production server cannot be reached. Please confirm you are connected to the internet and try again."/>
+    </target>
+    
     <!-- =================================================================== -->
     <!-- Wipe eXist-db database; perform only with eXist-db shut down        -->
     <!-- =================================================================== -->
