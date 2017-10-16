@@ -202,7 +202,7 @@
         <echo message="Building ${dir}"/>
         <echo message="Validating well-formedness of XML files in ${dir}"/>
         <xmlvalidate lenient="true">
-            <fileset dir="${dir}" includes="**/**.xml,**/**.xconf"/>
+            <fileset dir="${dir}" includes="**/**.xml,**/**.xconf" excludes="node_modules/**"/>
         </xmlvalidate>
         <subant>
             <fileset dir="${dir}">
@@ -545,7 +545,7 @@
             override="true"/>
         <echo>Validating well-formedness of XML files in ${repo-name}</echo>
         <xmlvalidate lenient="true">
-            <fileset dir="${repos}/${repo-name}" includes="**/**.xml,**/**.xconf"/>
+            <fileset dir="${repos}/${repo-name}" includes="**/**.xml,**/**.xconf" excludes="node_modules/**"/>
         </xmlvalidate>
         <subant>
             <fileset dir="${repos}/${repo-name}">
@@ -581,7 +581,7 @@
             regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
         <echo>Validating well-formedness of XML files in ${repo-name}</echo>
         <xmlvalidate lenient="true">
-            <fileset dir="${repos}/${repo-name}" includes="**/**.xml,**/**.xconf"/>
+            <fileset dir="${repos}/${repo-name}" includes="**/**.xml,**/**.xconf" excludes="node_modules/**"/>
         </xmlvalidate>
         <!-- for hsg-shell's npm start process, we need to set NODE_ENV to "production" and ensure this property is inherited by subant -->
         <property name="NODE_ENV" value="production"/>
