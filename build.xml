@@ -200,6 +200,10 @@
     <!-- Called on each directory in repos to build it -->
     <target name="build-xar">
         <echo message="Building ${dir}"/>
+        <echo message="Validating well-formedness of XML files in ${dir}"/>
+        <xmlvalidate lenient="true">
+            <fileset dir="${dir}" includes="**/**.xml,**/**.xconf"/>
+        </xmlvalidate>
         <subant>
             <fileset dir="${dir}">
                 <include name="build.xml"/>
@@ -539,7 +543,10 @@
         <propertyregex property="repo-name" input="${file-path.unix}"
             regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error"
             override="true"/>
-        <echo>repo-name: ${repo-name}</echo>
+        <echo>Validating well-formedness of XML files in ${repo-name}</echo>
+        <xmlvalidate lenient="true">
+            <fileset dir="${repos}/${repo-name}" includes="**/**.xml,**/**.xconf"/>
+        </xmlvalidate>
         <subant>
             <fileset dir="${repos}/${repo-name}">
                 <include name="build.xml"/>
@@ -572,7 +579,10 @@
             if="${is-hsg-staging-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
             regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
-        <echo>repo-name: ${repo-name}</echo>
+        <echo>Validating well-formedness of XML files in ${repo-name}</echo>
+        <xmlvalidate lenient="true">
+            <fileset dir="${repos}/${repo-name}" includes="**/**.xml,**/**.xconf"/>
+        </xmlvalidate>
         <!-- for hsg-shell's npm start process, we need to set NODE_ENV to "production" and ensure this property is inherited by subant -->
         <property name="NODE_ENV" value="production"/>
         <subant inheritall="true">
