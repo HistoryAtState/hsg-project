@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-config_file="$HOME/letsencrypt/cli-1991.history.state.gov.ini"
+config_file="/root/letsencrypt/cli-1991.history.state.gov.ini"
 log_file="/var/log/letsencrypt/letsencrypt.log"
 
 le_path="/opt/letsencrypt"
