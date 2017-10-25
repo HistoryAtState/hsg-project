@@ -85,15 +85,31 @@ The script for renewing the certificate (`$HOME/letsencrypt/letsencrypt-renew.sh
 sudo crontab -e
 ~~~
 
-with the following content, which runs the script every Monday at 2:30 a.m.:
+with the following content, which runs the script every 14 days at 2:30 a.m.:
 
 ~~~text
-30 2 * * 1 $HOME/letsencrypt/letsencrypt-renew.sh >> $HOME/letsencrypt/letsencrypt-renewal.log
+30 2 */14 * * /home/ec2-user/letsencrypt/letsencrypt-renew.sh
 ~~~
 
 The `letsencrtypt-renewal.sh` script checks to see if the current certificate will expire in the next 30 days or less. If so, it will initiate the renewal process. The renewal process involves the following steps: (1) __stop the nginx web server__; (2) the [certbot] client will generate a new certificate and start its own web server to get verified by the [Let’s Encrypt] CA; and (3) finally, nginx will be started back up using the renewed certificate. The renewal process is [estimated](https://community.letsencrypt.org/t/how-long-will-it-take-to-get-a-certificate/1200) to take 10s-1m.
 
-The result is logged to `$HOME/letsencrypt/letsencrypt-renewal.log`.
+The result is logged to `/var/log/letsencrypt/letsencrypt.log`; check it with
+
+`sudo tail -f /var/log/letsencrypt/letsencrypt.log`
+
+or
+
+`sudo tail -f /var/log/letsencrypt/letsencrypt.log.1`
+
+**/var/log/letsencrypt/letsencrypt.log may be empty because the log rotation the script uses.**
+
+## Manual checks
+
+To manually check the expiration date run
+
+`sudo openssl x509 -in "/etc/letsencrypt/live/1861.history.state.gov/fullchain.pem" -text -noout|grep "Not After"`
+
+(or 1991 for the frontend-2)
 
 [Let’s Encrypt]: https://letsencrypt.org/
 [certbot]: https://github.com/certbot/certbot
