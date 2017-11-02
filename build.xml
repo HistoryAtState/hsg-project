@@ -512,7 +512,6 @@
         <exec executable="${git}" dir=".">
             <arg line="checkout"/>
             <arg line="HEAD"/>
-            <arg line="--"/>
             <arg line="hsg-project.xpr"/>
         </exec>
         <exec executable="${git}" dir=".">
