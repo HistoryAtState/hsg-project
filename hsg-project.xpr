@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="19.0">
+<project version="19.1">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="19.0" xml:space="preserve">
+            <serialized version="19.1" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>editor.detect.indent.on.open</String>
@@ -611,47 +611,6 @@
                         <Boolean>true</Boolean>
                     </entry>
                     <entry>
-                        <String>scenario.associations</String>
-                        <scenarioAssociation-array>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/frus/volumes/frus1865p4.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>Add subtype=historical-document OR editorial-note</String>
-                                        <String>Update FRUS document dates</String>
-                                        <String>Add subtype=editorial-note</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                        <String>XSL</String>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/frus/volumes/</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>Update FRUS document dates</String>
-                                        <String>Add subtype=editorial-note</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                        </scenarioAssociation-array>
-                    </entry>
-                    <entry>
                         <String>scenarios</String>
                         <scenario-array>
                             <scenario>
@@ -895,7 +854,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>Update FRUS document dates</String>
+                                    <String>Add subtype=historical-document OR editorial-note</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -913,7 +872,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/update-frus-doc-dates.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/add-subtype-historical-document-or-editorial-note.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
@@ -1056,7 +1015,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>Add subtype=historical-document OR editorial-note</String>
+                                    <String>Update FRUS document dates</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -1074,7 +1033,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/add-subtype-historical-document-or-editorial-note.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/update-frus-doc-dates.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
