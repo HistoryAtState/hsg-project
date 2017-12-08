@@ -6,6 +6,54 @@
             <serialized version="19.1" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
+                        <String>Shk.Copy_change_from_left_to_right.Directories_Diff</String>
+                        <String>meta alt RIGHT</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.Copy_change_from_left_to_right.Files_Diff</String>
+                        <String>meta alt RIGHT</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.Copy_change_from_right_to_left.Directories_Diff</String>
+                        <String>meta alt LEFT</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.Copy_change_from_right_to_left.Files_Diff</String>
+                        <String>meta alt LEFT</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.File_Open_URL.File</String>
+                        <String>UNDEFINED</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.Move_element_down.Source</String>
+                        <String>alt DOWN</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.Move_element_up.Source</String>
+                        <String>alt UP</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.Next_block.Files_Diff</String>
+                        <String>UNDEFINED</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.Next_change.Files_Diff</String>
+                        <String>meta alt DOWN</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.Open_file_at_caret.File</String>
+                        <String>UNDEFINED</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.Previous_block.Files_Diff</String>
+                        <String>UNDEFINED</String>
+                    </entry>
+                    <entry>
+                        <String>Shk.Previous_change.Files_Diff</String>
+                        <String>meta alt UP</String>
+                    </entry>
+                    <entry>
                         <String>editor.detect.indent.on.open</String>
                         <Boolean>false</Boolean>
                     </entry>
@@ -57,7 +105,7 @@
                                     <String>${pd}</String>
                                 </field>
                                 <field name="keyStroke">
-                                    <null/>
+                                    <String>M1 M2 U</String>
                                 </field>
                                 <field name="isBuiltin">
                                     <Boolean>false</Boolean>
@@ -153,7 +201,7 @@
                                     <String>${pd}</String>
                                 </field>
                                 <field name="keyStroke">
-                                    <null/>
+                                    <String>M1 U</String>
                                 </field>
                                 <field name="isBuiltin">
                                     <Boolean>false</Boolean>
@@ -562,6 +610,10 @@
                     </entry>
                     <entry>
                         <String>key.external.tools.option.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>key.menu.shorcut.keys.option.pane</String>
                         <Boolean>true</Boolean>
                     </entry>
                     <entry>
