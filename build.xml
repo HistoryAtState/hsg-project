@@ -723,9 +723,9 @@
         </propertyfile>
     </target>
     
-    <target name="prepare-hsg-project-for-upgrade-to-exist-3.1.1"
-        description="Prepare hsg-project for the upgrade to eXist 3.1.1"
-        depends="wipe-exist-data-with-confirmation,delete-old-repos,regenerate-local-build-properties,setup"/>
+    <target name="prepare-hsg-project-for-upgrade-to-exist"
+        description="Prepare hsg-project for the upgrade to the current version of eXist"
+        depends="wipe-exist-data-with-confirmation,delete-old-repos,regenerate-local-build-properties,prepare-exist-configuration,setup"/>
     <target name="delete-old-repos" description="Delete cloned repositories used before upgrade to eXist 3.1.1">
         <echo message="------------------------------------------------------------------"/>
         <echo message="Deleting old repositories (eXide, shared-resources, tei-simple-pm)"/>
@@ -750,4 +750,24 @@
             <entry key="remotes.include-private" value="${remotes.include-private}"/>
         </propertyfile>
     </target>
+    <target name="prepare-exist-configuration" depends="back-up-exist-configuration-file">
+        <echo message="-------------------------------------------------------"/>
+        <echo message="Applying hsg customizations to eXist configuration file"/>
+        <echo message="-------------------------------------------------------"/>
+        <xslt in="${eXist.home}/conf-orig.xml" style="${build}/configure-exist.xsl" out="${eXist.home}/conf.xml" processor="trax">
+            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+            <classpath>
+                <fileset dir="${eXist.home}/lib/endorsed">
+                    <include name="Saxon*.jar"/>
+                </fileset>
+            </classpath>
+            <param name="target" type="STRING" expression="development"/>
+        </xslt>
+    </target>
+    <target name="back-up-exist-configuration-file" unless="exist-configuration-backup-exists">
+        <copy file="${eXist.home}/conf.xml" tofile="${eXist.home}/conf-orig.xml"/>
+    </target>
+    <condition property="exist-configuration-backup-exists">
+        <available file="${eXist.home}/conf-orig.xml"></available>
+    </condition>
 </project>
