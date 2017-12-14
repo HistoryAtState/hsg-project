@@ -7,6 +7,9 @@
     <property name="libs" value="lib"/>
     <property name="build" value="build"/>
     
+    <property name="eXist.home.mac-dmg-installer" value="/Applications/eXist-db.app/Contents/Resources/eXist-db"/>
+    <property name="eXist.data.mac-dmg-installer" value="/Library/Application Support/org.exist"/>
+    
     <!-- use "xars" unless called with a "repo-name" property -->
     <condition property="xars" value="${repo-name}" else="xars">
         <isset property="repo-name"/>
@@ -705,7 +708,8 @@
             <entry key="production.instance.password" value="${password}"/>
             <entry key="remotes.include-private" value="${include-private-repos}"/>
             <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
-            <entry key="eXist.data" value="${arg3}/Library/Application Support/org.exist"/>
+            <entry key="eXist.data" value="${user-home}${eXist.data.mac-dmg-installer}"/>
+            <entry key="eXist.home" value="${eXist.home.mac-dmg-installer}"/>
         </propertyfile>
     </target>
 
