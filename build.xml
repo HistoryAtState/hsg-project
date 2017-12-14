@@ -50,7 +50,7 @@
         depends="ping-localhost,deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
 
     <target name="deploy-one" description="Deploy one package"
-        depends="deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
+        depends="ping-localhost,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
 
     <target name="prepare">
         <mkdir dir="${libs}"/>
@@ -58,11 +58,11 @@
         <mkdir dir="${repos}"/>
     </target>
 
-    <target name="update" depends="prepare">
+    <target name="update">
         <iterate target="git.pull"/>
     </target>
 
-    <target name="update-one" depends="prepare">
+    <target name="update-one">
         <antcall target="git.pull">
             <param name="dir" value="${repos}/${repo-name}"/>
         </antcall>
@@ -714,7 +714,6 @@
         <copy file="${build}/build.properties" tofile="${build}/local.build.properties" overwrite="yes"/>
         <property name="password" value="${password}"/>
         <propertyfile file="${build}/local.build.properties" comment="hsg settings for production">
-            <entry key="local.instance.password" value="${arg1}"/>
             <entry key="production.instance.password" value="${password}"/>
             <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
         </propertyfile>
