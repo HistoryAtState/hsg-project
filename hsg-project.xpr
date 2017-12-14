@@ -93,7 +93,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" update-hsg-project update -Darg1="${pd}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" update-hsg-project update</String>
                                 </field>
                                 <field name="description">
                                     <String>Fetch updates for all repositories</String>
@@ -125,7 +125,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" update-repo -Darg1="${cfd}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" update-repo -Ddirectory="${cfd}"</String>
                                 </field>
                                 <field name="description">
                                     <String>Fetch updates for the parent repository of the working file in the active tab to eXist-db on localhost</String>
@@ -157,7 +157,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-github-desktop -Darg1="${cfd}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-github-desktop -Ddirectory="${cfd}"</String>
                                 </field>
                                 <field name="description">
                                     <String>Open the parent repository of the working file in the active tab in GitHub Desktop</String>
@@ -189,7 +189,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-localhost -Darg1="${cfd}" -Darg2="${cfne}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-localhost -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
                                 </field>
                                 <field name="description">
                                     <String>Upload the working file in the active tab to eXist-db on localhost</String>
@@ -221,7 +221,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-production -Darg1="${cfd}" -Darg2="${cfne}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-production -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
                                 </field>
                                 <field name="description">
                                     <String>Upload the working file in the active tab to eXist-db on history.state.gov</String>
@@ -253,7 +253,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-file-from-localhost -Darg1="${cfd}" -Darg2="${cfne}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-file-from-localhost -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
                                 </field>
                                 <field name="description">
                                     <String>Delete the working file in the active tab from eXist-db on localhost</String>
@@ -285,7 +285,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-file-from-production -Darg1="${cfd}" -Darg2="${cfne}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-file-from-production -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
                                 </field>
                                 <field name="description">
                                     <String>Delete the working file in the active tab from eXist-db on history.state.gov</String>
@@ -349,7 +349,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" prepare-local-build-properties -Darg1="${ask('Please enter the password for 1861.history.state.gov', password)}" -Darg2="${ask('Include private repositories?', radio, ('true':'Yes';'false':'No'), 'No')}" -Darg3="${homeDir}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" prepare-local-build-properties -Dpassword="${ask('Please enter the password for 1861.history.state.gov', password)}" -Dinclude-private-repositories="${ask('Include private repositories?', radio, ('true':'Yes';'false':'No'), 'No')}" -Duser-home="${homeDir}"</String>
                                 </field>
                                 <field name="description">
                                     <String>Enter server credentials</String>
@@ -477,7 +477,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-atom -Darg1="${cfd}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-atom -Ddirectory="${cfd}"</String>
                                 </field>
                                 <field name="description">
                                     <String>Open the parent repository of the working file in the active tab in Atom</String>
@@ -541,7 +541,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" wipe-exist-data-with-confirmation -Darg1="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" wipe-exist-data-with-confirmation -Dare-you-sure="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
                                 </field>
                                 <field name="description">
                                     <String>Wipe eXist database (in preparation for a fresh start)</String>
@@ -573,7 +573,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" prepare-hsg-project-for-upgrade-to-exist-3.1.1 -Darg1="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" prepare-hsg-project-for-upgrade-to-exist-3.1.1 -Dare-you-sure="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
                                 </field>
                                 <field name="description">
                                     <String>Prepare hsg-project for the upgrade to eXist 3.1.1</String>

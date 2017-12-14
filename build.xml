@@ -346,22 +346,22 @@
     <!-- ================================================= -->
 
     <condition property="is-xml">
-        <contains string="${arg2}" substring=".xml"/>
+        <contains string="${file-name}" substring=".xml"/>
     </condition>
 
     <target name="validate-if-xml" if="${is-xml}">
-        <xmlvalidate file="${arg1}/${arg2}" lenient="true" failonerror="true"/>
+        <xmlvalidate file="${directory}/${file-name}" lenient="true" failonerror="true"/>
     </target>
 
     <target name="upload-file-to-localhost"
         description="Upload a file from an hsg-project repo to eXist-db on localhost"
         depends="deploy.init,validate-if-xml,ping-localhost">
-        <property name="parent-directory" value="${arg1}"/>
-        <property name="file-name" value="${arg2}"/>
-        <property name="file-path" value="${parent-directory}/${file-name}"/>
-        <echo message="Uploading ${file-name} from ${parent-directory} to eXist-db localhost"/>
+        <property name="directory" value="${directory}"/>
+        <property name="file-name" value="${file-name}"/>
+        <property name="file-path" value="${directory}/${file-name}"/>
+        <echo message="Uploading ${file-name} from ${directory} to eXist-db localhost"/>
         <path id="parent-dir">
-            <pathelement path="${parent-directory}"/>
+            <pathelement path="${directory}"/>
         </path>
         <fileset file="${file-path}" id="file"/>
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
@@ -370,7 +370,7 @@
         <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
-        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
+        <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
@@ -389,13 +389,13 @@
     <target name="upload-file-to-production"
         description="Upload a file from an hsg-project repo to eXist-db on history.state.gov"
         depends="deploy.init,validate-if-xml,ping-production">
-        <property name="parent-directory" value="${arg1}"/>
-        <property name="file-name" value="${arg2}"/>
-        <property name="file-path" value="${parent-directory}/${file-name}"/>
+        <property name="directory" value="${directory}"/>
+        <property name="file-name" value="${file-name}"/>
+        <property name="file-path" value="${directory}/${file-name}"/>
         <echo
-            message="Uploading ${file-name} from ${parent-directory} to eXist-db on history.state.gov"/>
+            message="Uploading ${file-name} from ${directory} to eXist-db on history.state.gov"/>
         <path id="parent-dir">
-            <pathelement path="${parent-directory}"/>
+            <pathelement path="${directory}"/>
         </path>
         <fileset file="${file-path}" id="file"/>
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
@@ -404,13 +404,13 @@
         <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
-        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
+        <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail
-            message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be uploaded to the production server"
+            message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be uploaded to the production server"
             if="${is-hsg-staging-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
             regexp=".*?/hsg-project/${repos}/(.*)" select="/db/apps/\1" defaultvalue="Error"
@@ -427,12 +427,12 @@
     <target name="delete-file-from-localhost"
         description="Delete a file from an hsg-project repo from eXist-db on localhost"
         depends="deploy.init">
-        <property name="parent-directory" value="${arg1}"/>
-        <property name="file-name" value="${arg2}"/>
-        <property name="file-path" value="${parent-directory}/${file-name}"/>
-        <echo message="Deleting ${file-name} from ${parent-directory} on eXist-db localhost"/>
+        <property name="directory" value="${directory}"/>
+        <property name="file-name" value="${file-name}"/>
+        <property name="file-path" value="${directory}/${file-name}"/>
+        <echo message="Deleting ${file-name} from ${directory} on eXist-db localhost"/>
         <path id="parent-dir">
-            <pathelement path="${parent-directory}"/>
+            <pathelement path="${directory}"/>
         </path>
         <fileset file="${file-path}" id="file"/>
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
@@ -441,7 +441,7 @@
         <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
-        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
+        <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
             regexp=".*?/hsg-project/${repos}/(hsg-staging/)?(.*)" select="/db/apps/\2"
@@ -455,12 +455,12 @@
     <target name="delete-file-from-production"
         description="Delete a file from an hsg-project repo from eXist-db on history.state.gov"
         depends="deploy.init">
-        <property name="parent-directory" value="${arg1}"/>
-        <property name="file-name" value="${arg2}"/>
-        <property name="file-path" value="${parent-directory}/${file-name}"/>
-        <echo message="Deleting ${file-name} from ${parent-directory} on eXist-db localhost"/>
+        <property name="directory" value="${directory}"/>
+        <property name="file-name" value="${file-name}"/>
+        <property name="file-path" value="${directory}/${file-name}"/>
+        <echo message="Deleting ${file-name} from ${directory} on eXist-db localhost"/>
         <path id="parent-dir">
-            <pathelement path="${parent-directory}"/>
+            <pathelement path="${directory}"/>
         </path>
         <fileset file="${file-path}" id="file"/>
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
@@ -469,13 +469,13 @@
         <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
-        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
+        <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail
-            message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be uploaded to the production server"
+            message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be uploaded to the production server"
             if="${is-hsg-staging-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
             regexp=".*?/hsg-project/repos/(.*)" select="/db/apps/\1" defaultvalue="Error"
@@ -489,9 +489,9 @@
     <target name="update-repo"
         description="Fetch updates for the parent repo of a file (from an hsg-project repo)"
         depends="deploy.init">
-        <property name="parent-directory" value="${arg1}"/>
+        <property name="directory" value="${directory}"/>
         <path id="parent-dir">
-            <pathelement path="${parent-directory}"/>
+            <pathelement path="${directory}"/>
         </path>
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
             <map from="c:" to=""/>
@@ -499,7 +499,7 @@
         <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
-        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
+        <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
             regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
@@ -524,7 +524,7 @@
         description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on localhost"
         depends="deploy.init">
         <path id="parent-dir">
-            <pathelement path="${parent-directory}"/>
+            <pathelement path="${directory}"/>
         </path>
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
             <map from="c:" to=""/>
@@ -532,13 +532,13 @@
         <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
-        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
+        <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail
-            message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be deployed"
+            message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be deployed"
             if="${is-hsg-staging-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
             regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error"
@@ -561,7 +561,7 @@
         description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on history.state.gov"
         depends="deploy.init">
         <path id="parent-dir">
-            <pathelement path="${parent-directory}"/>
+            <pathelement path="${directory}"/>
         </path>
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
             <map from="c:" to=""/>
@@ -569,13 +569,13 @@
         <condition property="is-hsg-project-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
-        <fail message="ERROR: The directory ${parent-directory} is not an hsg-project repo"
+        <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
             unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail
-            message="ERROR: The directory ${parent-directory} is part of the hsg-staging repo and cannot be deployed"
+            message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be deployed"
             if="${is-hsg-staging-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
             regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
@@ -597,9 +597,9 @@
 
     <target name="open-repo-in-github-desktop"
         description="Opens an hsg-project repo in oXygen XML Editor" depends="deploy.init">
-        <property name="parent-directory" value="${arg1}"/>
+        <property name="directory" value="${directory}"/>
         <path id="parent-dir">
-            <pathelement path="${parent-directory}"/>
+            <pathelement path="${directory}"/>
         </path>
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
             <map from="c:" to=""/>
@@ -618,9 +618,9 @@
 
     <target name="open-repo-in-atom" description="Opens an hsg-project repo in Atom"
         depends="deploy.init">
-        <property name="parent-directory" value="${arg1}"/>
+        <property name="directory" value="${directory}"/>
         <path id="parent-dir">
-            <pathelement path="${parent-directory}"/>
+            <pathelement path="${directory}"/>
         </path>
         <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
             <map from="c:" to=""/>
@@ -686,7 +686,7 @@
     </target>
 
     <target name="wipe-exist-data-with-confirmation" description="Wipe eXist data">
-        <property name="are-you-sure" value="${arg1}"/>
+        <property name="are-you-sure" value="${are-you-sure}"/>
         <condition property="proceed">
             <equals arg1="${are-you-sure}" arg2="true"/>
         </condition>
@@ -698,12 +698,12 @@
     <target name="prepare-local-build-properties"
         description="Create a local copy of build.properties and supply with needed information">
         <copy file="${build}/build.properties" tofile="${build}/local.build.properties" overwrite="yes"/>
-        <property name="arg1" value="${arg1}"/>
-        <property name="arg2" value="${arg2}"/>
-        <property name="arg3" value="${arg3}"/>
-        <propertyfile file="${build}/local.build.properties" comment="hsg settings for ${arg3}">
-            <entry key="production.instance.password" value="${arg1}"/>
-            <entry key="remotes.include-private" value="${arg2}"/>
+        <property name="password" value="${password}"/>
+        <property name="include-private-repos" value="${include-private-repos}"/>
+        <property name="user-home" value="${user-home}"/>
+        <propertyfile file="${build}/local.build.properties" comment="hsg settings for ${user-home}">
+            <entry key="production.instance.password" value="${password}"/>
+            <entry key="remotes.include-private" value="${include-private-repos}"/>
             <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
             <entry key="eXist.data" value="${arg3}/Library/Application Support/org.exist"/>
         </propertyfile>
@@ -712,10 +712,10 @@
     <target name="prepare-production-build-properties"
         description="Create a local copy of build.properties and supply with needed information">
         <copy file="${build}/build.properties" tofile="${build}/local.build.properties" overwrite="yes"/>
-        <property name="arg1" value="${arg1}"/>
+        <property name="password" value="${password}"/>
         <propertyfile file="${build}/local.build.properties" comment="hsg settings for production">
             <entry key="local.instance.password" value="${arg1}"/>
-            <entry key="production.instance.password" value="${arg1}"/>
+            <entry key="production.instance.password" value="${password}"/>
             <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
         </propertyfile>
     </target>
