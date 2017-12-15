@@ -40,7 +40,7 @@
         <foreach-js property="remotes" target="git.clone"/>
     </target>
 
-    <target name="setup" depends="prepare,ivy.download,clone-public-repos,clone-private-repos"
+    <target name="setup" depends="prepare,ivy.setup,clone-public-repos,clone-private-repos"
         description="Clone required packages">
         <echo message="Completed cloning of packages..."/>
     </target>
