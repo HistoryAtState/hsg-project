@@ -679,6 +679,7 @@
         <delete dir="${eXist.data}/fs.journal"/>
         <delete dir="${eXist.data}/journal"/>
         <delete dir="${eXist.data}/lucene"/>
+        <delete dir="${eXist.data}/metadata"/>
         <delete dir="${eXist.data}/range"/>
         <delete dir="${eXist.data}/sanity"/>
         <delete>
