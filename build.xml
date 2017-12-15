@@ -670,6 +670,10 @@
         </condition>
         <fail if="${exist-running}"
             message="eXist is still running. Please shut down eXist and try again."/>
+        <condition property="eXist.data-exists">
+            <available file="${eXist.data}"/>
+        </condition>
+        <fail unless="${eXist.data-exists}" message="No eXist data was found in ${eXist.data}. This probably indicates you have just installed eXist. It could also indicate you have not run the steps required to prepare hsg-project's settings to find your eXist installation, so please consult the hsg-project setup documentation."/>
         <echo message="-------------------------"/>
         <echo message="Wiping eXist data"/>
         <echo message="-------------------------"/>
