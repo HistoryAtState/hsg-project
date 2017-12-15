@@ -40,7 +40,7 @@
         <foreach-js property="remotes" target="git.clone"/>
     </target>
 
-    <target name="setup" depends="prepare,ivy.download,clone-public-repos,clone-private-repos"
+    <target name="setup" depends="prepare,ivy.setup,clone-public-repos,clone-private-repos"
         description="Clone required packages">
         <echo message="Completed cloning of packages..."/>
     </target>
@@ -670,6 +670,10 @@
         </condition>
         <fail if="${exist-running}"
             message="eXist is still running. Please shut down eXist and try again."/>
+        <condition property="eXist.data-exists">
+            <available file="${eXist.data}"/>
+        </condition>
+        <fail unless="${eXist.data-exists}" message="No eXist data was found in ${eXist.data}. This probably indicates you have just installed eXist. It could also indicate you have not run the steps required to prepare hsg-project's settings to find your eXist installation, so please consult the hsg-project setup documentation."/>
         <echo message="-------------------------"/>
         <echo message="Wiping eXist data"/>
         <echo message="-------------------------"/>
@@ -679,6 +683,7 @@
         <delete dir="${eXist.data}/fs.journal"/>
         <delete dir="${eXist.data}/journal"/>
         <delete dir="${eXist.data}/lucene"/>
+        <delete dir="${eXist.data}/metadata"/>
         <delete dir="${eXist.data}/range"/>
         <delete dir="${eXist.data}/sanity"/>
         <delete>
@@ -698,34 +703,56 @@
         <antcall target="wipe-exist-data"/>
     </target>
 
-    <target name="prepare-local-build-properties"
-        description="Create a local copy of build.properties and supply with needed information">
+    <target name="create-new-local-build-properties"
+        description="Create a new local copy of build.properties, overwriting any existing copy">
         <copy file="${build}/build.properties" tofile="${build}/local.build.properties" overwrite="yes"/>
+    </target>
+
+    <target name="check-local-build-properties"
+        description="Check to make sure a local copy of build.properties is available" unless="exists-local-build-properties">
+        <copy file="${build}/build.properties" tofile="${build}/local.build.properties"/>
+    </target>
+
+    <condition property="exists-local-build-properties">
+        <available file="${build}/local.build.properties"/>
+    </condition>
+    
+    <target name="upgrade-local-build-properties"
+        description="Upgrade local.build.properties file to latest build.properties while preserving passwords" depends="create-new-local-build-properties">
+        <echo message="------------------------------------------------------------"/>
+        <echo message="Upgrading local.build.properties file (preserving passwords)"/>
+        <echo message="------------------------------------------------------------"/>
+        <propertyfile file="${build}/local.build.properties" comment="Updated with latest hsg-project settings">
+            <entry key="eXist.data" value="${eXist.data}"/>
+            <entry key="eXist.home" value="${eXist.home}"/>
+            <entry key="git" value="${git}"/>
+            <entry key="github" value="${github}"/>
+            <entry key="local.instance.password" value="${local.instance.password}"/>
+            <entry key="production.instance.password" value="${production.instance.password}"/>
+        </propertyfile>
+    </target>
+    
+    <target name="store-production-password"
+        description="Store production password in local.build.properties" depends="check-local-build-properties">
         <property name="password" value="${password}"/>
-        <property name="include-private-repos" value="${include-private-repos}"/>
-        <property name="user-home" value="${user-home}"/>
-        <propertyfile file="${build}/local.build.properties" comment="hsg settings for ${user-home}">
+        <propertyfile file="${build}/local.build.properties">
             <entry key="production.instance.password" value="${password}"/>
-            <entry key="remotes.include-private" value="${include-private-repos}"/>
-            <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
+        </propertyfile>
+    </target>
+    
+    <target name="configure-for-exist-on-mac-system"
+        description="Configure hsg-project for use with eXist on a Mac system" depends="check-local-build-properties">
+        <property name="user-home" value="${user-home}"/>
+        <propertyfile file="${build}/local.build.properties" comment="Updated to use eXist data and home locations, assuming macOS DMG installer, for ${user-home}">
             <entry key="eXist.data" value="${user-home}${eXist.data.mac-dmg-installer}"/>
             <entry key="eXist.home" value="${eXist.home.mac-dmg-installer}"/>
         </propertyfile>
     </target>
 
-    <target name="prepare-production-build-properties"
-        description="Create a local copy of build.properties and supply with needed information">
-        <copy file="${build}/build.properties" tofile="${build}/local.build.properties" overwrite="yes"/>
-        <property name="password" value="${password}"/>
-        <propertyfile file="${build}/local.build.properties" comment="hsg settings for production">
-            <entry key="production.instance.password" value="${password}"/>
-            <!--<entry operation="+" key="remotes" value=",${remotes.private}"/>-->
-        </propertyfile>
-    </target>
+    <target name="apply-hsg-project-customizations-to-exist"
+        description="Apply hsg-project customizations to eXist"
+        depends="upgrade-local-build-properties,prepare-exist-configuration"/>
     
-    <target name="prepare-hsg-project-for-upgrade-to-exist"
-        description="Prepare hsg-project for the upgrade to the current version of eXist"
-        depends="wipe-exist-data-with-confirmation,delete-old-repos,regenerate-local-build-properties,prepare-exist-configuration,setup"/>
     <target name="delete-old-repos" description="Delete cloned repositories used before upgrade to eXist 3.1.1">
         <echo message="------------------------------------------------------------------"/>
         <echo message="Deleting old repositories (eXide, shared-resources, tei-simple-pm)"/>
@@ -734,22 +761,7 @@
         <delete includeemptydirs="true" dir="${repos}/shared-resources"/>
         <delete includeemptydirs="true" dir="${repos}/tei-simple-pm"/>
     </target>
-    <target name="regenerate-local-build-properties"
-        description="Regenerate local.build.properties file while preserving passwords">
-        <echo message="---------------------------------------------------------------"/>
-        <echo message="Regenerating local.build.properties file (preserving passwords)"/>
-        <echo message="---------------------------------------------------------------"/>
-        <copy file="${build}/build.properties" tofile="${build}/local.build.properties"
-            overwrite="yes"/>
-        <propertyfile file="${build}/local.build.properties" comment="hsg settings for production">
-            <entry key="eXist.data" value="${eXist.data}"/>
-            <entry key="git" value="${git}"/>
-            <entry key="github" value="${github}"/>
-            <entry key="local.instance.password" value="${local.instance.password}"/>
-            <entry key="production.instance.password" value="${production.instance.password}"/>
-            <entry key="remotes.include-private" value="${remotes.include-private}"/>
-        </propertyfile>
-    </target>
+    
     <target name="prepare-exist-configuration" depends="back-up-exist-configuration-file">
         <echo message="-------------------------------------------------------"/>
         <echo message="Applying hsg customizations to eXist configuration file"/>

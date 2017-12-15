@@ -93,6 +93,38 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
+                                    <String>echo "Sorry this isn't a command!"</String>
+                                </field>
+                                <field name="description">
+                                    <String>(Divider)</String>
+                                </field>
+                                <field name="name">
+                                    <String>= Get the latest data =</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>.</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
                                     <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" update-hsg-project update</String>
                                 </field>
                                 <field name="description">
@@ -157,80 +189,16 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-github-desktop -Ddirectory="${cfd}"</String>
+                                    <String>echo "Sorry this isn't a command!"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Open the parent repository of the working file in the active tab in GitHub Desktop</String>
+                                    <String>(Divider)</String>
                                 </field>
                                 <field name="name">
-                                    <String>Open current repository in GitHub Desktop</String>
+                                    <String>= Preview on localhost =</String>
                                 </field>
                                 <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-localhost -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
-                                </field>
-                                <field name="description">
-                                    <String>Upload the working file in the active tab to eXist-db on localhost</String>
-                                </field>
-                                <field name="name">
-                                    <String>Upload current file to localhost</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <String>M1 U</String>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-production -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
-                                </field>
-                                <field name="description">
-                                    <String>Upload the working file in the active tab to eXist-db on history.state.gov</String>
-                                </field>
-                                <field name="name">
-                                    <String>Upload current file to history.state.gov</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
+                                    <String>.</String>
                                 </field>
                                 <field name="keyStroke">
                                     <null/>
@@ -260,166 +228,6 @@
                                 </field>
                                 <field name="name">
                                     <String>Delete current file from localhost</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-file-from-production -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
-                                </field>
-                                <field name="description">
-                                    <String>Delete the working file in the active tab from eXist-db on history.state.gov</String>
-                                </field>
-                                <field name="name">
-                                    <String>Delete current file from history.state.gov</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <null/>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>echo "Sorry this isn't a command!"</String>
-                                </field>
-                                <field name="description">
-                                    <String>(Divider)</String>
-                                </field>
-                                <field name="name">
-                                    <String>---</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>.</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>false</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" prepare-local-build-properties -Dpassword="${ask('Please enter the password for 1861.history.state.gov', password)}" -Dinclude-private-repositories="${ask('Include private repositories?', radio, ('true':'Yes';'false':'No'), 'No')}" -Duser-home="${homeDir}"</String>
-                                </field>
-                                <field name="description">
-                                    <String>Enter server credentials</String>
-                                </field>
-                                <field name="name">
-                                    <String>Enter server credentials</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" setup</String>
-                                </field>
-                                <field name="description">
-                                    <String>Clone all repositories</String>
-                                </field>
-                                <field name="name">
-                                    <String>Clone all repositories</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>sh "${oxygenInstallDir}/tools/ant/bin/ant"</String>
-                                </field>
-                                <field name="description">
-                                    <String>Build and deploy all repositories to eXist-db on localhost</String>
-                                </field>
-                                <field name="name">
-                                    <String>Deploy all repositories to localhost</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -477,13 +285,77 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-atom -Ddirectory="${cfd}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-localhost -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Open the parent repository of the working file in the active tab in Atom</String>
+                                    <String>Upload the working file in the active tab to eXist-db on localhost</String>
                                 </field>
                                 <field name="name">
-                                    <String>Open current repository in Atom</String>
+                                    <String>Upload current file to localhost</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <String>M1 U</String>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>echo "Sorry this isn't a command!"</String>
+                                </field>
+                                <field name="description">
+                                    <String>(Divider)</String>
+                                </field>
+                                <field name="name">
+                                    <String>= Publish to history.state.gov =</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>.</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-file-from-production -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Delete the working file in the active tab from eXist-db on history.state.gov</String>
+                                </field>
+                                <field name="name">
+                                    <String>Delete current file from history.state.gov</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -509,13 +381,205 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" clean</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-production -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Delete generated packages</String>
+                                    <String>Upload the working file in the active tab to eXist-db on history.state.gov</String>
                                 </field>
                                 <field name="name">
-                                    <String>Delete generated packages</String>
+                                    <String>Upload current file to history.state.gov</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <null/>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>echo "Sorry this isn't a command!"</String>
+                                </field>
+                                <field name="description">
+                                    <String>(Divider)</String>
+                                </field>
+                                <field name="name">
+                                    <String>= Setup and maintenance =</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>.</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>false</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-old-repos setup</String>
+                                </field>
+                                <field name="description">
+                                    <String>Clone all repositories</String>
+                                </field>
+                                <field name="name">
+                                    <String>1. Clone all repositories</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" configure-for-exist-on-mac-system -Duser-home=${homeDir}</String>
+                                </field>
+                                <field name="description">
+                                    <String>Configure hsg-project for use with current macOS and eXist installed via dmg installer </String>
+                                </field>
+                                <field name="name">
+                                    <String>2. Apply Mac settings to hsg-project</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" apply-hsg-project-customizations-to-exist</String>
+                                </field>
+                                <field name="description">
+                                    <String>Configure hsg-project's modules, jobs in eXist</String>
+                                </field>
+                                <field name="name">
+                                    <String>3. Apply hsg-project settings to eXist</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Build and deploy all repositories to eXist-db on localhost</String>
+                                </field>
+                                <field name="name">
+                                    <String>4. Deploy all repositories to localhost</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" store-production-password -Dpassword="${ask('Please enter the password for 1861.history.state.gov', password)}"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Enter production server credentials</String>
+                                </field>
+                                <field name="name">
+                                    <String>5. Enter production server credentials</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -573,13 +637,77 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" prepare-hsg-project-for-upgrade-to-exist -Dare-you-sure="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
+                                    <String>echo "Sorry this isn't a command!"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Prepare hsg-project for upgrade to latest eXist</String>
+                                    <String>(Divider)</String>
                                 </field>
                                 <field name="name">
-                                    <String>Prepare for upgrade to latest eXist</String>
+                                    <String>= Launch other applications =</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>.</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-atom -Ddirectory="${cfd}"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Open the parent repository of the working file in the active tab in Atom</String>
+                                </field>
+                                <field name="name">
+                                    <String>Open current repository in Atom</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-github-desktop -Ddirectory="${cfd}"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Open the parent repository of the working file in the active tab in GitHub Desktop</String>
+                                </field>
+                                <field name="name">
+                                    <String>Open current repository in GitHub Desktop</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
