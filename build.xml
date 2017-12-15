@@ -722,7 +722,7 @@
         <echo message="------------------------------------------------------------"/>
         <echo message="Upgrading local.build.properties file (preserving passwords)"/>
         <echo message="------------------------------------------------------------"/>
-        <propertyfile file="${build}/local.build.properties" comment="customized hsg settings for this machine">
+        <propertyfile file="${build}/local.build.properties" comment="Updated with latest hsg-project settings">
             <entry key="eXist.data" value="${eXist.data}"/>
             <entry key="eXist.home" value="${eXist.home}"/>
             <entry key="git" value="${git}"/>
@@ -743,15 +743,15 @@
     <target name="configure-for-exist-on-mac-system"
         description="Configure hsg-project for use with eXist on a Mac system" depends="check-local-build-properties">
         <property name="user-home" value="${user-home}"/>
-        <propertyfile file="${build}/local.build.properties" comment="hsg settings for ${user-home}">
+        <propertyfile file="${build}/local.build.properties" comment="Updated to use eXist data and home locations, assuming macOS DMG installer, for ${user-home}">
             <entry key="eXist.data" value="${user-home}${eXist.data.mac-dmg-installer}"/>
             <entry key="eXist.home" value="${eXist.home.mac-dmg-installer}"/>
         </propertyfile>
     </target>
 
-    <target name="prepare-hsg-project-for-upgrade-to-exist"
-        description="Prepare hsg-project for the upgrade to the current version of eXist"
-        depends="wipe-exist-data-with-confirmation,delete-old-repos,upgrade-local-build-properties,prepare-exist-configuration,setup"/>
+    <target name="apply-hsg-project-customizations-to-exist"
+        description="Apply hsg-project customizations to eXist"
+        depends="upgrade-local-build-properties,prepare-exist-configuration"/>
     
     <target name="delete-old-repos" description="Delete cloned repositories used before upgrade to eXist 3.1.1">
         <echo message="------------------------------------------------------------------"/>
