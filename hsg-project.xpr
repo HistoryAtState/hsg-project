@@ -253,7 +253,7 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" deploy-repo-to-localhost -Dparent-directory="${cfd}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" deploy-repo-to-localhost -Ddirectory="${cfd}"</String>
                                 </field>
                                 <field name="description">
                                     <String>Build and deploy the parent repository of the working file in the active tab to eXist-db on localhost</String>
