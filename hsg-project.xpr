@@ -54,6 +54,10 @@
                         <String>meta alt UP</String>
                     </entry>
                     <entry>
+                        <String>Shk.Search_occurrences_in_file.References</String>
+                        <String>UNDEFINED</String>
+                    </entry>
+                    <entry>
                         <String>editor.detect.indent.on.open</String>
                         <Boolean>false</Boolean>
                     </entry>
