@@ -800,38 +800,38 @@
         <echo message="-----------"/>
         <echo message="brew update"/>
         <echo message="-----------"/>
-        <exec executable="brew" dir=".">
+        <exec executable="/usr/local/bin/brew" dir=".">
             <arg line="update"/>
         </exec>
         <echo message="------------"/>
         <echo message="brew upgrade"/>
         <echo message="------------"/>
-        <exec executable="brew" dir=".">
+        <exec executable="/usr/local/bin/brew" dir=".">
             <arg line="upgrade"/>
         </exec>
         <echo message="------------"/>
         <echo message="brew cleanup"/>
         <echo message="------------"/>
-        <exec executable="brew" dir=".">
+        <exec executable="/usr/local/bin/brew" dir=".">
             <arg line="cleanup"/>
         </exec>
         <echo message="-----------"/>
         <echo message="brew doctor"/>
         <echo message="-----------"/>
-        <exec executable="brew" dir=".">
+        <exec executable="/usr/local/bin/brew" dir=".">
             <arg line="doctor"/>
         </exec>
         <echo message="--------------------"/>
         <echo message="brew list --versions"/>
         <echo message="--------------------"/>
-        <exec executable="brew" dir=".">
+        <exec executable="/usr/local/bin/brew" dir=".">
             <arg line="list"/>
             <arg line="--versions"/>
         </exec>
         <echo message="--------------"/>
         <echo message="brew cask list"/>
         <echo message="--------------"/>
-        <exec executable="brew" dir=".">
+        <exec executable="/usr/local/bin/brew" dir=".">
             <arg line="cask"/>
             <arg line="list"/>
         </exec>
