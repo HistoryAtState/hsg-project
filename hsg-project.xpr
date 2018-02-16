@@ -641,38 +641,6 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>echo "Sorry this isn't a command!"</String>
-                                </field>
-                                <field name="description">
-                                    <String>(Divider)</String>
-                                </field>
-                                <field name="name">
-                                    <String>= Launch other applications =</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>.</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
                                     <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-atom -Ddirectory="${cfd}"</String>
                                 </field>
                                 <field name="description">
@@ -712,6 +680,38 @@
                                 </field>
                                 <field name="name">
                                     <String>Open current repository in GitHub Desktop</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" troubleshoot</String>
+                                </field>
+                                <field name="description">
+                                    <String>Generate a report about the status of your installed applications and repositories</String>
+                                </field>
+                                <field name="name">
+                                    <String>Generate troubleshooting report</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>

@@ -62,6 +62,9 @@
     </target>
 
     <target name="update">
+        <echo message="-------------------------------------"/>
+        <echo message="Fetching updates for all repositories"/>
+        <echo message="-------------------------------------"/>
         <iterate target="git.pull"/>
     </target>
 
@@ -517,7 +520,9 @@
     </target>
 
     <target name="update-hsg-project" description="Updates the hsg-project repo">
-        <echo message="Updating hsg-project..."/>
+        <echo message="-------------------------------------"/>
+        <echo message="Fetching updates for hsg-project repo"/>
+        <echo message="-------------------------------------"/>
         <exec executable="${git}" dir=".">
             <arg line="checkout"/>
             <arg line="HEAD"/>
@@ -787,4 +792,109 @@
     <condition property="exist-configuration-backup-exists">
         <available file="${eXist.home}/conf-orig.xml"></available>
     </condition>
+    
+    <target name="update-homebrew">
+        <echo message="-----------------"/>
+        <echo message="Updating Homebrew"/>
+        <echo message="-----------------"/>
+        <echo message="-----------"/>
+        <echo message="brew update"/>
+        <echo message="-----------"/>
+        <exec executable="brew" dir=".">
+            <arg line="update"/>
+        </exec>
+        <echo message="------------"/>
+        <echo message="brew upgrade"/>
+        <echo message="------------"/>
+        <exec executable="brew" dir=".">
+            <arg line="upgrade"/>
+        </exec>
+        <echo message="------------"/>
+        <echo message="brew cleanup"/>
+        <echo message="------------"/>
+        <exec executable="brew" dir=".">
+            <arg line="cleanup"/>
+        </exec>
+        <echo message="-----------"/>
+        <echo message="brew doctor"/>
+        <echo message="-----------"/>
+        <exec executable="brew" dir=".">
+            <arg line="doctor"/>
+        </exec>
+        <echo message="--------------------"/>
+        <echo message="brew list --versions"/>
+        <echo message="--------------------"/>
+        <exec executable="brew" dir=".">
+            <arg line="list"/>
+            <arg line="--versions"/>
+        </exec>
+        <echo message="--------------"/>
+        <echo message="brew cask list"/>
+        <echo message="--------------"/>
+        <exec executable="brew" dir=".">
+            <arg line="cask"/>
+            <arg line="list"/>
+        </exec>
+    </target>
+
+    <target name="troubleshoot">
+        <condition property="local.build.properties.exists">
+            <available file="build/local.build.properties" />
+        </condition>
+        <echo message="----------------------"/>
+        <echo message="Troubleshooting report"/>
+        <echo message="----------------------"/>
+        <echo message="local.build.properties file found: ${local.build.properties.exists}"/>
+        <echo message="eXist.data: ${eXist.data}"/>
+        <echo message="eXist.home: ${eXist.home}"/>
+        <antcall target="update-hsg-project"/>
+        <antcall target="update"/>
+        <antcall target="update-homebrew"/>
+        <antcall target="show-app-versions"/>
+    </target>
+    
+    <target name="show-app-versions">
+        <echo message="--------------------------"/>
+        <echo message="Versions of installed apps"/>
+        <echo message="--------------------------"/>
+        <exec executable="mdls" dir="." outputproperty="exist.version">
+            <arg line="-raw"/>
+            <arg line="-name"/>
+            <arg line="kMDItemVersion"/>
+            <arg line="'/Applications/eXist-db.app'"/>
+        </exec>
+        <exec executable="mdls" dir="." outputproperty="github.version">
+            <arg line="-raw"/>
+            <arg line="-name"/>
+            <arg line="kMDItemVersion"/>
+            <arg line="'/Applications/GitHub Desktop.app'"/>
+        </exec>
+        <exec executable="mdls" dir="." outputproperty="oxygen.version">
+            <arg line="-raw"/>
+            <arg line="-name"/>
+            <arg line="kMDItemVersion"/>
+            <arg line="'/Applications/Oxygen XML Editor/Oxygen XML Editor.app'"/>
+        </exec>
+        <echo message="eXist v${exist.version}"/>
+        <echo message="GitHub Desktop v${github.version}"/>
+        <echo message="oXygen XML Editor v${oxygen.version}"/>
+    </target>
+    
+    <target name="repo-status">
+        <iterate target="git.rev-parse"/>
+    </target>
+    
+    <target name="git.rev-parse">
+        <echo message="${dir}"/>
+        <exec executable="${git}" dir="${dir}" outputproperty="git.current-commit">
+            <arg line="rev-parse"/>
+            <arg line="--short"/>
+            <arg line="HEAD"/>
+        </exec>
+        <echo message="Head: ${git.current-commit}"/>
+        <echo message="Status"/>
+        <exec executable="${git}" dir="${dir}">
+            <arg line="status"/>
+        </exec>
+    </target>
 </project>
