@@ -851,6 +851,9 @@
         <antcall target="update"/>
         <antcall target="update-homebrew"/>
         <antcall target="show-app-versions"/>
+        <echo message="----------------------------------------------------------------------------------------------"/>
+        <echo message="Please copy and paste the entire report (starting with 'Troubleshooting report') into an email"/>
+        <echo message="----------------------------------------------------------------------------------------------"/>
     </target>
     
     <target name="show-app-versions">
