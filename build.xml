@@ -844,9 +844,14 @@
         <echo message="----------------------"/>
         <echo message="Troubleshooting report"/>
         <echo message="----------------------"/>
+        <echo message="Username: ${user.name}"/>
+        <echo message="Operating system: ${os.name} ${os.version}"/>
+        <echo message="Java: ${java.version}"/>
+        <echo message="Java home: ${java.home}"/>
         <echo message="local.build.properties file found: ${local.build.properties.exists}"/>
         <echo message="eXist.data: ${eXist.data}"/>
         <echo message="eXist.home: ${eXist.home}"/>
+        <antcall target="software-update-check"/>
         <antcall target="update-hsg-project"/>
         <antcall target="update"/>
         <antcall target="update-homebrew"/>
@@ -898,6 +903,16 @@
         <echo message="Status"/>
         <exec executable="${git}" dir="${dir}">
             <arg line="status"/>
+        </exec>
+    </target>
+    
+    <target name="software-update-check">
+        <echo message="---------------------------"/>
+        <echo message="Checking for system updates"/>
+        <echo message="---------------------------"/>
+        <echo message="(This may take several minutes.)"/>
+        <exec executable="softwareupdate">
+            <arg line="-l"/>
         </exec>
     </target>
 </project>
