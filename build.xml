@@ -794,6 +794,7 @@
     </condition>
     
     <target name="update-homebrew">
+        <property environment="env"/>
         <echo message="-----------------"/>
         <echo message="Updating Homebrew"/>
         <echo message="-----------------"/>
@@ -818,7 +819,9 @@
         <echo message="-----------"/>
         <echo message="brew doctor"/>
         <echo message="-----------"/>
-        <exec executable="/usr/local/bin/brew" dir=".">
+        <exec executable="/usr/local/bin/brew" dir="." searchpath="true">
+            <!-- assume path is set correctly, since our hsg-project setup directions will have us set this up correctly; see https://docs.brew.sh/FAQ.html#my-mac-apps-dont-find-usrlocalbin-utilities -->
+            <env key="PATH" value="/usr/local/bin:${env.PATH}"/>
             <arg line="doctor"/>
         </exec>
         <echo message="--------------------"/>
@@ -846,19 +849,36 @@
         <echo message="----------------------"/>
         <echo message="Username: ${user.name}"/>
         <echo message="Operating system: ${os.name} ${os.version}"/>
-        <echo message="Java: ${java.version}"/>
-        <echo message="Java home: ${java.home}"/>
-        <echo message="local.build.properties file found: ${local.build.properties.exists}"/>
-        <echo message="eXist.data: ${eXist.data}"/>
-        <echo message="eXist.home: ${eXist.home}"/>
+        <antcall target="hardware-info"/>
         <antcall target="software-update-check"/>
         <antcall target="update-hsg-project"/>
         <antcall target="update"/>
         <antcall target="update-homebrew"/>
         <antcall target="show-app-versions"/>
+        <antcall target="exist-environment"/>
         <echo message="----------------------------------------------------------------------------------------------"/>
         <echo message="Please copy and paste the entire report (starting with 'Troubleshooting report') into an email"/>
         <echo message="----------------------------------------------------------------------------------------------"/>
+    </target>
+    
+    <target name="exist-environment">
+        <echo message="-----------------"/>
+        <echo message="eXist environment"/>
+        <echo message="-----------------"/>
+        <echo message="Java: ${java.version}"/>
+        <echo message="Java home: ${java.home}"/>
+        <echo message="local.build.properties file found: ${local.build.properties.exists}"/>
+        <echo message="eXist.data: ${eXist.data}"/>
+        <echo message="eXist.home: ${eXist.home}"/>
+    </target>
+    
+    <target name="hardware-info">
+        <echo message="--------------------"/>
+        <echo message="Hardware information"/>
+        <echo message="--------------------"/>
+        <exec executable="system_profiler">
+            <arg line="SPHardwareDataType"/>
+        </exec>
     </target>
     
     <target name="show-app-versions">
