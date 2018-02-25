@@ -853,6 +853,7 @@
         <antcall target="software-update-check"/>
         <antcall target="update-hsg-project"/>
         <antcall target="update"/>
+        <antcall target="repo-status"/>
         <antcall target="update-homebrew"/>
         <antcall target="show-app-versions"/>
         <antcall target="exist-environment"/>
