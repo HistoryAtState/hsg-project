@@ -109,5 +109,5 @@ return
     (
         console:log("Installing package " || $package),
         repo:install-and-deploy-from-db($xarPath, $repo),
-        ru:sync(xs:anyURI("/db/" || $target), 3000)
+        ru:sync(xs:anyURI("/db/apps/" || $target), 3000)
     )
