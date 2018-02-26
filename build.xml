@@ -850,6 +850,7 @@
         <echo message="Username: ${user.name}"/>
         <echo message="Operating system: ${os.name} ${os.version}"/>
         <antcall target="hardware-info"/>
+        <antcall target="disk-free-space-check"/>
         <antcall target="software-update-check"/>
         <antcall target="update-hsg-project"/>
         <antcall target="update"/>
@@ -934,6 +935,15 @@
         <echo message="(This may take several minutes.)"/>
         <exec executable="softwareupdate">
             <arg line="-l"/>
+        </exec>
+    </target>
+    
+    <target name="disk-free-space-check">
+        <echo message="---------------------------"/>
+        <echo message="Checking free space on disk"/>
+        <echo message="---------------------------"/>
+        <exec executable="df">
+            <arg line="-h"/>
         </exec>
     </target>
 </project>
