@@ -20,6 +20,15 @@
         </xsl:copy>        
     </xsl:template>
 
+    <xsl:template match="serializer">
+        <xsl:comment>indent=no set for hsg</xsl:comment>
+        <xsl:copy>
+            <xsl:apply-templates select="@* except @indent"/>
+            <xsl:attribute name="indent">no</xsl:attribute>
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>        
+    </xsl:template>
+
     <xsl:template match="scheduler">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()"/>
