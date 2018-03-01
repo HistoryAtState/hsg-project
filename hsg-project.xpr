@@ -1300,6 +1300,21 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>repos/carousel/data/entries/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>Carousel entries</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>repos/frus/volumes/</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -1395,21 +1410,6 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>POCOM ranks</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>Validation_scenario</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/carousel/data/entries/</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>Carousel entries</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
