@@ -877,7 +877,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>Add subtype=editorial-note</String>
+                                    <String>Add div/@subtype="historical-document" OR "editorial-note"</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -895,7 +895,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/add-editorial-note-subtype.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/add-subtype-historical-document-or-editorial-note.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
@@ -1038,7 +1038,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>Add subtype=historical-document OR editorial-note</String>
+                                    <String>Update FRUS compilation/chapter/subchapter dates</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -1056,7 +1056,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/add-subtype-historical-document-or-editorial-note.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/update-frus-comp-chapter-subchapter-dates.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
@@ -1360,7 +1360,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>Update FRUS compilation/chapter/subchapter dates</String>
+                                    <String>Add div/@subtype="referral"</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -1378,7 +1378,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/update-frus-comp-chapter-subchapter-dates.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/add-subtype-referral.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
@@ -1454,6 +1454,7 @@
                             <String>history.state.gov:443</String>
                             <String>52.200.84.214:443</String>
                             <String>54.164.101.218:443</String>
+                            <String>54.152.182.196:443</String>
                         </String-array>
                     </entry>
                     <entry>
