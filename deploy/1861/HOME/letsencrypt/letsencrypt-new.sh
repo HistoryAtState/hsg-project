@@ -14,7 +14,7 @@ le_path="/opt/letsencrypt"
 echo "Starting renewal script..." | tee -a "$log_file"
 # the renwal process itself
 cd "$config_path" || return
-$le_path/certbot-auto certonly --config "$config_file" --agree-tos --debug
+PYTHON_INSTALL_LAYOUT="" $le_path/certbot-auto certonly --config "$config_file" --agree-tos --debug
 # restarting the web server
 echo "Reloading nginx" | tee -a "$log_file"
 nginx -t && service nginx restart | tee -a "$log_file"
