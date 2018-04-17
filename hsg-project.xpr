@@ -1612,7 +1612,7 @@
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>FRUS TEI + Secondary Date Review</String>
+                                        <String>FRUS TEI</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -2327,7 +2327,7 @@
                                     <String>Validation_scenario</String>
                                 </field>
                                 <field name="name">
-                                    <String>FRUS TEI + Secondary Date Review</String>
+                                    <String>FRUS TEI + Secondary Review of Dates</String>
                                 </field>
                             </validationScenario>
                             <validationScenario>
