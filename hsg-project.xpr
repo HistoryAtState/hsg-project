@@ -1612,7 +1612,7 @@
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>FRUS TEI</String>
+                                        <String>FRUS TEI + Secondary Review of Dates</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
