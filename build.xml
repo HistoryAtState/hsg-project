@@ -745,7 +745,7 @@
     <target name="store-production-password"
         description="Store production password in local.build.properties" depends="check-local-build-properties">
         <property name="password" value="${password}"/>
-        <propertyfile file="${build}/local.build.properties">
+        <propertyfile file="${build}/local.build.properties" comment="Updated with production.instance.password">
             <entry key="production.instance.password" value="${password}"/>
         </propertyfile>
     </target>
