@@ -1840,7 +1840,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/add-xenoData.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/update-frus-volume-dates.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
