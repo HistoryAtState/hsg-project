@@ -1190,7 +1190,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>3. Add FRUS documents dateTimes (min/max)   [initial pass]</String>
+                                    <String>3. Add div/@subtype="referral"</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -1208,7 +1208,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/update-frus-doc-dates.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/add-subtype-referral.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
@@ -1348,7 +1348,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>4. Add div/@subtype="referral"</String>
+                                    <String>4. Add FRUS documents dateTimes (min/max)   [initial pass]</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -1366,7 +1366,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/add-subtype-referral.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/update-frus-doc-dates.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
