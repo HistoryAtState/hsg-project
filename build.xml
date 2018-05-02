@@ -751,6 +751,7 @@
             <entry key="github" value="${github}"/>
             <entry key="local.instance.password" value="${local.instance.password}"/>
             <entry key="production.instance.password" value="${production.instance.password}"/>
+            <entry key="remotes.include-private" value="${remotes.include-private}"/>
         </propertyfile>
     </target>
     
