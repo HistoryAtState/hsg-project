@@ -120,6 +120,8 @@
 
     <target name="deploy.install-packages-from-public-repo">
         <echo message="Installing packages from eXist-db.org public repo ..."/>
+        <xdb:create uri="${local.instance.uri}/db" user="${local.instance.user}"
+            password="${local.instance.password}" collection="${instance.tempColl}"/>
         <echo message="Installing functx ..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
@@ -133,10 +135,20 @@
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
         />
+        <echo message="Installing TEI Publisher Docx Libraries..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+        />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+        />
+        <echo message="Installing XProc Calabash Module..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
         />
         <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment, 
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
