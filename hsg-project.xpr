@@ -2454,7 +2454,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  11. Add FRUS compilation/chapter/subchapter dateTimes (min/max)</String>
+                                    <String>C  11. Add/update FRUS document dateTimes (min/max)   [tertiary pass]</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -2472,7 +2472,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/update-frus-comp-chapter-subchapter-dates.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/update-frus-doc-dates.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
@@ -2612,7 +2612,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  12. Add/update FRUS document dateTimes (min/max)   [tertiary pass]</String>
+                                    <String>C  12. Add FRUS compilation/chapter/subchapter dateTimes (min/max)</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -2630,7 +2630,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/update-frus-doc-dates.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/update-frus-comp-chapter-subchapter-dates.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
