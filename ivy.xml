@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0">
-    
     <info organisation="org.exist" module="hsg"/>
     <dependencies>
-        <dependency org="exist-db" name="exist-core" rev="3.1.1"/>
-        <dependency org="exist-db" name="exist-optional" rev="3.1.1"/>
+        <dependency org="exist-db" name="exist-core" rev="5.0.0-RC1"/>
+        <dependency org="exist-db" name="exist-optional" rev="5.0.0-RC1"/>
         <dependency org="exist-db" name="xmldb-api" rev="1.0-patched"/>
+        <dependency org="com.evolvedbinary.j8fu" name="j8fu" rev="1.16"/>
         <dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.8.1"/>
         <dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.8.1"/>
         <dependency org="commons-logging" name="commons-logging" rev="1.2"/>
@@ -15,5 +15,4 @@
         <!-- needed for "pathconvert" task used in "upload-*" targets -->
         <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3"/>
     </dependencies>
-    
 </ivy-module>
