@@ -56,6 +56,9 @@
     <target name="deploy-one" description="Deploy one package"
         depends="ping-localhost,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
 
+    <target name="deploy-to-production-server" description="Deploy all packages to development server"
+        depends="ping-production-server,deploy.init,deploy.upload-to-production,deploy.install-packages-from-public-repo-to-production,deploy.deploy-to-production,deploy.cleanup-production"/>
+
     <target name="deploy-to-dev-server" description="Deploy all packages to development server"
         depends="ping-dev-server,deploy.init,deploy.upload-to-dev,deploy.install-packages-from-public-repo-to-dev,deploy.deploy-to-dev,deploy.cleanup-dev"/>
 
@@ -103,6 +106,16 @@
         </xdb:store>
     </target>
 
+    <target name="deploy.upload-to-production">
+        <echo message="Uploading packages ..."/>
+        <xdb:store uri="${production.instance.temp}" user="${production.instance.user}"
+            password="${production.instance.password}" createcollection="true">
+            <fileset dir="${xars}">
+                <include name="*.xar"/>
+            </fileset>
+        </xdb:store>
+    </target>
+
     <target name="deploy.upload-to-dev">
         <echo message="Uploading packages ..."/>
         <xdb:store uri="${development.instance.temp}" user="${development.instance.user}"
@@ -130,6 +143,11 @@
     <target name="deploy.deploy">
         <echo message="Installing packages ..."/>
         <iterate-xars target="deploy.deploy-xar"/>
+    </target>
+
+    <target name="deploy.deploy-to-production">
+        <echo message="Installing packages ..."/>
+        <iterate-xars target="deploy.deploy-xar-to-production"/>
     </target>
 
     <target name="deploy.deploy-to-dev">
@@ -175,6 +193,47 @@
         <echo message="Installing Messaging and Replication..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
             query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo}')"/>
+        -->
+    </target>
+
+    <target name="deploy.install-packages-from-public-repo-to-production">
+        <echo message="Installing packages from eXist-db.org public repo ..."/>
+        <xdb:create uri="${production.instance.uri}/db" user="${production.instance.user}"
+            password="${production.instance.password}" collection="${instance.tempColl}"/>
+        <echo message="Installing functx ..."/>
+        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
+            password="${production.instance.password}"
+            query="repo:install-and-deploy('http://www.functx.com', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+        <echo message="Installing TEI Simple PM..."/>
+        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
+            password="${production.instance.password}"
+            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+        <echo message="Installing TEI Publisher Libraries..."/>
+        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
+            password="${production.instance.password}"
+            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+        />
+        <echo message="Installing TEI Publisher Docx Libraries..."/>
+        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
+            password="${production.instance.password}"
+            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+        />
+        <echo message="Installing Memsort XQuery Module..."/>
+        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
+            password="${production.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+        />
+        <echo message="Installing XProc Calabash Module..."/>
+        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
+            password="${production.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+        />
+        <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment,
+            but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
+        <!--
+        <echo message="Installing Messaging and Replication..."/>
+        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
         -->
     </target>
 
@@ -755,7 +814,7 @@
 
     <target name="ping-production">
         <condition property="exist-running">
-            <http requestmethod="GET" url="https://1861.history.state.gov/test" />
+            <http requestmethod="GET" url="${production.instance.http}/test" />
         </condition>
         <fail unless="${exist-running}" message="The production server cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
