@@ -834,13 +834,13 @@
             <entry key="git" value="${git}"/>
             <entry key="github" value="${github}"/>
             <entry key="local.instance.password" value="${local.instance.password}"/>
-            <entry key="production.instance.http" value="${production.instance.password}"/>
-            <entry key="production.instance.uri" value="${production.instance.password}"/>
-            <entry key="production.instance.user" value="${production.instance.password}"/>
+            <entry key="production.instance.http" value="${production.instance.http}"/>
+            <entry key="production.instance.uri" value="${production.instance.uri}"/>
+            <entry key="production.instance.user" value="${production.instance.user}"/>
             <entry key="production.instance.password" value="${production.instance.password}"/>
-            <entry key="development.instance.http" value="${development.instance.password}"/>
-            <entry key="development.instance.uri" value="${development.instance.password}"/>
-            <entry key="development.instance.user" value="${development.instance.password}"/>
+            <entry key="development.instance.http" value="${development.instance.http}"/>
+            <entry key="development.instance.uri" value="${development.instance.uri}"/>
+            <entry key="development.instance.user" value="${development.instance.user}"/>
             <entry key="development.instance.password" value="${development.instance.password}"/>
             <entry key="remotes.include-private" value="${remotes.include-private}"/>
         </propertyfile>
