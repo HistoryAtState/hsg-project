@@ -56,7 +56,7 @@
     <target name="deploy-one" description="Deploy one package"
         depends="ping-localhost,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
 
-    <target name="deploy-dev-server" description="Deploy all packages to development server"
+    <target name="deploy-to-dev-server" description="Deploy all packages to development server"
         depends="ping-dev-server,deploy.init,deploy.upload-to-dev,deploy.install-packages-from-public-repo-to-dev,deploy.deploy-to-dev,deploy.cleanup-dev"/>
 
     <target name="prepare">
@@ -762,7 +762,7 @@
 
     <target name="ping-dev-server">
         <condition property="exist-running">
-            <http requestmethod="GET" url="${development.instance.http}/exist/apps/monex/" />
+            <http requestmethod="GET" url="${development.instance.http}" />
         </condition>
         <fail unless="${exist-running}" message="The development server cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
