@@ -203,37 +203,37 @@
         <echo message="Installing functx ..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo}')"/>
         <echo message="Installing TEI Publisher Libraries..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo}')"
         />
         <echo message="Installing TEI Publisher Docx Libraries..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo}')"
         />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo}')"
         />
         <echo message="Installing XProc Calabash Module..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo}')"
         />
         <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
         <echo message="Installing Messaging and Replication..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo}')"/>
         -->
     </target>
 
@@ -244,37 +244,37 @@
         <echo message="Installing functx ..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo}')"/>
         <echo message="Installing TEI Publisher Libraries..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo}')"
         />
         <echo message="Installing TEI Publisher Docx Libraries..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo}')"
         />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo}')"
         />
         <echo message="Installing XProc Calabash Module..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo}')"
         />
         <!-- NOTE: Messaging and Replication app is needed on development system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
         <echo message="Installing Messaging and Replication..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}" password="${development.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', 'http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql')"/>
+            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo}')"/>
         -->
     </target>
 
