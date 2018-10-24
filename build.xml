@@ -22,7 +22,7 @@
 
     <available file="${build}/ivy-${ivy.version}.jar" property="ivy.available"/>
 
-    <target name="all" depends="ping-localhost,clean,update,build,deploy"
+    <target name="all" depends="ping-localhost,ping-public-repo,clean,update,build,deploy"
         description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
 
     <condition property="remotes.include-private">
@@ -51,16 +51,16 @@
     </target>
 
     <target name="deploy" description="Deploy all packages"
-        depends="ping-localhost,deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
+        depends="ping-localhost,ping-public-repo,deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
 
     <target name="deploy-one" description="Deploy one package"
-        depends="ping-localhost,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
+        depends="ping-localhost,ping-public-repo,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
 
     <target name="deploy-to-production-server" description="Deploy all packages to development server"
         depends="ping-production,deploy.init,deploy.upload-to-production,deploy.install-packages-from-public-repo-to-production,deploy.deploy-to-production,deploy.cleanup-production"/>
 
     <target name="deploy-to-dev-server" description="Deploy all packages to development server"
-        depends="ping-dev-server,deploy.init,deploy.upload-to-dev,deploy.install-packages-from-public-repo-to-dev,deploy.deploy-to-dev,deploy.cleanup-dev"/>
+        depends="ping-dev-server,ping-public-repo,deploy.init,deploy.upload-to-dev,deploy.install-packages-from-public-repo-to-dev,deploy.deploy-to-dev,deploy.cleanup-dev"/>
 
     <target name="prepare">
         <mkdir dir="${libs}"/>
@@ -162,37 +162,41 @@
         <echo message="Installing functx ..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo}')"/>
+            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
-            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo}')"/>
+            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Publisher Libraries..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
-            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing TEI Publisher Docx Libraries..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing XProc Calabash Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo.lookup}')"
         />
+        <echo message="Installing Crypto Module..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
         <echo message="Installing Messaging and Replication..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}" password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo}')"/>
+            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo.lookup}')"/>
         -->
     </target>
 
@@ -203,37 +207,41 @@
         <echo message="Installing functx ..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo}')"/>
+            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo}')"/>
+            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Publisher Libraries..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing TEI Publisher Docx Libraries..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing XProc Calabash Module..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo.lookup}')"
         />
+        <echo message="Installing Crypto Module..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
         <echo message="Installing Messaging and Replication..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo}')"/>
+            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo.lookup}')"/>
         -->
     </target>
 
@@ -244,37 +252,41 @@
         <echo message="Installing functx ..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo}')"/>
+            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo}')"/>
+            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Publisher Libraries..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing TEI Publisher Docx Libraries..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing XProc Calabash Module..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo}')"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo.lookup}')"
         />
+        <echo message="Installing Crypto Module..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on development system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
         <echo message="Installing Messaging and Replication..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}" password="${development.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo}')"/>
+            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo.lookup}')"/>
         -->
     </target>
 
@@ -825,6 +837,13 @@
         </condition>
         <fail unless="${exist-running}" message="The development server cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
+    
+    <target name="ping-public-repo">
+        <condition property="public-repo-accessible">
+            <http requestmethod="HEAD" url="${eXist.public-repo.lookup}?abbrev=functx"/>
+        </condition>
+        <fail unless="${public-repo-accessible}" message="The package repository at ${eXist.public-repo} cannot be reached. Please confirm you are connected to the internet and try again."/>
+    </target>
 
     <!-- =================================================================== -->
     <!-- Wipe eXist-db database; perform only with eXist-db shut down        -->
@@ -935,7 +954,7 @@
         <delete includeemptydirs="true" dir="${repos}/tei-simple-pm"/>
     </target>
 
-    <target name="prepare-exist-configuration" depends="back-up-exist-configuration-file">
+    <target name="prepare-exist-configuration" depends="back-up-exist-configuration-file,create-local-exist-properties-file">
         <echo message="-------------------------------------------------------"/>
         <echo message="Applying hsg customizations to eXist configuration file"/>
         <echo message="-------------------------------------------------------"/>
@@ -949,14 +968,23 @@
             <param name="target" type="STRING" expression="development"/>
         </xslt>
         <copy file="${build}/webdav.properties" todir="${eXist.home}"/>
+        <propertyfile file="${eXist.home}/local.build.properties" comment="Updated with autodeploy.repo">
+            <entry key="autodeploy.repo" value="${eXist.public-repo}"/>
+        </propertyfile>
     </target>
     <target name="back-up-exist-configuration-file" unless="exist-configuration-backup-exists">
         <copy file="${eXist.home}/conf.xml" tofile="${eXist.home}/conf-orig.xml"/>
     </target>
     <condition property="exist-configuration-backup-exists">
-        <available file="${eXist.home}/conf-orig.xml"></available>
+        <available file="${eXist.home}/conf-orig.xml"/>
     </condition>
-
+    <target name="create-local-exist-properties-file" unless="local-exist-properties-exists">
+        <copy file="${eXist.home}/build.properties" tofile="${eXist.home}/local.build.properties"/>
+    </target>
+    <condition property="local-exist-properties-exists">
+        <available file="${eXist.home}/local.build.properties"/>
+    </condition>
+    
     <target name="update-homebrew">
         <property environment="env"/>
         <echo message="-----------------"/>
