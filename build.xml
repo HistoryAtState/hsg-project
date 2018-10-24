@@ -304,6 +304,7 @@
             outputproperty="deploy.output">
             <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
+            <variable name="repo" value="${eXist.public-repo.lookup}"/>
         </xdb:xquery>
         <echo message="${deploy.output}"/>
     </target>
@@ -315,6 +316,7 @@
             outputproperty="deploy.output" ssl="true">
             <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
+            <variable name="repo" value="${eXist.public-repo.lookup}"/>
         </xdb:xquery>
         <echo message="${deploy.output}"/>
     </target>
@@ -326,6 +328,7 @@
             outputproperty="deploy.output" ssl="true">
             <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
+            <variable name="repo" value="${eXist.public-repo.lookup}"/>
         </xdb:xquery>
         <echo message="${deploy.output}"/>
     </target>
@@ -954,7 +957,7 @@
         <delete includeemptydirs="true" dir="${repos}/tei-simple-pm"/>
     </target>
 
-    <target name="prepare-exist-configuration" depends="back-up-exist-configuration-file,create-local-exist-properties-file">
+    <target name="prepare-exist-configuration" depends="back-up-exist-configuration-file">
         <echo message="-------------------------------------------------------"/>
         <echo message="Applying hsg customizations to eXist configuration file"/>
         <echo message="-------------------------------------------------------"/>
@@ -968,21 +971,12 @@
             <param name="target" type="STRING" expression="development"/>
         </xslt>
         <copy file="${build}/webdav.properties" todir="${eXist.home}"/>
-        <propertyfile file="${eXist.home}/local.build.properties" comment="Updated with autodeploy.repo">
-            <entry key="autodeploy.repo" value="${eXist.public-repo}"/>
-        </propertyfile>
     </target>
     <target name="back-up-exist-configuration-file" unless="exist-configuration-backup-exists">
         <copy file="${eXist.home}/conf.xml" tofile="${eXist.home}/conf-orig.xml"/>
     </target>
     <condition property="exist-configuration-backup-exists">
         <available file="${eXist.home}/conf-orig.xml"/>
-    </condition>
-    <target name="create-local-exist-properties-file" unless="local-exist-properties-exists">
-        <copy file="${eXist.home}/build.properties" tofile="${eXist.home}/local.build.properties"/>
-    </target>
-    <condition property="local-exist-properties-exists">
-        <available file="${eXist.home}/local.build.properties"/>
     </condition>
     
     <target name="update-homebrew">

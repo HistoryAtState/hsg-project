@@ -11,9 +11,7 @@ declare namespace ru="http://exist-db.org/xquery/replication-util";
 
 declare variable $temp external;
 declare variable $xar external;
-
-declare variable $repo := 
-    "http://demo.exist-db.org/exist/apps/public-repo/modules/find.xql";
+declare variable $repo external;
 
 (:~
  : Uninstall given package if it is installed.
