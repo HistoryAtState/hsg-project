@@ -6,7 +6,9 @@ build/local.build.properties
 build/ivy-*.jar
 
 Icon
+
 *.log
+
 .DS_Store
 
 
