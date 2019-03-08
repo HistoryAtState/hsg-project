@@ -838,6 +838,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -995,6 +998,9 @@
                                                 </field>
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
@@ -1154,6 +1160,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -1311,6 +1320,9 @@
                                                 </field>
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
@@ -1470,6 +1482,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -1627,6 +1642,9 @@
                                                 </field>
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
@@ -1786,6 +1804,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -1944,6 +1965,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -2000,7 +2024,168 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>A  05. Add FRUS documents dateTimes (min/max)   [initial pass]</String>
+                                    <String>A  05. Add timezone indicators to date/@</String>
+                                </field>
+                                <field name="baseURL">
+                                    <String></String>
+                                </field>
+                                <field name="footerURL">
+                                    <String></String>
+                                </field>
+                                <field name="fOPMethod">
+                                    <String>pdf</String>
+                                </field>
+                                <field name="fOProcessorName">
+                                    <String>Apache FOP</String>
+                                </field>
+                                <field name="headerURL">
+                                    <String></String>
+                                </field>
+                                <field name="inputXSLURL">
+                                    <String>${pdu}/repos/frus/schema/add-timezone-indicators-v02.xsl</String>
+                                </field>
+                                <field name="inputXMLURL">
+                                    <String>${currentFileURL}</String>
+                                </field>
+                                <field name="defaultScenario">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="isFOPPerforming">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="saveAs">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="openInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="outputFile">
+                                    <File>${cf}</File>
+                                </field>
+                                <field name="outputResource">
+                                    <String>${cf}</String>
+                                </field>
+                                <field name="openOtherLocationInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="locationToOpenInBrowserURL">
+                                    <null/>
+                                </field>
+                                <field name="openInEditor">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInHTMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInXMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInSVGPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInResultSetPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="useXSLTInput">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="xsltParams">
+                                    <list/>
+                                </field>
+                                <field name="cascadingStylesheets">
+                                    <String-array/>
+                                </field>
+                                <field name="xslTransformer">
+                                    <String>Saxon-EE</String>
+                                </field>
+                                <field name="extensionURLs">
+                                    <String-array/>
+                                </field>
+                            </scenario>
+                            <scenario>
+                                <field name="advancedOptionsMap">
+                                    <serializableOrderedMap>
+                                        <entry>
+                                            <String>Saxon-EE</String>
+                                            <xsltSaxonSAAdvancedOptions>
+                                                <field name="sourceValidation">
+                                                    <String>saxon.source.no.schema.based.validation</String>
+                                                </field>
+                                                <field name="schemaVersion">
+                                                    <String>1.0</String>
+                                                </field>
+                                                <field name="treatResultValidationErrorsAsWarnings">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="addCommentsForValidationErrors">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="streamingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="allowCallsOnExtensionFunctions">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="registerSaxonCEExtensions">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="enableAssertions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="showVersionWarnings">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="dtdSourceValidation">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="dtdSourceValidationRecover">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="lineNumbering">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="initialMode">
+                                                    <null/>
+                                                </field>
+                                                <field name="initialTemplate">
+                                                    <null/>
+                                                </field>
+                                                <field name="traceXPathExpression">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="expandAttributeDefaults">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="errorRecoverPolicy">
+                                                    <String>saxon.recover.with.warning</String>
+                                                </field>
+                                                <field name="stripWS">
+                                                    <String>saxon.strip.ws.none</String>
+                                                </field>
+                                                <field name="optimizationEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="useConfigFile">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="configSystemID">
+                                                    <String>${pdu}/repos/frus/schema/saxon-configuration.xml</String>
+                                                </field>
+                                                <field name="initializer">
+                                                    <String></String>
+                                                </field>
+                                            </xsltSaxonSAAdvancedOptions>
+                                        </entry>
+                                    </serializableOrderedMap>
+                                </field>
+                                <field name="name">
+                                    <String>A  06. Add FRUS documents dateTimes (min/max)   [initial pass]</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -2102,6 +2287,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -2158,7 +2346,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>B  06. Add/update FRUS document dateTimes (min/max)   [secondary pass]</String>
+                                    <String>B  07. Add/update FRUS document dateTimes (min/max)   [secondary pass]</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -2260,6 +2448,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -2316,7 +2507,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  07. Add date/@calendar="gregorian"</String>
+                                    <String>C  08. Add date/@calendar="gregorian"</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -2418,6 +2609,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -2474,7 +2668,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  08. Add date/@calendar="us-republic"</String>
+                                    <String>C  09. Add date/@calendar="us-republic"</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -2576,6 +2770,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -2632,7 +2829,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  09. Add @rendition="#left" for closer//dateline without @rendition</String>
+                                    <String>C  10. Add @rendition="#left" for closer//dateline without @rendition</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -2734,6 +2931,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -2790,7 +2990,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  10. Add div/@subtype to front matter</String>
+                                    <String>C  11. Add div/@subtype to front matter</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -2892,6 +3092,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -2948,7 +3151,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  11. Add div/@subtype to back matter</String>
+                                    <String>C  12. Add div/@subtype to back matter</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -3050,6 +3253,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -3106,7 +3312,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  12. Add/update FRUS document dateTimes (min/max)   [tertiary pass]</String>
+                                    <String>C  13. Add/update FRUS document dateTimes (min/max)   [tertiary pass]</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -3208,6 +3414,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -3264,7 +3473,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  13. Add FRUS body compilation/chapter/subchapter dateTimes (min/max)</String>
+                                    <String>C  14. Add FRUS body compilation/chapter/subchapter dateTimes (min/max)</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -3366,6 +3575,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -3422,7 +3634,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>D  14. Add FRUS volume dateTimes in publicationStmt/date[@type="content-date"]</String>
+                                    <String>D  15. Add FRUS volume dateTimes in publicationStmt/date[@type="content-date"]</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -3524,6 +3736,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -3580,7 +3795,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>E  15. Add FRUS section/toc dateTimes (min/max)</String>
+                                    <String>E  16. Add FRUS section/toc dateTimes (min/max)</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -3682,6 +3897,9 @@
                                                 <field name="streamingEnabled">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="isJITEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -3738,7 +3956,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>E  16. Add FRUS editorial-notes dateTimes (min/max)</String>
+                                    <String>E  17. Add FRUS editorial-notes dateTimes (min/max)</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -4001,11 +4219,11 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>repos/frus-indexes/data/</String>
+                                    <String>repos/frus/volumes/</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>FRUS Indexes</String>
+                                        <String>FRUS TEI + Secondary Review of Dates</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -4016,11 +4234,26 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>repos/frus/volumes/</String>
+                                    <String>repos/frus/volumes/frus1872p2v2.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
                                         <String>FRUS TEI + Secondary Review of Dates</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/frus-indexes/data/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FRUS Indexes</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -4066,21 +4299,6 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>FRUS TEI</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>Validation_scenario</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/frus/volumes/frus1872p2v2.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>FRUS TEI + Secondary Review of Dates</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -6691,5 +6909,6 @@
     </meta>
     <projectTree name="hsg-project.xpr">
         <folder path="."/>
+        <folder path="repos/frus/volumes/"/>
     </projectTree>
 </project>
