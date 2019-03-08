@@ -2042,7 +2042,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/add-timezone-indicators-v02.xsl</String>
+                                    <String>${pdu}/repos/frus/schema/add-timezone-indicators.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
