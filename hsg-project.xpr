@@ -4557,11 +4557,11 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>repos/frus/volumes/frus1872p2v2.xml</String>
+                                    <String>repos/hsg-staging/frus/volumes/</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>FRUS TEI + Secondary Review of Dates</String>
+                                        <String>FRUS TEI</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -4607,21 +4607,6 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>FRUS TEI + Secondary Review of Dates</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>Validation_scenario</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/hsg-staging/frus/volumes/</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>FRUS TEI</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -5466,7 +5451,7 @@
                                                         <Integer>7</Integer>
                                                     </field>
                                                     <field name="uri">
-                                                        <String>${pdu}/repos/frus/schema/dates-only-secondary-review.sch</String>
+                                                        <String>file:/Users/waxcylinderrevival/workspace/hsg-project/repos/frus/schema/dates-only-secondary-review-v2.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
