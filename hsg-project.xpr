@@ -5451,7 +5451,7 @@
                                                         <Integer>7</Integer>
                                                     </field>
                                                     <field name="uri">
-                                                        <String>file:/Users/waxcylinderrevival/workspace/hsg-project/repos/frus/schema/dates-only-secondary-review-v2.sch</String>
+                                                        <String>${pdu}/repos/frus/schema/dates-only-secondary-review-v2.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
