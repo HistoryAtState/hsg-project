@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="21.0">
+<project version="20.1">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="21.0" xml:space="preserve">
+            <serialized version="20.1" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>Shk.Copy_change_from_left_to_right.Directories_Diff</String>
@@ -449,38 +449,6 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" wipe-exist-data-with-confirmation -Dare-you-sure="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
-                                </field>
-                                <field name="description">
-                                    <String>Wipe eXist database (in preparation for a fresh start)</String>
-                                </field>
-                                <field name="name">
-                                    <String>0. Wipe eXist database</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
                                     <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-old-repos setup</String>
                                 </field>
                                 <field name="description">
@@ -616,6 +584,38 @@
                                 </field>
                                 <field name="name">
                                     <String>5. Enter production server credentials</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" wipe-exist-data-with-confirmation -Dare-you-sure="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
+                                </field>
+                                <field name="description">
+                                    <String>Wipe eXist database (in preparation for a fresh start)</String>
+                                </field>
+                                <field name="name">
+                                    <String>Wipe eXist database</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -4497,9 +4497,6 @@
                                                 <String>${currentFileURL}</String>
                                             </field>
                                             <field name="hasXPathValue">
-                                                <Boolean>false</Boolean>
-                                            </field>
-                                            <field name="isStatic">
                                                 <Boolean>false</Boolean>
                                             </field>
                                         </transformationParameter>
