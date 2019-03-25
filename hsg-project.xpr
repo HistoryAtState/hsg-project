@@ -193,6 +193,262 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-github-desktop -Ddirectory="${cfd}"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Open the parent repository of the working file in the active tab in GitHub Desktop</String>
+                                </field>
+                                <field name="name">
+                                    <String>Open current repository in GitHub Desktop</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <null/>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>echo "Sorry this isn't a command!"</String>
+                                </field>
+                                <field name="description">
+                                    <String>(Divider)</String>
+                                </field>
+                                <field name="name">
+                                    <String>= Setup and maintenance of eXist =</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>.</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>false</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" wipe-exist-data-with-confirmation -Dare-you-sure="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
+                                </field>
+                                <field name="description">
+                                    <String>Wipe eXist database (in preparation for a fresh start)</String>
+                                </field>
+                                <field name="name">
+                                    <String>0. Wipe eXist database</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-old-repos setup</String>
+                                </field>
+                                <field name="description">
+                                    <String>Clone all repositories</String>
+                                </field>
+                                <field name="name">
+                                    <String>1. Clone all repositories</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" configure-for-exist-on-mac-system -Duser-home=${homeDir}</String>
+                                </field>
+                                <field name="description">
+                                    <String>Configure hsg-project for use with current macOS and eXist installed via dmg installer </String>
+                                </field>
+                                <field name="name">
+                                    <String>2. Apply Mac settings to hsg-project</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" apply-hsg-project-customizations-to-exist</String>
+                                </field>
+                                <field name="description">
+                                    <String>Configure hsg-project's modules, jobs in eXist</String>
+                                </field>
+                                <field name="name">
+                                    <String>3. Apply hsg-project settings to eXist</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Build and deploy all repositories to eXist-db on localhost</String>
+                                </field>
+                                <field name="name">
+                                    <String>4. Deploy all repositories to localhost</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" store-production-password -Dpassword="${ask('Please enter the password for 1861.history.state.gov', password)}"</String>
+                                </field>
+                                <field name="description">
+                                    <String>Enter production server credentials</String>
+                                </field>
+                                <field name="name">
+                                    <String>5. Enter production server credentials</String>
+                                </field>
+                                <field name="workingDirectory">
+                                    <String>${pd}</String>
+                                </field>
+                                <field name="keyStroke">
+                                    <null/>
+                                </field>
+                                <field name="isBuiltin">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showConsole">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </xsltCustomEngines>
+                            <xsltCustomEngines>
+                                <field name="outEncoding">
+                                    <null/>
+                                </field>
+                                <field name="outContentType">
+                                    <String>text/plain</String>
+                                </field>
+                                <field name="errEncoding">
+                                    <null/>
+                                </field>
+                                <field name="cmd">
                                     <String>echo "Sorry this isn't a command!"</String>
                                 </field>
                                 <field name="description">
@@ -423,7 +679,7 @@
                                     <String>(Divider)</String>
                                 </field>
                                 <field name="name">
-                                    <String>= Setup and maintenance =</String>
+                                    <String>= Troubleshooting =</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>.</String>
@@ -449,173 +705,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" wipe-exist-data-with-confirmation -Dare-you-sure="${ask('This operation deletes your local eXist database. Any work not saved to the repositories will be lost. Are you sure?', radio, ('true':'Yes';'false':'No'), 'No')}" </String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" troubleshoot</String>
                                 </field>
                                 <field name="description">
-                                    <String>Wipe eXist database (in preparation for a fresh start)</String>
+                                    <String>Generate a report about the status of your installed applications and repositories</String>
                                 </field>
                                 <field name="name">
-                                    <String>0. Wipe eXist database</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-old-repos setup</String>
-                                </field>
-                                <field name="description">
-                                    <String>Clone all repositories</String>
-                                </field>
-                                <field name="name">
-                                    <String>1. Clone all repositories</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" configure-for-exist-on-mac-system -Duser-home=${homeDir}</String>
-                                </field>
-                                <field name="description">
-                                    <String>Configure hsg-project for use with current macOS and eXist installed via dmg installer </String>
-                                </field>
-                                <field name="name">
-                                    <String>2. Apply Mac settings to hsg-project</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" apply-hsg-project-customizations-to-exist</String>
-                                </field>
-                                <field name="description">
-                                    <String>Configure hsg-project's modules, jobs in eXist</String>
-                                </field>
-                                <field name="name">
-                                    <String>3. Apply hsg-project settings to eXist</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar"</String>
-                                </field>
-                                <field name="description">
-                                    <String>Build and deploy all repositories to eXist-db on localhost</String>
-                                </field>
-                                <field name="name">
-                                    <String>4. Deploy all repositories to localhost</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" store-production-password -Dpassword="${ask('Please enter the password for 1861.history.state.gov', password)}"</String>
-                                </field>
-                                <field name="description">
-                                    <String>Enter production server credentials</String>
-                                </field>
-                                <field name="name">
-                                    <String>5. Enter production server credentials</String>
+                                    <String>Generate troubleshooting report</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -648,70 +744,6 @@
                                 </field>
                                 <field name="name">
                                     <String>Open current repository in Atom</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-github-desktop -Ddirectory="${cfd}"</String>
-                                </field>
-                                <field name="description">
-                                    <String>Open the parent repository of the working file in the active tab in GitHub Desktop</String>
-                                </field>
-                                <field name="name">
-                                    <String>Open current repository in GitHub Desktop</String>
-                                </field>
-                                <field name="workingDirectory">
-                                    <String>${pd}</String>
-                                </field>
-                                <field name="keyStroke">
-                                    <null/>
-                                </field>
-                                <field name="isBuiltin">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showConsole">
-                                    <Boolean>true</Boolean>
-                                </field>
-                            </xsltCustomEngines>
-                            <xsltCustomEngines>
-                                <field name="outEncoding">
-                                    <null/>
-                                </field>
-                                <field name="outContentType">
-                                    <String>text/plain</String>
-                                </field>
-                                <field name="errEncoding">
-                                    <null/>
-                                </field>
-                                <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" troubleshoot</String>
-                                </field>
-                                <field name="description">
-                                    <String>Generate a report about the status of your installed applications and repositories</String>
-                                </field>
-                                <field name="name">
-                                    <String>Generate troubleshooting report</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
