@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="20.1">
+<project version="21.0">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="20.1" xml:space="preserve">
+            <serialized version="21.0" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>Shk.Copy_change_from_left_to_right.Directories_Diff</String>
@@ -481,19 +481,19 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-file-from-localhost -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-localhost -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Delete the working file in the active tab from eXist-db on localhost</String>
+                                    <String>Upload the working file in the active tab to eXist-db on localhost</String>
                                 </field>
                                 <field name="name">
-                                    <String>Delete current file from localhost</String>
+                                    <String>Upload current file to localhost</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
                                 </field>
                                 <field name="keyStroke">
-                                    <null/>
+                                    <String>M1 U</String>
                                 </field>
                                 <field name="isBuiltin">
                                     <Boolean>false</Boolean>
@@ -545,19 +545,19 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-localhost -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-file-from-localhost -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Upload the working file in the active tab to eXist-db on localhost</String>
+                                    <String>Delete the working file in the active tab from eXist-db on localhost</String>
                                 </field>
                                 <field name="name">
-                                    <String>Upload current file to localhost</String>
+                                    <String>Delete current file from localhost</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
                                 </field>
                                 <field name="keyStroke">
-                                    <String>M1 U</String>
+                                    <null/>
                                 </field>
                                 <field name="isBuiltin">
                                     <Boolean>false</Boolean>
@@ -609,13 +609,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-file-from-production -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-production -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Delete the working file in the active tab from eXist-db on history.state.gov</String>
+                                    <String>Upload the working file in the active tab to eXist-db on history.state.gov</String>
                                 </field>
                                 <field name="name">
-                                    <String>Delete current file from history.state.gov</String>
+                                    <String>Upload current file to history.state.gov</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -641,13 +641,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" upload-file-to-production -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-file-from-production -Ddirectory="${cfd}" -Dfile-name="${cfne}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Upload the working file in the active tab to eXist-db on history.state.gov</String>
+                                    <String>Delete the working file in the active tab from eXist-db on history.state.gov</String>
                                 </field>
                                 <field name="name">
-                                    <String>Upload current file to history.state.gov</String>
+                                    <String>Delete current file from history.state.gov</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -4529,6 +4529,9 @@
                                                 <String>${currentFileURL}</String>
                                             </field>
                                             <field name="hasXPathValue">
+                                                <Boolean>false</Boolean>
+                                            </field>
+                                            <field name="isStatic">
                                                 <Boolean>false</Boolean>
                                             </field>
                                         </transformationParameter>
