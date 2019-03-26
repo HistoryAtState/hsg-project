@@ -231,7 +231,7 @@
                                     <String>(Divider)</String>
                                 </field>
                                 <field name="name">
-                                    <String>= Setup and maintenance of eXist =</String>
+                                    <String>= Setup and maintain eXist =</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>.</String>
