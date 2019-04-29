@@ -2,14 +2,14 @@
 <ivy-module version="2.0">
     <info organisation="org.exist" module="hsg"/>
     <dependencies>
-        <dependency org="exist-db" name="exist-core" rev="5.0.0-RC1"/>
-        <dependency org="exist-db" name="exist-optional" rev="5.0.0-RC1"/>
-        <dependency org="exist-db" name="xmldb-api" rev="1.0-patched"/>
-        <dependency org="com.evolvedbinary.j8fu" name="j8fu" rev="1.16"/>
+        <dependency org="exist-db" name="exist-core" rev="5.0.0-RC6"/>
+        <dependency org="exist-db" name="exist-optional" rev="5.0.0-RC6"/>
+        <dependency org="net.sf.xmldb-org" name="xmldb-api" rev="1.7.0"/>
+        <dependency org="com.evolvedbinary.j8fu" name="j8fu" rev="1.22"/>
         <dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.8.1"/>
         <dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.8.1"/>
         <dependency org="commons-logging" name="commons-logging" rev="1.2"/>
-        <dependency org="commons-io" name="commons-io" rev="2.5"/>
+        <dependency org="commons-io" name="commons-io" rev="2.6"/>
         <dependency org="antlr" name="antlr" rev="2.7.7"/>
         <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3"/>
         <dependency org="org.apache.xmlrpc" name="xmlrpc-client" rev="3.1.3"/>
