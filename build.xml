@@ -66,7 +66,12 @@
         <mkdir dir="${repos}"/>
     </target>
     
-    <target name="mvn-copy-dependencies">
+    <target name="mvn-copy-dependencies" depends="prepare">
+        <delete>
+            <fileset dir="${libs}">
+                <include name="*.jar"/>
+            </fileset>
+        </delete>
         <exec executable="${mvn}" dir=".">
             <arg line="dependency:copy-dependencies -DoutputDirectory=${libs}" />
         </exec>
@@ -934,10 +939,12 @@
         description="Apply hsg-project customizations to eXist"
         depends="upgrade-local-build-properties,prepare-exist-configuration"/>
 
-    <target name="delete-old-repos" description="Delete cloned repositories used before upgrade to eXist 3.1.1">
-        <echo message="------------------------------------------------------------------"/>
-        <echo message="Deleting old repositories (eXide, shared-resources, tei-simple-pm)"/>
-        <echo message="------------------------------------------------------------------"/>
+    <target name="delete-old-resources" description="Delete resources used before upgrades to eXist 3.1.1 and maven">
+        <echo message="----------------------"/>
+        <echo message="Deleting old resources"/>
+        <echo message="----------------------"/>
+        <delete file="local.build.properties"/>
+        <delete file="${lib}/ivy-*.jar"/>
         <delete includeemptydirs="true" dir="${repos}/eXide"/>
         <delete includeemptydirs="true" dir="${repos}/shared-resources"/>
         <delete includeemptydirs="true" dir="${repos}/tei-simple-pm"/>
