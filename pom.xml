@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>org.exist-db</groupId>
+        <artifactId>exist-parent</artifactId>
+        <version>5.0.0-RC8-SNAPSHOT</version>
+        <relativePath>exist-parent</relativePath>
+    </parent>
+    
+    <groupId>gov.state.history</groupId>
+    <artifactId>hsg-project</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+    
+    <name>hsg-project</name>
+    <description>All dependencies needed for hsg development</description>
+    <url>https://github.com/HistoryAtState/hsg-project</url>
+    
+    <organization>
+        <name>Office of the Historian</name>
+        <url>https://history.state.gov</url>
+    </organization>
+    
+    <scm>
+        <url>https://github.com/HistoryAtState/hsg-project.git</url>
+        <connection>scm:git:https://github.com/HistoryAtState/hsg-project.git</connection>
+        <developerConnection>scm:git:https://github.com/HistoryAtState/hsg-project.git</developerConnection>
+    </scm>
+    
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/HistoryAtState/hsg-project/issues</url>
+    </issueManagement>
+    
+    <developers>
+        <developer>
+            <name>Joe Wicentowski</name>
+            <organization>Office of The Historian</organization>
+        </developer>
+    </developers>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.source>1.8</project.build.source>
+        <project.build.target>1.8</project.build.target>
+        
+        <exist.version>5.0.0-RC8-SNAPSHOT</exist.version>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.exist-db</groupId>
+            <artifactId>exist-ant</artifactId>
+            <version>${exist.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>ant-contrib</groupId>
+            <artifactId>ant-contrib</artifactId>
+            <version>1.0b3</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <repositories>
+        <repository>
+            <id>exist-db</id>
+            <url>http://repo.evolvedbinary.com/repository/exist-db/</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>exist-db-snapshots</id>
+            <url>http://repo.evolvedbinary.com/repository/exist-db-snapshots/</url>
+            <releases><enabled>false</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>clojars.org</id>
+            <url>http://clojars.org/repo</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

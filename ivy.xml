@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ivy-module version="2.4">
-    <info organisation="org.exist" module="hsg"/>
-    <dependencies>
-        <dependency org="org.exist-db" name="exist-core" rev="5.0.0-RC8-SNAPSHOT" changing="true"/>
-    </dependencies>
-</ivy-module>

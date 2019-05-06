@@ -20,8 +20,6 @@
     <property name="production.instance.temp" value="${production.instance.uri}${instance.tempPath}"/>
     <property name="development.instance.temp" value="${development.instance.uri}${instance.tempPath}"/>
 
-    <available file="${build}/ivy-${ivy.version}.jar" property="ivy.available"/>
-
     <target name="all" depends="ping-localhost,ping-public-repo,clean,update,build,deploy"
         description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
 
@@ -41,7 +39,7 @@
         <foreach-js property="remotes" target="git.clone"/>
     </target>
 
-    <target name="setup" depends="prepare,ivy.setup,ivy.download,upgrade-local-build-properties,clone-public-repos,clone-private-repos"
+    <target name="setup" depends="prepare,mvn-copy-dependencies,upgrade-local-build-properties,clone-public-repos,clone-private-repos"
         description="Clone required packages">
         <echo message="Completed cloning of packages..."/>
     </target>
@@ -66,6 +64,12 @@
         <mkdir dir="${libs}"/>
         <mkdir dir="${xars}"/>
         <mkdir dir="${repos}"/>
+    </target>
+    
+    <target name="mvn-copy-dependencies">
+        <exec executable="${mvn}" dir=".">
+            <arg line="dependency:copy-dependencies -DoutputDirectory=${libs}" />
+        </exec>
     </target>
 
     <target name="update">
@@ -482,24 +486,6 @@
             }
         ]]>
     </scriptdef>
-
-    <target name="ivy.setup" description="Download the Ivy dependency manager"
-        unless="ivy.available">
-        <echo>${ivy_url}</echo>
-        <get src="${ivy_url}" dest="${build}"/>
-    </target>
-
-    <target name="ivy.download" depends="prepare,ivy.setup"
-        description="Download eXist JAR files required for deployment"
-        xmlns:ivy="antlib:org.apache.ivy.ant">
-        <!-- Setup IVY download manager -->
-        <path id="ivy.lib.path">
-            <fileset dir="${build}" includes="ivy*.jar" erroronmissingdir="false"/>
-        </path>
-        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant"
-            classpathref="ivy.lib.path"/>
-        <ivy:retrieve sync="true" pattern="${libs}/[artifact]-[revision](-[classifier]).[ext]"/>
-    </target>
 
     <target name="git.clone">
         <echo message="Cloning ${item}..."/>
