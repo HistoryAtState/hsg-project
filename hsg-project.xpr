@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="21.0">
+<project version="21.1">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="21.0" xml:space="preserve">
+            <serialized version="21.1" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>Shk.Copy_change_from_left_to_right.Directories_Diff</String>
@@ -967,9 +967,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -1127,9 +1124,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -1289,9 +1283,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -1449,9 +1440,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -1611,9 +1599,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -1771,9 +1756,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -1933,9 +1915,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -2093,9 +2072,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -2255,9 +2231,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -2415,9 +2388,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -2577,9 +2547,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -2737,9 +2704,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -2899,9 +2863,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -3059,9 +3020,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -3221,9 +3179,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -3381,9 +3336,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -3543,9 +3495,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -3703,9 +3652,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -3865,9 +3811,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -4025,9 +3968,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -4187,9 +4127,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -4348,9 +4285,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -4478,9 +4412,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <null/>
                                 </field>
                                 <field name="outputResource">
                                     <null/>
@@ -7252,6 +7183,5 @@
     </meta>
     <projectTree name="hsg-project.xpr">
         <folder path="."/>
-        <folder path="repos/frus/volumes/"/>
     </projectTree>
 </project>
