@@ -91,9 +91,6 @@
         <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
             <classpath refid="exist.classpath"/>
         </typedef>
-        <typedef resource="net/sf/antcontrib/antlib.xml">
-            <classpath refid="exist.classpath"/>
-        </typedef>
     </target>
 
     <target name="deploy.upload">
