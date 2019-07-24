@@ -181,20 +181,10 @@
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
-        <echo message="Installing TEI Publisher Docx Libraries..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo.lookup}')"
-        />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
-        />
-        <echo message="Installing XProc Calabash Module..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Crypto Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
@@ -226,20 +216,10 @@
             password="${production.instance.password}"
             query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
-        <echo message="Installing TEI Publisher Docx Libraries..."/>
-        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo.lookup}')"
-        />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
             query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
-        />
-        <echo message="Installing XProc Calabash Module..."/>
-        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Crypto Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
@@ -271,20 +251,10 @@
             password="${development.instance.password}"
             query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
-        <echo message="Installing TEI Publisher Docx Libraries..."/>
-        <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo.lookup}')"
-        />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
             query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
-        />
-        <echo message="Installing XProc Calabash Module..."/>
-        <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Crypto Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
