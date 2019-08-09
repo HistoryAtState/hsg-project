@@ -4538,6 +4538,7 @@
                             <String>54.210.14.44:443</String>
                             <String>52.20.58.218:443</String>
                             <String>54.174.172.19:443</String>
+                            <String>34.226.85.97:443</String>
                         </String-array>
                     </entry>
                     <entry>
@@ -5454,7 +5455,7 @@
                                                         <Integer>7</Integer>
                                                     </field>
                                                     <field name="uri">
-                                                        <String>${pdu}/repos/frus/schema/dates-only-secondary-review-v2.sch</String>
+                                                        <String>${pdu}/repos/frus/schema/dates-only-secondary-review.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
