@@ -7265,6 +7265,5 @@
     </meta>
     <projectTree name="hsg-project.xpr">
         <folder path="."/>
-        <folder path="repos/frus/volumes/"/>
     </projectTree>
 </project>
