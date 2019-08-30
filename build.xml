@@ -924,22 +924,22 @@
         <echo message="-------------------------------------------------------"/>
         <echo message="Applying hsg customizations to eXist configuration file"/>
         <echo message="-------------------------------------------------------"/>
-        <xslt in="${eXist.home}/conf-orig.xml" style="${build}/configure-exist.xsl" out="${eXist.home}/conf.xml" processor="trax">
+        <xslt in="${eXist.home}/Contents/Resources/etc/conf-orig.xml" style="${build}/configure-exist.xsl" out="${eXist.home}/Contents/Resources/etc/conf.xml" processor="trax">
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
             <classpath>
-                <fileset dir="${eXist.home}/lib/endorsed">
+                <fileset dir="${eXist.home}/Contents/Java">
                     <include name="Saxon*.jar"/>
                 </fileset>
             </classpath>
             <param name="target" type="STRING" expression="development"/>
         </xslt>
-        <copy file="${build}/webdav.properties" todir="${eXist.home}"/>
+        <copy file="${build}/webdav.properties" todir="${eXist.home}/Contents/Resources/etc/"/>
     </target>
     <target name="back-up-exist-configuration-file" unless="exist-configuration-backup-exists">
-        <copy file="${eXist.home}/conf.xml" tofile="${eXist.home}/conf-orig.xml"/>
+        <copy file="${eXist.home}/Contents/Resources/etc/conf.xml" tofile="${eXist.home}/Contents/Resources/etc/conf-orig.xml"/>
     </target>
     <condition property="exist-configuration-backup-exists">
-        <available file="${eXist.home}/conf-orig.xml"/>
+        <available file="${eXist.home}/Contents/Resources/etc/conf-orig.xml"/>
     </condition>
     
     <target name="update-homebrew">
