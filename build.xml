@@ -7,7 +7,7 @@
     <property name="libs" value="lib"/>
     <property name="build" value="build"/>
 
-    <property name="eXist.home.mac-dmg-installer" value="/Applications/eXist-db.app/Contents/Resources/eXist-db"/>
+    <property name="eXist.home.mac-dmg-installer" value="/Applications/eXist-db.app"/>
     <property name="eXist.data.mac-dmg-installer" value="/Library/Application Support/org.exist"/>
 
     <!-- use "xars" unless called with a "repo-name" property -->
@@ -168,10 +168,6 @@
         <echo message="Installing packages from public repo..."/>
         <xdb:create uri="${local.instance.uri}/db" user="${local.instance.user}"
             password="${local.instance.password}" collection="${instance.tempColl}"/>
-        <echo message="Installing functx ..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
@@ -203,10 +199,6 @@
         <echo message="Installing packages from eXist-db.org public repo ..."/>
         <xdb:create uri="${production.instance.uri}/db" user="${production.instance.user}"
             password="${production.instance.password}" collection="${instance.tempColl}"/>
-        <echo message="Installing functx ..."/>
-        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
@@ -238,10 +230,6 @@
         <echo message="Installing packages from eXist-db.org public repo ..."/>
         <xdb:create uri="${development.instance.uri}/db" user="${development.instance.user}"
             password="${development.instance.password}" collection="${instance.tempColl}"/>
-        <echo message="Installing functx ..."/>
-        <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
@@ -804,7 +792,7 @@
     
     <target name="ping-public-repo">
         <condition property="public-repo-accessible">
-            <http requestmethod="HEAD" url="${eXist.public-repo.lookup}?abbrev=functx"/>
+            <http requestmethod="HEAD" url="${eXist.public-repo.lookup}?abbrev=crypto"/>
         </condition>
         <fail unless="${public-repo-accessible}" message="The package repository at ${eXist.public-repo} cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
