@@ -132,10 +132,10 @@
                                     <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" update-hsg-project update</String>
                                 </field>
                                 <field name="description">
-                                    <String>Fetch updates for all repositories</String>
+                                    <String>Pull updates from all repositories</String>
                                 </field>
                                 <field name="name">
-                                    <String>Fetch updates for all repositories</String>
+                                    <String>Pull updates from all repositories</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -164,10 +164,10 @@
                                     <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" update-repo -Ddirectory="${cfd}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Fetch updates for the parent repository of the working file in the active tab to eXist-db on localhost</String>
+                                    <String>Pull updates for the parent repository of the working file in the active tab to eXist-db on localhost</String>
                                 </field>
                                 <field name="name">
-                                    <String>Fetch updates for current repository</String>
+                                    <String>Pull updates for current repository</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>
@@ -449,13 +449,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-old-repos setup</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" delete-old-resources setup</String>
                                 </field>
                                 <field name="description">
-                                    <String>Clone all repositories</String>
+                                    <String>Clone all repositories &amp; resources</String>
                                 </field>
                                 <field name="name">
-                                    <String>1. Clone all repositories</String>
+                                    <String>1. Clone all repositories &amp; resources</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>

@@ -7,7 +7,7 @@
     <property name="libs" value="lib"/>
     <property name="build" value="build"/>
 
-    <property name="eXist.home.mac-dmg-installer" value="/Applications/eXist-db.app/Contents/Resources/eXist-db"/>
+    <property name="eXist.home.mac-dmg-installer" value="/Applications/eXist-db.app"/>
     <property name="eXist.data.mac-dmg-installer" value="/Library/Application Support/org.exist"/>
 
     <!-- use "xars" unless called with a "repo-name" property -->
@@ -19,8 +19,6 @@
     <property name="local.instance.temp" value="${local.instance.uri}${instance.tempPath}"/>
     <property name="production.instance.temp" value="${production.instance.uri}${instance.tempPath}"/>
     <property name="development.instance.temp" value="${development.instance.uri}${instance.tempPath}"/>
-
-    <available file="${build}/ivy-${ivy.version}.jar" property="ivy.available"/>
 
     <target name="all" depends="ping-localhost,ping-public-repo,clean,update,build,deploy"
         description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
@@ -41,7 +39,7 @@
         <foreach-js property="remotes" target="git.clone"/>
     </target>
 
-    <target name="setup" depends="prepare,ivy.setup,ivy.download,upgrade-local-build-properties,clone-public-repos,clone-private-repos"
+    <target name="setup" depends="prepare,mvn-copy-dependencies,upgrade-local-build-properties,clone-public-repos,clone-private-repos"
         description="Clone required packages">
         <echo message="Completed cloning of packages..."/>
     </target>
@@ -67,10 +65,21 @@
         <mkdir dir="${xars}"/>
         <mkdir dir="${repos}"/>
     </target>
+    
+    <target name="mvn-copy-dependencies" depends="prepare">
+        <delete>
+            <fileset dir="${libs}">
+                <include name="*.jar"/>
+            </fileset>
+        </delete>
+        <exec executable="${mvn}" dir=".">
+            <arg line="dependency:copy-dependencies -DoutputDirectory=${libs}" />
+        </exec>
+    </target>
 
     <target name="update">
         <echo message="-------------------------------------"/>
-        <echo message="Fetching updates for all repositories"/>
+        <echo message="Pulling updates for all repositories"/>
         <echo message="-------------------------------------"/>
         <iterate target="git.pull"/>
     </target>
@@ -159,10 +168,6 @@
         <echo message="Installing packages from public repo..."/>
         <xdb:create uri="${local.instance.uri}/db" user="${local.instance.user}"
             password="${local.instance.password}" collection="${instance.tempColl}"/>
-        <echo message="Installing functx ..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
@@ -172,20 +177,10 @@
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
-        <echo message="Installing TEI Publisher Docx Libraries..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo.lookup}')"
-        />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
-        />
-        <echo message="Installing XProc Calabash Module..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Crypto Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
@@ -204,10 +199,6 @@
         <echo message="Installing packages from eXist-db.org public repo ..."/>
         <xdb:create uri="${production.instance.uri}/db" user="${production.instance.user}"
             password="${production.instance.password}" collection="${instance.tempColl}"/>
-        <echo message="Installing functx ..."/>
-        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
@@ -217,20 +208,10 @@
             password="${production.instance.password}"
             query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
-        <echo message="Installing TEI Publisher Docx Libraries..."/>
-        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo.lookup}')"
-        />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
             query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
-        />
-        <echo message="Installing XProc Calabash Module..."/>
-        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Crypto Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
@@ -249,10 +230,6 @@
         <echo message="Installing packages from eXist-db.org public repo ..."/>
         <xdb:create uri="${development.instance.uri}/db" user="${development.instance.user}"
             password="${development.instance.password}" collection="${instance.tempColl}"/>
-        <echo message="Installing functx ..."/>
-        <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}"
-            query="repo:install-and-deploy('http://www.functx.com', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
@@ -262,24 +239,14 @@
             password="${development.instance.password}"
             query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
-        <echo message="Installing TEI Publisher Docx Libraries..."/>
-        <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}"
-            query="repo:install-and-deploy('http://teipublisher.com/docx2tei', '${eXist.public-repo.lookup}')"
-        />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
             query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
         />
-        <echo message="Installing XProc Calabash Module..."/>
+        <echo message="Installing Crypto Module..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/xproc/xmlcalabash', '${eXist.public-repo.lookup}')"
-        />
-        <echo message="Installing Crypto Module..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
             query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on development system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
@@ -483,29 +450,12 @@
         ]]>
     </scriptdef>
 
-    <target name="ivy.setup" description="Download the Ivy dependency manager"
-        unless="ivy.available">
-        <echo>${ivy_url}</echo>
-        <get src="${ivy_url}" dest="${build}"/>
-    </target>
-
-    <target name="ivy.download" depends="prepare,ivy.setup"
-        description="Download eXist JAR files required for deployment"
-        xmlns:ivy="antlib:org.apache.ivy.ant">
-        <!-- Setup IVY download manager -->
-        <path id="ivy.lib.path">
-            <fileset dir="${build}" includes="ivy*.jar" erroronmissingdir="false"/>
-        </path>
-        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant"
-            classpathref="ivy.lib.path"/>
-        <ivy:retrieve sync="true" pattern="${libs}/[artifact]-[revision](-[classifier]).[ext]"/>
-    </target>
-
     <target name="git.clone">
         <echo message="Cloning ${item}..."/>
         <exec executable="${git}" outputproperty="git.output" dir="${repos}">
             <arg line="clone"/>
-            <arg line="--recursive"/>
+            <arg line="--depth"/>
+            <arg line="1"/>
             <arg line="${item}"/>
         </exec>
         <echo message="${git.output}"/>
@@ -661,7 +611,7 @@
     </target>
 
     <target name="update-repo"
-        description="Fetch updates for the parent repo of a file (from an hsg-project repo)"
+        description="Pull updates for the parent repo of a file (from an hsg-project repo)"
         depends="deploy.init">
         <property name="directory" value="${directory}"/>
         <path id="parent-dir">
@@ -683,9 +633,9 @@
     </target>
 
     <target name="update-hsg-project" description="Updates the hsg-project repo">
-        <echo message="-------------------------------------"/>
-        <echo message="Fetching updates for hsg-project repo"/>
-        <echo message="-------------------------------------"/>
+        <echo message="------------------------------------"/>
+        <echo message="Pulling updates for hsg-project repo"/>
+        <echo message="------------------------------------"/>
         <exec executable="${git}" dir=".">
             <arg line="checkout"/>
             <arg line="HEAD"/>
@@ -843,7 +793,7 @@
     
     <target name="ping-public-repo">
         <condition property="public-repo-accessible">
-            <http requestmethod="HEAD" url="${eXist.public-repo.lookup}?abbrev=functx"/>
+            <http requestmethod="HEAD" url="${eXist.public-repo.lookup}?abbrev=crypto"/>
         </condition>
         <fail unless="${public-repo-accessible}" message="The package repository at ${eXist.public-repo} cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
@@ -948,10 +898,12 @@
         description="Apply hsg-project customizations to eXist"
         depends="upgrade-local-build-properties,prepare-exist-configuration"/>
 
-    <target name="delete-old-repos" description="Delete cloned repositories used before upgrade to eXist 3.1.1">
-        <echo message="------------------------------------------------------------------"/>
-        <echo message="Deleting old repositories (eXide, shared-resources, tei-simple-pm)"/>
-        <echo message="------------------------------------------------------------------"/>
+    <target name="delete-old-resources" description="Delete resources used before upgrades to eXist 3.1.1 and maven">
+        <echo message="----------------------"/>
+        <echo message="Deleting old resources"/>
+        <echo message="----------------------"/>
+        <delete file="local.build.properties"/>
+        <delete file="${lib}/ivy-*.jar"/>
         <delete includeemptydirs="true" dir="${repos}/eXide"/>
         <delete includeemptydirs="true" dir="${repos}/shared-resources"/>
         <delete includeemptydirs="true" dir="${repos}/tei-simple-pm"/>
@@ -961,22 +913,22 @@
         <echo message="-------------------------------------------------------"/>
         <echo message="Applying hsg customizations to eXist configuration file"/>
         <echo message="-------------------------------------------------------"/>
-        <xslt in="${eXist.home}/conf-orig.xml" style="${build}/configure-exist.xsl" out="${eXist.home}/conf.xml" processor="trax">
+        <xslt in="${eXist.home}/Contents/Resources/etc/conf-orig.xml" style="${build}/configure-exist.xsl" out="${eXist.home}/Contents/Resources/etc/conf.xml" processor="trax">
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
             <classpath>
-                <fileset dir="${eXist.home}/lib/endorsed">
+                <fileset dir="${eXist.home}/Contents/Java">
                     <include name="Saxon*.jar"/>
                 </fileset>
             </classpath>
             <param name="target" type="STRING" expression="development"/>
         </xslt>
-        <copy file="${build}/webdav.properties" todir="${eXist.home}"/>
+        <copy file="${build}/webdav.properties" todir="${eXist.home}/Contents/Resources/etc/"/>
     </target>
     <target name="back-up-exist-configuration-file" unless="exist-configuration-backup-exists">
-        <copy file="${eXist.home}/conf.xml" tofile="${eXist.home}/conf-orig.xml"/>
+        <copy file="${eXist.home}/Contents/Resources/etc/conf.xml" tofile="${eXist.home}/Contents/Resources/etc/conf-orig.xml"/>
     </target>
     <condition property="exist-configuration-backup-exists">
-        <available file="${eXist.home}/conf-orig.xml"/>
+        <available file="${eXist.home}/Contents/Resources/etc/conf-orig.xml"/>
     </condition>
     
     <target name="update-homebrew">
@@ -984,6 +936,12 @@
         <echo message="-----------------"/>
         <echo message="Updating Homebrew"/>
         <echo message="-----------------"/>
+        <echo message="--------"/>
+        <echo message="brew tap"/>
+        <echo message="--------"/>
+        <exec executable="/usr/local/bin/brew" dir=".">
+            <arg line="tap"/>
+        </exec>
         <echo message="-----------"/>
         <echo message="brew update"/>
         <echo message="-----------"/>
@@ -1008,6 +966,13 @@
         <exec executable="/usr/local/bin/brew" dir="." searchpath="true">
             <!-- assume path is set correctly, since our hsg-project setup directions will have us set this up correctly; see https://docs.brew.sh/FAQ.html#my-mac-apps-dont-find-usrlocalbin-utilities -->
             <env key="PATH" value="/usr/local/bin:${env.PATH}"/>
+            <arg line="doctor"/>
+        </exec>
+        <echo message="----------------"/>
+        <echo message="brew cask doctor"/>
+        <echo message="----------------"/>
+        <exec executable="/usr/local/bin/brew" dir=".">
+            <arg line="cask"/>
             <arg line="doctor"/>
         </exec>
         <echo message="--------------------"/>
