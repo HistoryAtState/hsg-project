@@ -46,7 +46,7 @@
         <project.build.source>1.8</project.build.source>
         <project.build.target>1.8</project.build.target>
         
-        <exist.version>5.0.0-RC8-SNAPSHOT</exist.version>
+        <exist.version>5.0.0</exist.version>
     </properties>
     
     <dependencies>
