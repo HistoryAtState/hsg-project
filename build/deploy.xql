@@ -106,6 +106,11 @@ let $remove :=
 return
     (
         console:log("Installing package " || $package),
-        repo:install-and-deploy-from-db($xarPath, $repo),
+        (: allow offline development :)
+        if (doc-available($repo)) then 
+            repo:install-and-deploy-from-db($xarPath, $repo)
+        else
+            repo:install-and-deploy-from-db($xarPath)
+        ,
         ru:sync(xs:anyURI("/db/apps/" || $target), 3000)
     )
