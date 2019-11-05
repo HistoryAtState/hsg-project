@@ -2161,7 +2161,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>A  06. Add FRUS documents dateTimes (min/max)   [initial pass]</String>
+                                    <String>A  06. Add FRUS document dateTimes (min/max)   [initial pass]</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -3741,7 +3741,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  16. Add FRUS body compilation/chapter/subchapter dateTimes (min/max)</String>
+                                    <String>D  16. Add FRUS body compilation/chapter/subchapter dateTimes (min/max)</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -3899,7 +3899,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>D  17. Add FRUS volume dateTimes in publicationStmt/date[@type="content-date"]</String>
+                                    <String>E  17. Add FRUS volume dateTimes in publicationStmt/date[@type="content-date"]</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -4057,7 +4057,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>E  18. Add FRUS section/toc dateTimes (min/max)</String>
+                                    <String>F  18. Add FRUS section/toc dateTimes (min/max)</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -4215,7 +4215,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>E  19. Add FRUS editorial-notes dateTimes (min/max)</String>
+                                    <String>G  19. Add FRUS editorial-notes dateTimes (min/max)</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
