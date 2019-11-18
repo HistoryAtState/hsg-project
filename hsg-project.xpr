@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="21.0">
+<project version="21.1">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="21.0" xml:space="preserve">
+            <serialized version="21.1" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>Shk.Copy_change_from_left_to_right.Directories_Diff</String>
@@ -897,489 +897,6 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>-- Add secretarial tenures</String>
-                                </field>
-                                <field name="baseURL">
-                                    <String></String>
-                                </field>
-                                <field name="footerURL">
-                                    <String></String>
-                                </field>
-                                <field name="fOPMethod">
-                                    <String>pdf</String>
-                                </field>
-                                <field name="fOProcessorName">
-                                    <String>Apache FOP</String>
-                                </field>
-                                <field name="headerURL">
-                                    <String></String>
-                                </field>
-                                <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/add-secretarial-tenure.xsl</String>
-                                </field>
-                                <field name="inputXMLURL">
-                                    <String>${currentFileURL}</String>
-                                </field>
-                                <field name="defaultScenario">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="isFOPPerforming">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="saveAs">
-                                    <Boolean>true</Boolean>
-                                </field>
-                                <field name="openInBrowser">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
-                                <field name="outputResource">
-                                    <String>${cf}</String>
-                                </field>
-                                <field name="openOtherLocationInBrowser">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="locationToOpenInBrowserURL">
-                                    <null/>
-                                </field>
-                                <field name="openInEditor">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInHTMLPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInXMLPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInSVGPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="useXSLTInput">
-                                    <Boolean>true</Boolean>
-                                </field>
-                                <field name="xsltParams">
-                                    <list/>
-                                </field>
-                                <field name="cascadingStylesheets">
-                                    <String-array/>
-                                </field>
-                                <field name="xslTransformer">
-                                    <String>Saxon-EE</String>
-                                </field>
-                                <field name="extensionURLs">
-                                    <String-array/>
-                                </field>
-                            </scenario>
-                            <scenario>
-                                <field name="advancedOptionsMap">
-                                    <serializableOrderedMap>
-                                        <entry>
-                                            <String>Saxon-EE</String>
-                                            <xsltSaxonSAAdvancedOptions>
-                                                <field name="sourceValidation">
-                                                    <String>saxon.source.no.schema.based.validation</String>
-                                                </field>
-                                                <field name="schemaVersion">
-                                                    <String>1.0</String>
-                                                </field>
-                                                <field name="treatResultValidationErrorsAsWarnings">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="addCommentsForValidationErrors">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="streamingEnabled">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="isJITEnabled">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="allowCallsOnExtensionFunctions">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="registerSaxonCEExtensions">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="enableAssertions">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="showVersionWarnings">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="dtdSourceValidation">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="dtdSourceValidationRecover">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="lineNumbering">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="initialMode">
-                                                    <null/>
-                                                </field>
-                                                <field name="initialTemplate">
-                                                    <null/>
-                                                </field>
-                                                <field name="traceXPathExpression">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="expandAttributeDefaults">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
-                                                <field name="stripWS">
-                                                    <String>saxon.strip.ws.none</String>
-                                                </field>
-                                                <field name="optimizationEnabled">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="useConfigFile">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="configSystemID">
-                                                    <String>${pdu}/repos/frus/schema/saxon-configuration.xml</String>
-                                                </field>
-                                                <field name="initializer">
-                                                    <String></String>
-                                                </field>
-                                            </xsltSaxonSAAdvancedOptions>
-                                        </entry>
-                                    </serializableOrderedMap>
-                                </field>
-                                <field name="name">
-                                    <String>-- Add teiHeader metadata</String>
-                                </field>
-                                <field name="baseURL">
-                                    <String></String>
-                                </field>
-                                <field name="footerURL">
-                                    <String></String>
-                                </field>
-                                <field name="fOPMethod">
-                                    <String>pdf</String>
-                                </field>
-                                <field name="fOProcessorName">
-                                    <String>Apache FOP</String>
-                                </field>
-                                <field name="headerURL">
-                                    <String></String>
-                                </field>
-                                <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/add-teiHeader-metadata.xsl</String>
-                                </field>
-                                <field name="inputXMLURL">
-                                    <String>${currentFileURL}</String>
-                                </field>
-                                <field name="defaultScenario">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="isFOPPerforming">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="saveAs">
-                                    <Boolean>true</Boolean>
-                                </field>
-                                <field name="openInBrowser">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
-                                <field name="outputResource">
-                                    <String>${cf}</String>
-                                </field>
-                                <field name="openOtherLocationInBrowser">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="locationToOpenInBrowserURL">
-                                    <null/>
-                                </field>
-                                <field name="openInEditor">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInHTMLPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInXMLPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInSVGPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="useXSLTInput">
-                                    <Boolean>true</Boolean>
-                                </field>
-                                <field name="xsltParams">
-                                    <list/>
-                                </field>
-                                <field name="cascadingStylesheets">
-                                    <String-array/>
-                                </field>
-                                <field name="xslTransformer">
-                                    <String>Saxon-EE</String>
-                                </field>
-                                <field name="extensionURLs">
-                                    <String-array/>
-                                </field>
-                            </scenario>
-                            <scenario>
-                                <field name="advancedOptionsMap">
-                                    <serializableOrderedMap>
-                                        <entry>
-                                            <String>Saxon-EE</String>
-                                            <xsltSaxonSAAdvancedOptions>
-                                                <field name="sourceValidation">
-                                                    <String>saxon.source.no.schema.based.validation</String>
-                                                </field>
-                                                <field name="schemaVersion">
-                                                    <String>1.0</String>
-                                                </field>
-                                                <field name="treatResultValidationErrorsAsWarnings">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="addCommentsForValidationErrors">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="streamingEnabled">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="isJITEnabled">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="allowCallsOnExtensionFunctions">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="registerSaxonCEExtensions">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="enableAssertions">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="showVersionWarnings">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="dtdSourceValidation">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="dtdSourceValidationRecover">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="lineNumbering">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="initialMode">
-                                                    <null/>
-                                                </field>
-                                                <field name="initialTemplate">
-                                                    <null/>
-                                                </field>
-                                                <field name="traceXPathExpression">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="expandAttributeDefaults">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
-                                                <field name="stripWS">
-                                                    <String>saxon.strip.ws.none</String>
-                                                </field>
-                                                <field name="optimizationEnabled">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="useConfigFile">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="configSystemID">
-                                                    <String>${pdu}/repos/frus/schema/saxon-configuration.xml</String>
-                                                </field>
-                                                <field name="initializer">
-                                                    <String></String>
-                                                </field>
-                                            </xsltSaxonSAAdvancedOptions>
-                                        </entry>
-                                    </serializableOrderedMap>
-                                </field>
-                                <field name="name">
-                                    <String>-- Convert frus:coverage to date type="content-date"</String>
-                                </field>
-                                <field name="baseURL">
-                                    <String></String>
-                                </field>
-                                <field name="footerURL">
-                                    <String></String>
-                                </field>
-                                <field name="fOPMethod">
-                                    <String>pdf</String>
-                                </field>
-                                <field name="fOProcessorName">
-                                    <String>Apache FOP</String>
-                                </field>
-                                <field name="headerURL">
-                                    <String></String>
-                                </field>
-                                <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/convert-coverage-to-content-date.xsl</String>
-                                </field>
-                                <field name="inputXMLURL">
-                                    <String>${currentFileURL}</String>
-                                </field>
-                                <field name="defaultScenario">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="isFOPPerforming">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="saveAs">
-                                    <Boolean>true</Boolean>
-                                </field>
-                                <field name="openInBrowser">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
-                                <field name="outputResource">
-                                    <String>${cf}</String>
-                                </field>
-                                <field name="openOtherLocationInBrowser">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="locationToOpenInBrowserURL">
-                                    <null/>
-                                </field>
-                                <field name="openInEditor">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInHTMLPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInXMLPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInSVGPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="useXSLTInput">
-                                    <Boolean>true</Boolean>
-                                </field>
-                                <field name="xsltParams">
-                                    <list/>
-                                </field>
-                                <field name="cascadingStylesheets">
-                                    <String-array/>
-                                </field>
-                                <field name="xslTransformer">
-                                    <String>Saxon-EE</String>
-                                </field>
-                                <field name="extensionURLs">
-                                    <String-array/>
-                                </field>
-                            </scenario>
-                            <scenario>
-                                <field name="advancedOptionsMap">
-                                    <serializableOrderedMap>
-                                        <entry>
-                                            <String>Saxon-EE</String>
-                                            <xsltSaxonSAAdvancedOptions>
-                                                <field name="sourceValidation">
-                                                    <String>saxon.source.no.schema.based.validation</String>
-                                                </field>
-                                                <field name="schemaVersion">
-                                                    <String>1.0</String>
-                                                </field>
-                                                <field name="treatResultValidationErrorsAsWarnings">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="addCommentsForValidationErrors">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="streamingEnabled">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="isJITEnabled">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="allowCallsOnExtensionFunctions">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="registerSaxonCEExtensions">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="enableAssertions">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="showVersionWarnings">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="dtdSourceValidation">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="dtdSourceValidationRecover">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="lineNumbering">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="initialMode">
-                                                    <null/>
-                                                </field>
-                                                <field name="initialTemplate">
-                                                    <null/>
-                                                </field>
-                                                <field name="traceXPathExpression">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="expandAttributeDefaults">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
-                                                <field name="stripWS">
-                                                    <String>saxon.strip.ws.none</String>
-                                                </field>
-                                                <field name="optimizationEnabled">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="useConfigFile">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="configSystemID">
-                                                    <String>${pdu}/repos/frus/schema/saxon-configuration.xml</String>
-                                                </field>
-                                                <field name="initializer">
-                                                    <String></String>
-                                                </field>
-                                            </xsltSaxonSAAdvancedOptions>
-                                        </entry>
-                                    </serializableOrderedMap>
-                                </field>
-                                <field name="name">
                                     <String>A  01. Add TEI/xmlns:xi and classDecl/xi:include for frus-dates</String>
                                 </field>
                                 <field name="baseURL">
@@ -1417,9 +934,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -1579,9 +1093,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -1739,9 +1250,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -1901,9 +1409,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -2062,9 +1567,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -2185,7 +1687,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>A  06. Add FRUS documents dateTimes (min/max)   [initial pass]</String>
+                                    <String>A  06. Add FRUS document dateTimes (min/max)   [initial pass]</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -2222,9 +1724,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -2384,9 +1883,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -2544,9 +2040,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -2706,9 +2199,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -2866,9 +2356,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -3028,9 +2515,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -3188,9 +2672,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -3350,9 +2831,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -3510,9 +2988,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -3672,9 +3147,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -3795,7 +3267,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>C  16. Add FRUS body compilation/chapter/subchapter dateTimes (min/max)</String>
+                                    <String>D  16. Add FRUS body compilation/chapter/subchapter dateTimes (min/max)</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -3833,9 +3305,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -3956,7 +3425,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>D  17. Add FRUS volume dateTimes in publicationStmt/date[@type="content-date"]</String>
+                                    <String>E  17. Add FRUS volume dateTimes in publicationStmt/date[@type="content-date"]</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -3994,9 +3463,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -4117,7 +3583,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>E  18. Add FRUS section/toc dateTimes (min/max)</String>
+                                    <String>F  18. Add FRUS section/toc dateTimes (min/max)</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -4155,9 +3621,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
-                                </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
                                 </field>
@@ -4278,7 +3741,7 @@
                                     </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>E  19. Add FRUS editorial-notes dateTimes (min/max)</String>
+                                    <String>G  19. Add FRUS editorial-notes dateTimes (min/max)</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -4315,9 +3778,6 @@
                                 </field>
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
-                                </field>
-                                <field name="outputFile">
-                                    <File>${cf}</File>
                                 </field>
                                 <field name="outputResource">
                                     <String>${cf}</String>
@@ -4447,9 +3907,6 @@
                                 <field name="openInBrowser">
                                     <Boolean>false</Boolean>
                                 </field>
-                                <field name="outputFile">
-                                    <null/>
-                                </field>
                                 <field name="outputResource">
                                     <null/>
                                 </field>
@@ -4546,11 +4003,26 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>repos/hsa-data/data/</String>
+                                    <String>repos/hsg-staging/frus/volumes/frus-dates-training/</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>Historical Studies Archive studies</String>
+                                        <String>FRUS TEI + Secondary Review of Dates</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/hsg-staging/frus/volumes/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FRUS TEI</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -4576,11 +4048,11 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>repos/hsg-staging/frus/volumes/</String>
+                                    <String>repos/hsa-data/data/</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>FRUS TEI</String>
+                                        <String>Historical Studies Archive studies</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
