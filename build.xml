@@ -186,6 +186,10 @@
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
+        <echo message="Installing SAML Module..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
@@ -217,6 +221,10 @@
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
             query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
+        <echo message="Installing SAML Module..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
@@ -248,6 +256,10 @@
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
             query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
+        <echo message="Installing SAML Module..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on development system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
