@@ -270,10 +270,13 @@
     </target>
 
     <target name="deploy.get-xar-filename">
-        <xmlproperty file="${repos}/${repo-name}/expath-pkg.xml"/>
-        <property name="project.version" value="${package(version)}"/>
-        <property name="project.app" value="${package(abbrev)}"/>
-        <property name="xar" value="${project.app}-${project.version}.xar"/>
+        <path id="xar-path-ref"> 
+            <fileset dir="${repos}/${repo-name}/${build}"> 
+                <include name="*.xar"/> 
+            </fileset>
+        </path>
+        <property name="xar-path" refid="xar-path-ref"/>
+        <basename property="xar" file="${xar-path}"/>
     </target>
 
     <target name="deploy.deploy-xar" depends="deploy.get-xar-filename">
