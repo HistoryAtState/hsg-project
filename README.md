@@ -83,16 +83,16 @@ By running the `ant build` command plus the environment variable like described 
 1. Command for DEV:
     * will create `*-consumer-dev.xar` without replication triggers and *-producer-dev.xar` containing replication triggers
     * calls target `xar-dev` 
-    ~~~bash
+    ```bash
     ant -Dbuild-env=-dev build
-    ~~~
+    ```
 
 2. Command for PROD: 
     * will create `*-consumer-prod.xar` without replication triggers and `*-producer-prod.xar` containing replication triggers
     * calls target `xar-prod` 
-    ~~~bash
+    ```bash
     ant -Dbuild-env=-prod build
-    ~~~
+    ```
 
 ## Notes
 
