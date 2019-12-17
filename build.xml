@@ -357,7 +357,7 @@
         <xmlvalidate lenient="true">
             <fileset dir="${dir}" includes="**/**.xml,**/**.xconf" excludes="node_modules/**"/>
         </xmlvalidate>
-        <subant>
+        <subant target="xar${build-env}">
             <fileset dir="${dir}">
                 <include name="build.xml"/>
             </fileset>
