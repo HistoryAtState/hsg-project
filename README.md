@@ -74,6 +74,26 @@ ant setup
 ant
 ```
 
+### Ant target for building DEV and PROD xars (for development and production server)
+
+The default `ant` target will build xar files without any triggers and will internally call targets `build` > `build-xar`. 
+An additional variable in target `build-xar` lets you to build 2 xar files containing triggers for 2 different environments: prod and dev.  
+By running the `ant build` command plus the environment variable like described below, you call a specific `subant` target `xar-dev` or `xar-prod` - both are found in each repo's build.xml.
+
+1. Command for DEV:
+    * will create `*-consumer-dev.xar` without replication triggers and *-producer-dev.xar` containing replication triggers
+    * calls target `xar-dev` 
+    ~~~bash
+    ant -Dbuild-env=-dev build
+    ~~~
+
+2. Command for PROD: 
+    * will create `*-consumer-prod.xar` without replication triggers and `*-producer-prod.xar` containing replication triggers
+    * calls target `xar-prod` 
+    ~~~bash
+    ant -Dbuild-env=-prod build
+    ~~~
+
 ## Notes
 
 - This has been tested with Mac OS X 10.11, Amazon Linux, and oXygen 17.1
