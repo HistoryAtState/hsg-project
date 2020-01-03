@@ -3996,11 +3996,58 @@
                             <String>52.20.58.218:443</String>
                             <String>54.174.172.19:443</String>
                             <String>34.226.85.97:443</String>
+                            <String>localhost:631</String>
+                            <String>1861.history.state.gov:443</String>
                         </String-array>
                     </entry>
                     <entry>
                         <String>validation.scenario.associations</String>
                         <scenarioAssociation-array>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/hsa-data/data/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>Historical Studies Archive studies</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/frus/volumes/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FRUS TEI + Secondary Review of Dates</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/diplomatic-list/data/</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>Diplomatic List</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>Validation_scenario</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>repos/hsg-staging/frus/volumes/frus-dates-training/</String>
@@ -4033,56 +4080,11 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>repos/frus/volumes/</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>FRUS TEI + Secondary Review of Dates</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>Validation_scenario</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/hsa-data/data/</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>Historical Studies Archive studies</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>Validation_scenario</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
                                     <String>repos/frus-indexes/data/</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
                                         <String>FRUS Indexes</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>Validation_scenario</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/diplomatic-list/data/</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>Diplomatic List</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -5380,10 +5382,10 @@
                                                         <null/>
                                                     </field>
                                                     <field name="type">
-                                                        <Integer>6</Integer>
+                                                        <Integer>3</Integer>
                                                     </field>
                                                     <field name="uri">
-                                                        <String>${pdu}/repos/hsa-data/schema/hsa.rng</String>
+                                                        <String>${pdu}/repos/hsa-data/schema/hsa.rnc</String>
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
@@ -5424,10 +5426,10 @@
                                                         <null/>
                                                     </field>
                                                     <field name="type">
-                                                        <Integer>3</Integer>
+                                                        <Integer>7</Integer>
                                                     </field>
                                                     <field name="uri">
-                                                        <String>${pdu}/repos/hsa-data/schema/hsa.rnc</String>
+                                                        <String>${pdu}/repos/hsa-data/schema/hsa.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
