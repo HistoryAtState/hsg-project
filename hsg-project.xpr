@@ -4156,6 +4156,8 @@
                             <String>34.226.85.97:443</String>
                             <String>localhost:631</String>
                             <String>1861.history.state.gov:443</String>
+                            <String>www.tei-c.org:443</String>
+                            <String>localhost:8080</String>
                         </String-array>
                     </entry>
                     <entry>
