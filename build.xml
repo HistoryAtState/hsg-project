@@ -7,6 +7,8 @@
     <property name="libs" value="lib"/>
     <property name="build" value="build"/>
 
+    <property name="build-env" value=""/>
+    
     <property name="eXist.home.mac-dmg-installer" value="/Applications/eXist-db.app"/>
     <property name="eXist.data.mac-dmg-installer" value="/Library/Application Support/org.exist"/>
 
@@ -269,7 +271,7 @@
         -->
     </target>
 
-    <target name="deploy.get-xar-filename">
+    <target name="deploy.get-xar-filename" unless="xar">
         <path id="xar-path-ref"> 
             <fileset dir="${repos}/${repo-name}/${build}"> 
                 <include name="*.xar"/> 
