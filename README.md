@@ -18,7 +18,7 @@ To automate the following steps:
 
 ## Prerequisites
 
-- eXist 3.0RC1
+- eXist 5.x
 - Current versions of ant, git, and bower executables
 
 ## Setup
