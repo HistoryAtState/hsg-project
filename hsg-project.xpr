@@ -3961,8 +3961,23 @@
                                 <field name="advancedOptionsMap">
                                     <serializableOrderedMap>
                                         <entry>
-                                            <String>Saxon-PE XQuery</String>
-                                            <xquerySaxonBAdvancedOptions>
+                                            <String>Saxon-EE XQuery</String>
+                                            <xquerySaxonSAAdvancedOptions>
+                                                <field name="sourceValidation">
+                                                    <String>saxon.source.no.schema.based.validation</String>
+                                                </field>
+                                                <field name="treatResultValidationErrorsAsWarnings">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="enableXQueryUpdate">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="enableBackup">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="addCommentsForValidationErrors">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="allowCallsOnExtensionFunctions">
                                                     <Boolean>true</Boolean>
                                                 </field>
@@ -3987,7 +4002,7 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
-                                            </xquerySaxonBAdvancedOptions>
+                                            </xquerySaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
                                 </field>
@@ -4089,7 +4104,7 @@
                                     <String-array/>
                                 </field>
                                 <field name="xslTransformer">
-                                    <String>Saxon-PE XQuery</String>
+                                    <String>Saxon-EE XQuery</String>
                                 </field>
                                 <field name="extensionURLs">
                                     <String-array/>
