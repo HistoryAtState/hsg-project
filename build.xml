@@ -42,8 +42,8 @@
     </target>
 
     <target name="setup" depends="prepare,mvn-copy-dependencies,upgrade-local-build-properties,clone-public-repos,clone-private-repos"
-        description="Clone required packages">
-        <echo message="Completed cloning of packages..."/>
+        description="Clone required repositories">
+        <echo message="Completed cloning of repositories..."/>
     </target>
 
     <target name="build" depends="prepare" description="Build all packages">
