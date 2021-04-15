@@ -916,17 +916,6 @@
         description="Apply hsg-project customizations to eXist"
         depends="upgrade-local-build-properties,prepare-exist-configuration"/>
 
-    <target name="delete-old-resources" description="Delete resources used before upgrades to eXist 3.1.1 and maven">
-        <echo message="----------------------"/>
-        <echo message="Deleting old resources"/>
-        <echo message="----------------------"/>
-        <delete file="local.build.properties"/>
-        <delete file="${lib}/ivy-*.jar"/>
-        <delete includeemptydirs="true" dir="${repos}/eXide"/>
-        <delete includeemptydirs="true" dir="${repos}/shared-resources"/>
-        <delete includeemptydirs="true" dir="${repos}/tei-simple-pm"/>
-    </target>
-
     <target name="prepare-exist-configuration" depends="back-up-exist-configuration-file">
         <echo message="-------------------------------------------------------"/>
         <echo message="Applying hsg customizations to eXist configuration file"/>
