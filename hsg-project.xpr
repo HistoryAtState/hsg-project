@@ -872,6 +872,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -1029,6 +1035,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
@@ -1188,6 +1200,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -1345,6 +1363,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
@@ -1504,6 +1528,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -1661,6 +1691,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
@@ -1820,6 +1856,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -1977,6 +2019,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
@@ -2136,6 +2184,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -2293,6 +2347,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
@@ -2452,6 +2512,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -2609,6 +2675,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
@@ -2768,6 +2840,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -2925,6 +3003,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
@@ -3084,6 +3168,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -3241,6 +3331,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
@@ -3400,6 +3496,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -3557,6 +3659,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
@@ -3716,6 +3824,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -3874,6 +3988,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xsltSaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -4001,6 +4121,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xquerySaxonSAAdvancedOptions>
                                         </entry>
@@ -4155,6 +4281,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xquerySaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -4308,6 +4440,12 @@
                                                 <field name="initializer">
                                                     <String></String>
                                                 </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                             </xquerySaxonSAAdvancedOptions>
                                         </entry>
                                     </serializableOrderedMap>
@@ -4460,6 +4598,12 @@
                                                 </field>
                                                 <field name="initializer">
                                                     <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
                                                 </field>
                                             </xquerySaxonSAAdvancedOptions>
                                         </entry>
