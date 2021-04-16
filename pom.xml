@@ -92,13 +92,13 @@
     <repositories>
         <repository>
             <id>exist-db</id>
-            <url>http://repo.evolvedbinary.com/repository/exist-db/</url>
+            <url>https://repo.evolvedbinary.com/repository/exist-db/</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
         <repository>
             <id>exist-db-snapshots</id>
-            <url>http://repo.evolvedbinary.com/repository/exist-db-snapshots/</url>
+            <url>https://repo.evolvedbinary.com/repository/exist-db-snapshots/</url>
             <releases><enabled>false</enabled></releases>
             <snapshots><enabled>true</enabled></snapshots>
         </repository>
@@ -107,7 +107,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>clojars.org</id>
-            <url>http://clojars.org/repo</url>
+            <url>https://clojars.org/repo</url>
         </pluginRepository>
     </pluginRepositories>
 </project>

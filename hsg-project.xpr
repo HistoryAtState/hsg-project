@@ -4741,6 +4741,7 @@
                             <String>1861.history.state.gov:443</String>
                             <String>www.tei-c.org:443</String>
                             <String>localhost:8080</String>
+                            <String>maven.apache.org:443</String>
                         </String-array>
                     </entry>
                     <entry>
