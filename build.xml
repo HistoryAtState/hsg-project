@@ -971,13 +971,6 @@
             <env key="PATH" value="/usr/local/bin:${env.PATH}"/>
             <arg line="doctor"/>
         </exec>
-        <echo message="----------------"/>
-        <echo message="brew cask doctor"/>
-        <echo message="----------------"/>
-        <exec executable="/usr/local/bin/brew" dir=".">
-            <arg line="cask"/>
-            <arg line="doctor"/>
-        </exec>
         <echo message="--------------------"/>
         <echo message="brew list --versions"/>
         <echo message="--------------------"/>
@@ -985,12 +978,13 @@
             <arg line="list"/>
             <arg line="--versions"/>
         </exec>
-        <echo message="--------------"/>
-        <echo message="brew cask list"/>
-        <echo message="--------------"/>
+        <echo message="----------------------------"/>
+        <echo message="brew list --casks --versions"/>
+        <echo message="----------------------------"/>
         <exec executable="/usr/local/bin/brew" dir=".">
-            <arg line="cask"/>
             <arg line="list"/>
+            <arg line="--casks"/>
+            <arg line="--versions"/>
         </exec>
     </target>
 
