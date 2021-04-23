@@ -641,13 +641,13 @@
                                     <null/>
                                 </field>
                                 <field name="cmd">
-                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-atom -Ddirectory="${cfd}"</String>
+                                    <String>java -Dlog4j.configurationFile="${pd}/build/log4j2.xml" -jar "${oxygenInstallDir}/tools/ant/lib/ant-launcher.jar" open-repo-in-vscode -Ddirectory="${cfd}"</String>
                                 </field>
                                 <field name="description">
-                                    <String>Open the parent repository of the working file in the active tab in Atom</String>
+                                    <String>Open the parent repository of the working file in the active tab in Visual Studio Code</String>
                                 </field>
                                 <field name="name">
-                                    <String>Open current repository in Atom</String>
+                                    <String>Open current repository in Visual Studio Code</String>
                                 </field>
                                 <field name="workingDirectory">
                                     <String>${pd}</String>

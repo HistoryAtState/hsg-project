@@ -3,13 +3,12 @@
         "localhost": {
             "server": "http://localhost:8080/exist",
             "user": "admin",
-            "password": ""
+            "password": "",
+            "root": "/db/apps/@@@"
         }
     },
     "sync": {
         "server": "localhost",
-        "root": "/db/apps/@@@",
-        "active": true,
         "ignore": [
             ".existdb.json",
             ".git/**",

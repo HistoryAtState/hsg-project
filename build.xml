@@ -759,7 +759,7 @@
         </exec>
     </target>
 
-    <target name="open-repo-in-atom" description="Opens an hsg-project repo in Atom"
+    <target name="open-repo-in-vscode" description="Opens an hsg-project repo in Visual Studio Code"
         depends="deploy.init">
         <property name="directory" value="${directory}"/>
         <path id="parent-dir">
@@ -777,12 +777,10 @@
         </fail>
         <propertyregex property="repo" input="${file-path.unix}"
             regexp=".*?/hsg-project/${repos}/([^/]*)" select="\1" override=""/>
-        <copy file="${build}/atom-existdb_tmpl.json" tofile="${repo-basepath}/.existdb.json"
+        <copy file="${build}/vscode-existdb_tmpl.json" tofile="${repo-basepath}/.existdb.json"
             overwrite="yes"/>
         <replace file="${repo-basepath}/.existdb.json" token="@@@" value="${repo}"/>
-        <exec executable="open" dir="${repo-basepath}">
-            <arg line="-a"/>
-            <arg line="Atom"/>
+        <exec executable="${vscode}" dir="${repo-basepath}">
             <arg line="."/>
         </exec>
     </target>
