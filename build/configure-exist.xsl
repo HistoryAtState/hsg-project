@@ -12,14 +12,6 @@
         </xsl:copy>
     </xsl:template>
     
-    <xsl:template match="builtin-modules">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
-            <xsl:comment>Modules enabled for hsg</xsl:comment>
-            <module uri="http://exist-db.org/xquery/cache" class="org.exist.xquery.modules.cache.CacheModule" />
-        </xsl:copy>        
-    </xsl:template>
-
     <xsl:template match="serializer">
         <xsl:comment>indent=no set for hsg</xsl:comment>
         <xsl:copy>
