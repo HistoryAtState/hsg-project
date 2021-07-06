@@ -170,6 +170,10 @@
         <echo message="Installing packages from public repo..."/>
         <xdb:create uri="${local.instance.uri}/db" user="${local.instance.user}"
             password="${local.instance.password}" collection="${instance.tempColl}"/>
+        <echo message="Installing Shared Resources..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
             password="${local.instance.password}"
@@ -205,6 +209,10 @@
         <echo message="Installing packages from eXist-db.org public repo ..."/>
         <xdb:create uri="${production.instance.uri}/db" user="${production.instance.user}"
             password="${production.instance.password}" collection="${instance.tempColl}"/>
+        <echo message="Installing Shared Resources..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
             password="${production.instance.password}"
@@ -240,6 +248,10 @@
         <echo message="Installing packages from eXist-db.org public repo ..."/>
         <xdb:create uri="${development.instance.uri}/db" user="${development.instance.user}"
             password="${development.instance.password}" collection="${instance.tempColl}"/>
+        <echo message="Installing Shared Resources..."/>
+        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
+            password="${local.instance.password}"
+            query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
             password="${development.instance.password}"
