@@ -51,16 +51,16 @@
     </target>
 
     <target name="deploy" description="Deploy all packages"
-        depends="ping-localhost,ping-public-repo,deploy.init,deploy.upload,deploy.install-packages-from-public-repo,deploy.deploy,deploy.cleanup"/>
+        depends="ping-localhost,ping-public-repo,deploy.init,deploy.install-packages-from-public-repo,deploy.upload,deploy.deploy,deploy.cleanup"/>
 
     <target name="deploy-one" description="Deploy one package"
         depends="ping-localhost,ping-public-repo,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
 
     <target name="deploy-to-production-server" description="Deploy all packages to development server"
-        depends="ping-production,deploy.init,deploy.upload-to-production,deploy.install-packages-from-public-repo-to-production,deploy.deploy-to-production,deploy.cleanup-production"/>
+        depends="ping-production,deploy.init,deploy.install-packages-from-public-repo-to-production,deploy.upload-to-production,deploy.deploy-to-production,deploy.cleanup-production"/>
 
     <target name="deploy-to-dev-server" description="Deploy all packages to development server"
-        depends="ping-dev-server,ping-public-repo,deploy.init,deploy.upload-to-dev,deploy.install-packages-from-public-repo-to-dev,deploy.deploy-to-dev,deploy.cleanup-dev"/>
+        depends="ping-dev-server,ping-public-repo,deploy.init,deploy.install-packages-from-public-repo-to-dev,deploy.upload-to-dev,deploy.deploy-to-dev,deploy.cleanup-dev"/>
 
     <target name="prepare">
         <mkdir dir="${libs}"/>
