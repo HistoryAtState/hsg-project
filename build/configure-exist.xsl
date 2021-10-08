@@ -21,22 +21,4 @@
         </xsl:copy>        
     </xsl:template>
 
-    <xsl:template match="scheduler">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
-            <xsl:choose>
-                <xsl:when test="$target = 'production'">
-                    <xsl:comment>Jobs enabled for hsg production</xsl:comment>
-                    <job type="user" xquery="/db/apps/hsg-shell/modules/rebuild-dates-sort-index.xql" period="600000" unschedule-on-exception="false"/>
-                    <job xquery="/db/apps/twitter/jobs/download-recent-twitter-posts.xq" period="600000" unschedule-on-exception="false"/>
-                </xsl:when>
-                <xsl:when test="$target = 'development'">
-                    <xsl:comment>Jobs enabled for hsg development</xsl:comment>
-                    <job type="user" xquery="/db/apps/hsg-shell/modules/rebuild-dates-sort-index.xql" period="600000" unschedule-on-exception="false"/>
-                </xsl:when>
-                <xsl:otherwise/>
-            </xsl:choose>
-        </xsl:copy>        
-    </xsl:template>
-
 </xsl:stylesheet>
