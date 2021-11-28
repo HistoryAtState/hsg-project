@@ -954,7 +954,7 @@
     </condition>
 
     <target name="upgrade-local-build-properties"
-        description="Upgrade local.build.properties file to latest build.properties while preserving passwords" depends="create-new-local-build-properties">
+        description="Upgrade local.build.properties file to latest build.properties while preserving passwords" depends="check-local-build-properties">
         <echo message="------------------------------------------------------------"/>
         <echo message="Upgrading local.build.properties file (preserving passwords)"/>
         <echo message="------------------------------------------------------------"/>
