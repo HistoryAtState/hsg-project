@@ -39,7 +39,28 @@
     <target name="clone-public-repos">
         <echo message="Cloning required packages into ${repos}..."
             description="Clone public packages"/>
-        <foreach-js property="remotes" target="git.clone"/>
+        <foreach list="${git.public.repo-names}" delimiter="," parallel="false" target="git.clone.public" param="repo-name"/>
+
+        <!-- TODO(AR) these should likely move to HistoryAtState -->
+        <foreach list="${git.joewiz.repo-names}" delimiter="," parallel="false" target="git.clone.joewiz" param="repo-name"/>
+    </target>
+
+    <target name="git.clone.public">
+        <antcall target="git.clone">
+            <param name="local-repo-name" value="${repo-name}"/>
+            <param name="origin" value="${git.public.remotes.origin.org}/${repo-name}.git"/>
+            <param name="upstream" value="${git.public.remotes.upstream.org}/${repo-name}.git"/>
+        </antcall>
+
+    </target>
+
+    <!-- TODO(AR) these should likely move to HistoryAtState -->
+    <target name="git.clone.joewiz">
+        <antcall target="git.clone">
+            <param name="local-repo-name" value="${repo-name}"/>
+            <param name="origin" value="${git.joewiz.remotes.origin.org}/${repo-name}.git"/>
+            <param name="upstream" value="${git.joewiz.remotes.upstream.org}/${repo-name}.git"/>
+        </antcall>
     </target>
 
     <target name="setup" depends="prepare,mvn-copy-dependencies,upgrade-local-build-properties,clone-public-repos,clone-private-repos"
