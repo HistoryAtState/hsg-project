@@ -886,21 +886,7 @@
         <echo message="-------------------------"/>
         <echo message="Wiping eXist data"/>
         <echo message="-------------------------"/>
-        <delete dir="${eXist.data}/backup"/>
-        <delete dir="${eXist.data}/blob"/>
-        <delete dir="${eXist.data}/expathrepo"/>
-        <delete dir="${eXist.data}/fs"/>
-        <delete dir="${eXist.data}/fs.journal"/>
-        <delete dir="${eXist.data}/journal"/>
-        <delete dir="${eXist.data}/lucene"/>
-        <delete dir="${eXist.data}/metadata"/>
-        <delete dir="${eXist.data}/range"/>
-        <delete dir="${eXist.data}/sanity"/>
-        <delete>
-            <fileset dir="${eXist.data}"
-                includes="*.dbx,*.log,*.lck,spatial_index.*,counters,restxq.registry"
-                excludes=".DO_NOT_DELETE"/>
-        </delete>
+        <delete dir="${eXist.data}"/>
     </target>
 
     <target name="wipe-exist-data-with-confirmation" description="Wipe eXist data">
