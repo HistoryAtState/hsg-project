@@ -83,12 +83,35 @@
         <echo message="-------------------------------------"/>
         <echo message="Pulling updates for all repositories"/>
         <echo message="-------------------------------------"/>
-        <iterate target="git.pull"/>
+
+        <antcall target="update-public-repos"/>
+        <antcall target="update-private-repos"/>
+    </target>
+
+    <target name="update-private-repos" if="${git.private.include}"
+        description="Update private packages">
+        <echo message="Cloning private packages into ${repos}..."/>
+        <foreach list="${git.private.repo-names}" delimiter="," parallel="false" target="git.pull-path" param="repo-name"/>
+    </target>
+
+    <target name="update-public-repos">
+        <echo message="Updating required packages into ${repos}..."
+            description="Update public packages"/>
+        <foreach list="${git.public.repo-names}" delimiter="," parallel="false" target="git.pull-path" param="repo-name"/>
+
+        <!-- TODO(AR) these should likely move to HistoryAtState -->
+        <foreach list="${git.joewiz.repo-names}" delimiter="," parallel="false" target="git.pull-path" param="repo-name"/>
+    </target>
+
+    <target name="git.pull-path">
+        <antcall target="git.pull">
+            <param name="local-repo-path" value="${repos}/${repo-name}"/>
+        </antcall>
     </target>
 
     <target name="update-one">
         <antcall target="git.pull">
-            <param name="dir" value="${repos}/${repo-name}"/>
+            <param name="local-repo-path" value="${repos}/${repo-name}"/>
         </antcall>
     </target>
 
@@ -387,13 +410,13 @@
     </target>
 
     <target name="git.pull">
-        <echo message="Updating ${dir}..."/>
-        <delete file="${dir}/package-lock.json"/>
-        <exec executable="${git}" dir="${dir}">
+        <echo message="Updating ${local-repo-path}..."/>
+        <delete file="${local-repo-path}/package-lock.json"/>
+        <exec executable="${git}" dir="${local-repo-path}" failonerror="true">
             <arg line="pull"/>
             <arg line="--recurse-submodules"/>
         </exec>
-        <exec executable="${git}" dir="${dir}">
+        <exec executable="${git}" dir="${local-repo-path}" failonerror="true">
             <arg line="submodule"/>
             <arg line="update"/>
             <arg line="--recursive"/>
@@ -655,7 +678,7 @@
         <propertyregex property="repo-name" input="${file-path.unix}"
             regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
         <antcall target="git.pull">
-            <param name="dir" value="${repos}/${repo-name}"/>
+            <param name="local-repo-path" value="${repos}/${repo-name}"/>
         </antcall>
     </target>
 
