@@ -487,12 +487,15 @@
             <arg line="${origin}"/>
             <arg line="${local-repo-name}"/>
         </exec>
+        <echo message="${git.output}"/>
 
         <condition property="set-upstream">
             <not>
                 <equals arg1="${origin}" arg2="${upstream}"/>
             </not>
         </condition>
+
+        <echo if:true="${set-upstream}" message="Configuring upstream: ${upstream}..."/>
 
         <exec if:true="${set-upstream}" executable="${git}" dir="${repos}/${local-repo-name}" failonerror="true">
             <arg line="remote"/>
@@ -506,7 +509,6 @@
             <arg line="upstream"/>
         </exec>
 
-        <echo message="${git.output}"/>
     </target>
 
     <target name="test">
