@@ -33,7 +33,15 @@
     <target name="clone-private-repos" if="${remotes.include-private}"
         description="Clone private packages">
         <echo message="Cloning private packages into ${repos}..."/>
-        <foreach-js property="remotes.private" target="git.clone"/>
+        <foreach list="${git.private.repo-names}" delimiter="," parallel="false" target="git.clone.private" param="repo-name"/>
+    </target>
+
+    <target name="git.clone.private">
+        <antcall target="git.clone">
+            <param name="local-repo-name" value="${repo-name}"/>
+            <param name="origin" value="${git.private.remotes.origin.org}/${repo-name}.git"/>
+            <param name="upstream" value="${git.private.remotes.upstream.org}/${repo-name}.git"/>
+        </antcall>
     </target>
 
     <target name="clone-public-repos">
@@ -530,9 +538,7 @@
             <arg line="${local-repo-name}"/>
         </exec>
         <echo message="${git.output}"/>
-<<<<<<< HEAD
-=======
-
+        
         <condition property="set-upstream">
             <not>
                 <equals arg1="${origin}" arg2="${upstream}"/>
@@ -553,7 +559,6 @@
             <arg line="upstream"/>
         </exec>
 
->>>>>>> c5af468 (Differentiate between origin and upstream output)
     </target>
 
     <target name="test">
