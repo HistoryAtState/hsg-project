@@ -34,7 +34,7 @@
     <target name="clone-private-repos" if="${git.private.include}"
         description="Clone private packages">
         <echo message="Cloning private packages into ${repos}..."/>
-        <foreach list="${git.private.repo-names}" delimiter="," parallel="true" target="git.clone.private" param="repo-name"/>
+        <foreach list="${git.private.repo-names}" delimiter="," parallel="false" target="git.clone.private" param="repo-name"/>
     </target>
 
     <target name="git.clone.private">
@@ -48,7 +48,7 @@
     <target name="clone-public-repos">
         <echo message="Cloning required packages into ${repos}..."
             description="Clone public packages"/>
-        <foreach list="${git.public.repo-names}" delimiter="," parallel="true" target="git.clone.public" param="repo-name"/>
+        <foreach list="${git.public.repo-names}" delimiter="," parallel="false" target="git.clone.public" param="repo-name"/>
     </target>
 
     <target name="git.clone.public">
