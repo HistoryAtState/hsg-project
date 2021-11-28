@@ -853,28 +853,28 @@
 
     <target name="ping-localhost">
         <condition property="exist-running">
-            <http requestmethod="HEAD" url="http://localhost:8080/exist" expected="200"/>
+            <http requestmethod="HEAD" url="http://localhost:8080/exist"/>
         </condition>
         <fail unless="${exist-running}" message="eXist is not running. Please start eXist and try again."/>
     </target>
 
     <target name="ping-production">
         <condition property="exist-running">
-            <http requestmethod="GET" url="${production.instance.http}/test" expected="200"/>
+            <http requestmethod="GET" url="${production.instance.http}/test"/>
         </condition>
         <fail unless="${exist-running}" message="The production server cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
 
     <target name="ping-dev-server">
         <condition property="exist-running">
-            <http requestmethod="GET" url="${development.instance.http}" expected="200"/>
+            <http requestmethod="GET" url="${development.instance.http}"/>
         </condition>
         <fail unless="${exist-running}" message="The development server cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
     
     <target name="ping-public-repo">
         <condition property="public-repo-accessible">
-            <http requestmethod="HEAD" url="${eXist.public-repo.lookup}?abbrev=functx" followRedirects="true" expected="200"/>
+            <http requestmethod="HEAD" url="${eXist.public-repo.lookup}?abbrev=functx" followRedirects="true"/>
         </condition>
         <fail unless="${public-repo-accessible}" message="The package repository at ${eXist.public-repo} cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
@@ -884,7 +884,7 @@
     <!-- =================================================================== -->
     <target name="wipe-exist-data" description="Wipe eXist data">
         <condition property="exist-running">
-            <http requestmethod="GET" url="http://localhost:8080/exist" expected="200"/>
+            <http requestmethod="GET" url="http://localhost:8080/exist"/>
         </condition>
         <fail if="${exist-running}"
             message="eXist is still running. Please shut down eXist and try again."/>
