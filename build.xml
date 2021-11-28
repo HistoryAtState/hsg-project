@@ -530,6 +530,30 @@
             <arg line="${local-repo-name}"/>
         </exec>
         <echo message="${git.output}"/>
+<<<<<<< HEAD
+=======
+
+        <condition property="set-upstream">
+            <not>
+                <equals arg1="${origin}" arg2="${upstream}"/>
+            </not>
+        </condition>
+
+        <echo if:true="${set-upstream}" message="Configuring upstream: ${upstream}..."/>
+
+        <exec if:true="${set-upstream}" executable="${git}" dir="${repos}/${local-repo-name}" failonerror="true">
+            <arg line="remote"/>
+            <arg line="add"/>
+            <arg line="upstream"/>
+            <arg line="${upstream}"/>
+        </exec>
+
+        <exec if:true="${set-upstream}" executable="${git}" dir="${repos}/${local-repo-name}" failonerror="true">
+            <arg line="fetch"/>
+            <arg line="upstream"/>
+        </exec>
+
+>>>>>>> c5af468 (Differentiate between origin and upstream output)
     </target>
 
     <target name="test">
