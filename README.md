@@ -19,7 +19,7 @@ To automate the following steps:
 ## Prerequisites
 
 - eXist 5.x
-- Current versions of ant, git, and bower executables
+- Current versions of ant, ant-contrib, git, and bower executables
 
 ## Setup
 

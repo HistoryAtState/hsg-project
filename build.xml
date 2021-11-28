@@ -22,6 +22,8 @@
     <property name="production.instance.temp" value="${production.instance.uri}${instance.tempPath}"/>
     <property name="development.instance.temp" value="${development.instance.uri}${instance.tempPath}"/>
 
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
     <target name="all" depends="ping-localhost,ping-public-repo,clean,update,build,deploy"
         description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
 
@@ -32,13 +34,13 @@
     <target name="clone-private-repos" if="${remotes.include-private}"
         description="Clone private packages">
         <echo message="Cloning private packages into ${repos}..."/>
-        <foreach-js property="remotes.private" target="git.clone"/>
+        <foreach list="${remotes.private}" delimiter="," parallel="true" target="git.clone" param="remote"/>
     </target>
 
     <target name="clone-public-repos">
         <echo message="Cloning required packages into ${repos}..."
             description="Clone public packages"/>
-        <foreach-js property="remotes" target="git.clone"/>
+        <foreach list="${remotes}" delimiter="," parallel="true" target="git.clone" param="remote"/>
     </target>
 
     <target name="setup" depends="prepare,mvn-copy-dependencies,upgrade-local-build-properties,clone-public-repos,clone-private-repos"
@@ -460,32 +462,13 @@
         ]]>
     </scriptdef>
 
-    <scriptdef name="foreach-js" language="javascript">
-        <attribute name="target"/>
-        <attribute name="property"/>
-        <![CDATA[
-            var input = project.getProperty(attributes.get("property"));
-            var items = input.split(/\s*,\s*/);
-            for (i=0; i < items.length; i++) {
-              // create and use a Task via Ant API
-              antc = project.createTask("antcall");
-              var prop = antc.createParam();
-              prop.setName("item");
-              prop.setValue(items[i]);
-
-              antc.setTarget(attributes.get("target"));
-              antc.perform();
-            }
-        ]]>
-    </scriptdef>
-
     <target name="git.clone">
-        <echo message="Cloning ${item}..."/>
+        <echo message="Cloning ${remote}..."/>
         <exec executable="${git}" outputproperty="git.output" dir="${repos}">
             <arg line="clone"/>
             <arg line="--depth"/>
             <arg line="1"/>
-            <arg line="${item}"/>
+            <arg line="${remote}"/>
         </exec>
         <echo message="${git.output}"/>
     </target>
