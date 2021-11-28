@@ -482,9 +482,8 @@
         <echo message="Cloning ${item}..."/>
         <exec executable="${git}" outputproperty="git.output" dir="${repos}">
             <arg line="clone"/>
-            <arg line="--depth"/>
-            <arg line="1"/>
-            <arg line="${item}"/>
+            <arg line="${origin}"/>
+            <arg line="${local-repo-name}"/>
         </exec>
         <echo message="${git.output}"/>
     </target>
