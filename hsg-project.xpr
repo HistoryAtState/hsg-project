@@ -819,6 +819,46 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>repos/frus/volumes/frus1981-88v13.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>fix-signature-structure.xq</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XML_XQUERY</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>repos/frus/volumes/frus1981-88v04.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>fix-signature-structure.xq</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XML_XQUERY</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>repos/frus/volumes/frus1863p1.xml</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -899,67 +939,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>repos/frus/volumes/frus1981-88v04.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>fix-signature-structure.xq</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XML_XQUERY</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/frus/volumes/frus1981-88v03.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>fix-signature-structure.xq</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XML_XQUERY</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
                                     <String>repos/frus/volumes/frus1981-88v06.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>fix-signature-structure.xq</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XML_XQUERY</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>repos/frus/volumes/frus1981-88v13.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
