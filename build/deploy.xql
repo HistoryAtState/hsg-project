@@ -44,19 +44,22 @@ declare %private function local:entry-data($path as xs:anyURI, $type as xs:strin
 };
 
 declare variable $ru:sync-metadata :=
-    let $tryImport :=
-        try {
-            util:import-module(xs:anyURI("http://exist-db.org/xquery/replication"), "replication",
-                xs:anyURI("java:org.exist.jms.xquery.ReplicationModule")),
-            true()
-        } catch * {
-            false()
-        }
-    return
-        if ($tryImport) then
-            function-lookup(xs:QName("replication:sync-metadata"), 1)
-        else
-            ()
+    if (util:registered-modules() = "http://exist-db.org/xquery/replication-util") then
+        let $tryImport :=
+            try {
+                util:import-module(xs:anyURI("http://exist-db.org/xquery/replication"), "replication",
+                    xs:anyURI("java:org.exist.jms.xquery.ReplicationModule")),
+                true()
+            } catch * {
+                false()
+            }
+        return
+            if ($tryImport) then
+                function-lookup(xs:QName("replication:sync-metadata"), 1)
+            else
+                ()
+    else
+        ()
 ;
 
 declare function ru:sync($root as xs:anyURI, $delay as xs:long) {
