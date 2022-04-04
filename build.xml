@@ -4,7 +4,8 @@
     <property file="build/build.properties"/>
 
     <property name="repos" value="repos"/>
-    <property name="libs" value="lib"/>
+    <property name="mvn-target" value="target"/>
+    <property name="libs" value="${mvn-target}/dependency"/>
     <property name="build" value="build"/>
 
     <property name="build-env" value=""/>
@@ -13,7 +14,7 @@
     <property name="eXist.data.mac-dmg-installer" value="/Library/Application Support/org.exist"/>
 
     <!-- use "xars" unless called with a "repo-name" property -->
-    <condition property="xars" value="${repo-name}" else="xars">
+    <condition property="xars" value="${repo-name}" else="${mvn-target}/xars">
         <isset property="repo-name"/>
     </condition>
     <property name="instance.tempColl" value="hsg-temp"/>
@@ -63,20 +64,19 @@
         depends="ping-dev-server,ping-public-repo,deploy.init,deploy.install-packages-from-public-repo-to-dev,deploy.upload-to-dev,deploy.deploy-to-dev,deploy.cleanup-dev"/>
 
     <target name="prepare">
-        <mkdir dir="${libs}"/>
-        <mkdir dir="${xars}"/>
+        <!-- The following 2 deletions are needed now that we move libs and xars into target -->
+        <delete dir="lib"/>
+        <delete dir="xars"/>
         <mkdir dir="${repos}"/>
     </target>
     
     <target name="mvn-copy-dependencies" depends="prepare">
-        <delete>
-            <fileset dir="${libs}">
-                <include name="*.jar"/>
-            </fileset>
-        </delete>
         <exec executable="${mvn}" dir=".">
-            <arg line="dependency:copy-dependencies -DoutputDirectory=${libs}" />
+            <arg line="clean"/>
+            <arg line="dependency:copy-dependencies"/>
+            <arg line="dependency:unpack"/>
         </exec>
+        <mkdir dir="${xars}"/>
     </target>
 
     <target name="update">
@@ -362,9 +362,8 @@
 
     <target name="clean-all" depends="clean"
         description="Clean everything, including checked out repos, downloaded libs, and built xars">
-        <delete dir="${libs}" failonerror="false"/>
         <delete dir="${repos}" failonerror="false"/>
-        <delete dir="${xars}" failonerror="false"/>
+        <delete dir="${mvn-target}" failonerror="false"/>
     </target>
 
     <!-- Called on each directory in repos to build it -->
@@ -379,7 +378,7 @@
                 <include name="build.xml"/>
             </fileset>
         </subant>
-        <copy todir="xars/" failonerror="false">
+        <copy todir="${xars}" failonerror="false">
             <fileset dir="${dir}/build">
                 <include name="*.xar"/>
             </fileset>

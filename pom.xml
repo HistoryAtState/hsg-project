@@ -47,6 +47,9 @@
         <project.build.target>1.8</project.build.target>
         
         <exist.version>5.3.0</exist.version>
+        <ant-contrib.version>1.0b3</ant-contrib.version>
+        <xspec.version>2.2.4</xspec.version>
+        <schxslt.version>1.8.5</schxslt.version>
     </properties>
     
     <dependencies>
@@ -59,7 +62,7 @@
         <dependency>
             <groupId>ant-contrib</groupId>
             <artifactId>ant-contrib</artifactId>
-            <version>1.0b3</version>
+            <version>${ant-contrib.version}</version>
         </dependency>
     </dependencies>
     
@@ -68,7 +71,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>
@@ -84,7 +87,42 @@
                             <excludeTransitive>true</excludeTransitive>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>unpack-xspec</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                    </execution>
                 </executions>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>io.xspec</groupId>
+                            <artifactId>xspec</artifactId>
+                            <version>${xspec.version}</version>
+                            <classifier>enduser-files</classifier>
+                            <type>zip</type><!-- "tar.gz" is also available -->
+                            <fileMappers>
+                                <org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
+                                    <pattern>^\Qxspec-${xspec.version}/\E</pattern>
+                                    <replacement>./xspec/</replacement>
+                                </org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
+                            </fileMappers>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>name.dmaus.schxslt</groupId>
+                            <artifactId>schxslt</artifactId>
+                            <version>${schxslt.version}</version>
+                            <includes>xslt/2.0/</includes>
+                            <fileMappers>
+                                <org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
+                                    <pattern>^\Qxslt/2.0\E</pattern>
+                                    <replacement>./schxslt-xslt-only/</replacement>
+                                </org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
+                            </fileMappers>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
             </plugin>
         </plugins>
     </build>
