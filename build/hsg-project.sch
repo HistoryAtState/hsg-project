@@ -4,7 +4,7 @@
     <sch:title>hsg-project oXygen Project file schematron</sch:title>
     <sch:pattern id="uri-checks">
         <sch:title>URI checks</sch:title>
-        <sch:rule context="field[@name=('uri', 'inputXSLURL')]">
+        <sch:rule context="field[@name=('uri', 'inputXSLURL') and String]">
             <sch:assert test="starts-with(String, '${pdu}')">URIs should be relative to the project directory, should start with '${pdu}'</sch:assert>
         </sch:rule>
     </sch:pattern>
