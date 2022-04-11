@@ -1,6 +1,7 @@
 repos
 xars
 lib
+target
 local.build.properties
 build/local.build.properties
 build/ivy-*.jar

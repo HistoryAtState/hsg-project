@@ -773,6 +773,9 @@
                             <field name="ignoredContentFilesPatterns">
                                 <String>*.tmp, *.temp, *.bak, *.html, *.htm, *.fo, *~, */.*</String>
                             </field>
+                            <field name="includedContentBinaryFilesPatterns">
+                                <String>*.pdf</String>
+                            </field>
                             <field name="indexRemoteResourcesContent">
                                 <Boolean>false</Boolean>
                             </field>
@@ -853,9 +856,6 @@
                                                 </field>
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -1018,9 +1018,6 @@
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -1181,9 +1178,6 @@
                                                 </field>
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -1346,9 +1340,6 @@
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -1509,9 +1500,6 @@
                                                 </field>
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -1674,9 +1662,6 @@
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -1837,9 +1822,6 @@
                                                 </field>
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -2002,9 +1984,6 @@
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -2165,9 +2144,6 @@
                                                 </field>
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -2330,9 +2306,6 @@
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -2493,9 +2466,6 @@
                                                 </field>
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -2658,9 +2628,6 @@
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -2821,9 +2788,6 @@
                                                 </field>
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -2986,9 +2950,6 @@
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -3149,9 +3110,6 @@
                                                 </field>
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -3314,9 +3272,6 @@
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -3477,9 +3432,6 @@
                                                 </field>
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -3642,9 +3594,6 @@
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -3805,9 +3754,6 @@
                                                 </field>
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -3970,9 +3916,6 @@
                                                 <field name="expandAttributeDefaults">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -4103,9 +4046,6 @@
                                                 </field>
                                                 <field name="isEnabledLinkedTreeModel">
                                                     <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -4246,6 +4186,162 @@
                                                     <String>saxon.source.no.schema.based.validation</String>
                                                 </field>
                                                 <field name="treatResultValidationErrorsAsWarnings">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="enableXQueryUpdate">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="enableBackup">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="addCommentsForValidationErrors">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowCallsOnExtensionFunctions">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="isEnabledLinkedTreeModel">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="stripWS">
+                                                    <String>saxon.strip.ws.none</String>
+                                                </field>
+                                                <field name="optimizationEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="useConfigFile">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="configSystemID">
+                                                    <String>${pdu}/repos/frus/schema/saxon-configuration.xml</String>
+                                                </field>
+                                                <field name="initializer">
+                                                    <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                            </xquerySaxonSAAdvancedOptions>
+                                        </entry>
+                                    </serializableOrderedMap>
+                                </field>
+                                <field name="name">
+                                    <String>Group index main entries alphabetically</String>
+                                </field>
+                                <field name="baseURL">
+                                    <String></String>
+                                </field>
+                                <field name="footerURL">
+                                    <String></String>
+                                </field>
+                                <field name="fOPMethod">
+                                    <String>pdf</String>
+                                </field>
+                                <field name="fOProcessorName">
+                                    <String>Apache FOP</String>
+                                </field>
+                                <field name="headerURL">
+                                    <String></String>
+                                </field>
+                                <field name="inputXSLURL">
+                                    <String>${pdu}/repos/frus/schema/group-index-entries-alphabetically.xq</String>
+                                </field>
+                                <field name="inputXMLURL">
+                                    <String>${currentFileURL}</String>
+                                </field>
+                                <field name="defaultScenario">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="isFOPPerforming">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="type">
+                                    <String>XML_XQUERY</String>
+                                </field>
+                                <field name="saveAs">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="openInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="outputResource">
+                                    <String>${cf}</String>
+                                </field>
+                                <field name="openOtherLocationInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="locationToOpenInBrowserURL">
+                                    <null/>
+                                </field>
+                                <field name="openInEditor">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInHTMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInXMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInSVGPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInResultSetPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="useXSLTInput">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="xsltParams">
+                                    <list>
+                                        <transformationParameter>
+                                            <field name="paramDescription">
+                                                <paramDescriptor>
+                                                    <field name="localName">
+                                                        <String>path</String>
+                                                    </field>
+                                                    <field name="prefix">
+                                                        <null/>
+                                                    </field>
+                                                    <field name="namespace">
+                                                        <null/>
+                                                    </field>
+                                                </paramDescriptor>
+                                            </field>
+                                            <field name="value">
+                                                <String>${cf}</String>
+                                            </field>
+                                            <field name="hasXPathValue">
+                                                <Boolean>false</Boolean>
+                                            </field>
+                                            <field name="isStatic">
+                                                <Boolean>false</Boolean>
+                                            </field>
+                                        </transformationParameter>
+                                    </list>
+                                </field>
+                                <field name="cascadingStylesheets">
+                                    <String-array/>
+                                </field>
+                                <field name="xslTransformer">
+                                    <String>Saxon-EE XQuery</String>
+                                </field>
+                                <field name="extensionURLs">
+                                    <String-array/>
+                                </field>
+                            </scenario>
+                            <scenario>
+                                <field name="advancedOptionsMap">
+                                    <serializableOrderedMap>
+                                        <entry>
+                                            <String>Saxon-EE XQuery</String>
+                                            <xquerySaxonSAAdvancedOptions>
+                                                <field name="sourceValidation">
+                                                    <String>saxon.source.no.schema.based.validation</String>
+                                                </field>
+                                                <field name="treatResultValidationErrorsAsWarnings">
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="enableXQueryUpdate">
@@ -4262,9 +4358,6 @@
                                                 </field>
                                                 <field name="isEnabledLinkedTreeModel">
                                                     <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
                                                 </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
@@ -4422,9 +4515,6 @@
                                                 <field name="isEnabledLinkedTreeModel">
                                                     <Boolean>true</Boolean>
                                                 </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
                                                 <field name="stripWS">
                                                     <String>saxon.strip.ws.none</String>
                                                 </field>
@@ -4554,84 +4644,343 @@
                                     <String-array/>
                                 </field>
                             </scenario>
-                            <scenario>
+                            <antScenario>
+                                <field name="additionalAntArgs">
+                                    <String></String>
+                                </field>
+                                <field name="buildTarget">
+                                    <String></String>
+                                </field>
+                                <field name="buildFilePath">
+                                    <String>build.xml</String>
+                                </field>
+                                <field name="ditaParams">
+                                    <list>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>catalog</String>
+                                            </field>
+                                            <field name="description">
+                                                <String>The path to catalog files that will be used for all XSLTs involved in the XSpec execution. Separated by semicolons (;).</String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${xmlCatalogFilesList}</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>catalog.is.uri</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>true</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>clean.output.dir</String>
+                                            </field>
+                                            <field name="description">
+                                                <String>Cleans up all the intermediate files created by the unit process. Set in to false if you want to inspect these files.</String>
+                                            </field>
+                                            <field name="value">
+                                                <String>true</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>test.type</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${xpath_eval(((doc('${currentFileURL}')!*:description!(@query,@schematron)!substring(name(),1,1)),'t')[1])}</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.fail</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>false</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.project.dir</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${frameworksDir}/xspec/</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.result.html</String>
+                                            </field>
+                                            <field name="description">
+                                                <String>The file path where the test result HTML will be created.</String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${cfd}/${cfn}-result.html</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.schematron.preprocessor.step1</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>#none</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.schematron.preprocessor.step2</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>#none</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.schematron.preprocessor.step3</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${pd}/target/dependency/schxslt-xslt-only/pipeline-for-svrl.xsl</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.xml</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${cf}</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>saxon.custom.options</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <null/>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                    </list>
+                                </field>
+                                <field name="jvmArgs">
+                                    <String>-Xmx256m</String>
+                                </field>
+                                <field name="useCustomJavaHome">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="customJavaHomeDir">
+                                    <String></String>
+                                </field>
+                                <field name="useCustomANTHome">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="customANTHomeDir">
+                                    <String></String>
+                                </field>
+                                <field name="workingDir">
+                                    <String>${pd}/target/dependency/xspec/</String>
+                                </field>
+                                <field name="showConsoleAlways">
+                                    <Boolean>false</Boolean>
+                                </field>
                                 <field name="advancedOptionsMap">
-                                    <serializableOrderedMap>
-                                        <entry>
-                                            <String>Saxon-EE XQuery</String>
-                                            <xquerySaxonSAAdvancedOptions>
-                                                <field name="sourceValidation">
-                                                    <String>saxon.source.no.schema.based.validation</String>
-                                                </field>
-                                                <field name="treatResultValidationErrorsAsWarnings">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="enableXQueryUpdate">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="enableBackup">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="addCommentsForValidationErrors">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                                <field name="allowCallsOnExtensionFunctions">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="isEnabledLinkedTreeModel">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="errorRecoverPolicy">
-                                                    <String>saxon.recover.with.warning</String>
-                                                </field>
-                                                <field name="stripWS">
-                                                    <String>saxon.strip.ws.none</String>
-                                                </field>
-                                                <field name="optimizationEnabled">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="useConfigFile">
-                                                    <Boolean>true</Boolean>
-                                                </field>
-                                                <field name="configSystemID">
-                                                    <String>${pdu}/repos/frus/schema/saxon-configuration.xml</String>
-                                                </field>
-                                                <field name="initializer">
-                                                    <String></String>
-                                                </field>
-                                                <field name="profilingOutputFile">
-                                                    <null/>
-                                                </field>
-                                                <field name="isProfilingEnabled">
-                                                    <Boolean>false</Boolean>
-                                                </field>
-                                            </xquerySaxonSAAdvancedOptions>
-                                        </entry>
-                                    </serializableOrderedMap>
+                                    <null/>
                                 </field>
                                 <field name="name">
-                                    <String>Group index main entries alphabetically</String>
+                                    <String>Run XSpec Test (HSG)</String>
                                 </field>
                                 <field name="baseURL">
-                                    <String></String>
+                                    <null/>
                                 </field>
                                 <field name="footerURL">
-                                    <String></String>
+                                    <null/>
                                 </field>
                                 <field name="fOPMethod">
-                                    <String>pdf</String>
+                                    <null/>
                                 </field>
                                 <field name="fOProcessorName">
-                                    <String>Apache FOP</String>
+                                    <null/>
                                 </field>
                                 <field name="headerURL">
-                                    <String></String>
+                                    <null/>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${pdu}/repos/frus/schema/group-index-entries-alphabetically.xq</String>
+                                    <null/>
                                 </field>
                                 <field name="inputXMLURL">
-                                    <String>${currentFileURL}</String>
+                                    <null/>
                                 </field>
                                 <field name="defaultScenario">
                                     <Boolean>false</Boolean>
@@ -4640,22 +4989,22 @@
                                     <Boolean>false</Boolean>
                                 </field>
                                 <field name="type">
-                                    <String>XML_XQUERY</String>
+                                    <String>ANT</String>
                                 </field>
                                 <field name="saveAs">
                                     <Boolean>true</Boolean>
                                 </field>
                                 <field name="openInBrowser">
-                                    <Boolean>false</Boolean>
+                                    <Boolean>true</Boolean>
                                 </field>
                                 <field name="outputResource">
-                                    <String>${cf}</String>
+                                    <null/>
                                 </field>
                                 <field name="openOtherLocationInBrowser">
-                                    <Boolean>false</Boolean>
+                                    <Boolean>true</Boolean>
                                 </field>
                                 <field name="locationToOpenInBrowserURL">
-                                    <null/>
+                                    <String>${cfd}/${cfn}-result.html</String>
                                 </field>
                                 <field name="openInEditor">
                                     <Boolean>false</Boolean>
@@ -4673,46 +5022,44 @@
                                     <Boolean>false</Boolean>
                                 </field>
                                 <field name="useXSLTInput">
-                                    <Boolean>true</Boolean>
+                                    <Boolean>false</Boolean>
                                 </field>
                                 <field name="xsltParams">
-                                    <list>
-                                        <transformationParameter>
-                                            <field name="paramDescription">
-                                                <paramDescriptor>
-                                                    <field name="localName">
-                                                        <String>path</String>
-                                                    </field>
-                                                    <field name="prefix">
-                                                        <null/>
-                                                    </field>
-                                                    <field name="namespace">
-                                                        <null/>
-                                                    </field>
-                                                </paramDescriptor>
-                                            </field>
-                                            <field name="value">
-                                                <String>${cf}</String>
-                                            </field>
-                                            <field name="hasXPathValue">
-                                                <Boolean>false</Boolean>
-                                            </field>
-                                            <field name="isStatic">
-                                                <Boolean>false</Boolean>
-                                            </field>
-                                        </transformationParameter>
-                                    </list>
+                                    <list/>
                                 </field>
                                 <field name="cascadingStylesheets">
                                     <String-array/>
                                 </field>
                                 <field name="xslTransformer">
-                                    <String>Saxon-EE XQuery</String>
+                                    <String>ANT</String>
                                 </field>
                                 <field name="extensionURLs">
-                                    <String-array/>
+                                    <String-array>
+                                        <String>${oxygenHome}/classes</String>
+                                        <String>${oxygenHome}/lib/oxygenCommons.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen.jar</String>
+                                        <String>${oxygenHome}/lib/oxygenDeveloper.jar</String>
+                                        <String>${oxygenHome}/lib/oxygenEclipse.jar</String>
+                                        <String>${oxygenHome}/lib/oxygenDeveloperEclipse.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen-sandbox.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen-license.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen-basic-utilities.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen-editor-variables-parser.jar</String>
+                                        <String>${oxygenHome}/lib/xml-apis.jar</String>
+                                        <String>${oxygenHome}/lib/*resolver*.jar</String>
+                                        <String>${oxygenHome}/lib/*saxon*10*.jar</String>
+                                        <String>${oxygenHome}/lib/*saxon*9*.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen-patched-slf4j.jar</String>
+                                        <String>${oxygenHome}/lib/logback-classic-*.jar</String>
+                                        <String>${oxygenHome}/lib/logback-core-*.jar</String>
+                                        <String>${oxygenHome}/lib/log4j-over-slf4j-*.jar</String>
+                                        <String>${oxygenHome}/lib/log4j-to-slf4j-*.jar</String>
+                                        <String>${oxygenHome}/lib/log4j-api-*.jar</String>
+                                        <String>${oxygenHome}/lib/*xerces*.jar</String>
+                                        <String>${oxygenHome}/lib/guava-*.jar</String>
+                                    </String-array>
                                 </field>
-                            </scenario>
+                            </antScenario>
                         </scenario-array>
                     </entry>
                     <entry>
@@ -5398,6 +5745,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                     </list>
                                 </field>
@@ -5454,6 +5804,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -5497,6 +5850,9 @@
                                                         <String>${pdu}/repos/carousel/schema/entries.rnc</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -5554,6 +5910,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -5597,6 +5956,9 @@
                                                         <String>${pdu}/repos/diplomatic-list/resources/schema/diplomatic-list.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -5654,6 +6016,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                     </list>
                                 </field>
@@ -5710,6 +6075,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -5753,6 +6121,9 @@
                                                         <String>${pdu}/repos/frus/schema/frus.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -5810,6 +6181,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -5854,6 +6228,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -5897,6 +6274,9 @@
                                                         <String>${pdu}/repos/frus/schema/dates-only-secondary-review.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -5954,6 +6334,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -5997,6 +6380,9 @@
                                                         <String>${pdu}/repos/frus/schema/bibliography.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -6054,6 +6440,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -6097,6 +6486,9 @@
                                                         <String>${pdu}/repos/gsh/data/lineages.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -6154,6 +6546,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -6197,6 +6592,9 @@
                                                         <String>${pdu}/repos/gsh/data/locales.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -6254,6 +6652,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -6297,6 +6698,9 @@
                                                         <String>${pdu}/repos/gsh/data/territories.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -6354,6 +6758,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -6397,6 +6804,9 @@
                                                         <String>${pdu}/repos/hsa-data/schema/hsa.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -6454,6 +6864,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -6497,6 +6910,9 @@
                                                         <String>${pdu}/repos/pocom/schema/concurrent-appointments.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -6554,6 +6970,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -6597,6 +7016,9 @@
                                                         <String>${pdu}/repos/pocom/schema/country-mission.rnc</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -6654,6 +7076,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -6697,6 +7122,9 @@
                                                         <String>${pdu}/repos/pocom/schema/org-mission.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -6754,6 +7182,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -6797,6 +7228,9 @@
                                                         <String>${pdu}/repos/pocom/schema/person.rnc</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -6854,6 +7288,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -6897,6 +7334,9 @@
                                                         <String>${pdu}/repos/pocom/schema/principal-position.rnc</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -6954,6 +7394,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -6997,6 +7440,9 @@
                                                         <String>${pdu}/repos/pocom/schema/principal-office.rnc</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -7054,6 +7500,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -7097,6 +7546,9 @@
                                                         <String>${pdu}/repos/pocom/schema/rank.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -7154,6 +7606,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -7197,6 +7652,9 @@
                                                         <String>${pdu}/repos/pocom/schema/unit.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -7254,6 +7712,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -7297,6 +7758,9 @@
                                                         <String>${pdu}/repos/rdcr/schema/resources.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -7354,6 +7818,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                     </list>
                                 </field>
@@ -7410,6 +7877,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -7453,6 +7923,9 @@
                                                         <String>${pdu}/repos/tags/schema/frus-tags.rnc</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -7510,6 +7983,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -7553,6 +8029,9 @@
                                                         <String>${pdu}/repos/travels/schema/trips.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -7610,6 +8089,9 @@
                                                     </field>
                                                 </validationUnitSchema>
                                             </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
+                                            </field>
                                         </validationUnit>
                                         <validationUnit>
                                             <field name="validationType">
@@ -7653,6 +8135,9 @@
                                                         <String>${pdu}/repos/visits/schema/visits.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
@@ -7709,6 +8194,9 @@
                                                         <String>${pdu}/build/hsg-project.sch</String>
                                                     </field>
                                                 </validationUnitSchema>
+                                            </field>
+                                            <field name="validationAdvancedSettings">
+                                                <null/>
                                             </field>
                                         </validationUnit>
                                     </list>
