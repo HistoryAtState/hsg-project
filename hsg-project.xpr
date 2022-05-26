@@ -80,6 +80,10 @@
                         </String-array>
                     </entry>
                     <entry>
+                        <String>editor.sort.attributes</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
                         <String>enable.xquery.backup</String>
                         <Boolean>false</Boolean>
                     </entry>
