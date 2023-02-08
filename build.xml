@@ -934,7 +934,7 @@
             </classpath>
             <param name="target" type="STRING" expression="development"/>
         </xslt>
-        <copy file="${build}/webdav.properties" todir="${eXist.home}/Contents/Resources/etc/"/>
+        <copy file="${build}/webdav.properties" todir="${eXist.home}/Contents/Resources/etc/" overwrite="true"/>
     </target>
     <target name="back-up-exist-configuration-file" unless="exist-configuration-backup-exists">
         <copy file="${eXist.home}/Contents/Resources/etc/conf.xml" tofile="${eXist.home}/Contents/Resources/etc/conf-orig.xml"/>
