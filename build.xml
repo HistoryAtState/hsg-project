@@ -854,7 +854,7 @@
 
     <target name="ping-localhost">
         <condition property="exist-running">
-            <http requestmethod="HEAD" url="http://localhost:8080/exist"/>
+            <http requestmethod="HEAD" url="http://localhost:8080/exist/status"/>
         </condition>
         <fail unless="${exist-running}" message="eXist is not running. Please start eXist and try again."/>
     </target>
