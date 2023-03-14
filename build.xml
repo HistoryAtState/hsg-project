@@ -42,7 +42,7 @@
             <available file="${repos}/${repo-name}" type="dir"/>
         </condition>
 
-        <echo if:true="${repo-exists}" message="The repo '${repo-name}' already exists and cannot be overwritten. Please delete this repo and try again."/>
+        <echo if:true="${repo-exists}" message="If you need to re-clone this repo, please delete 'hsg-shell' and try again."/>
 
         <!-- let the command git.clone only fail on error, if the to-be-cloned repo is not yet existing, e.g. on an initial setup -->
         <condition property="fail-on-error" value="false" else="true">
