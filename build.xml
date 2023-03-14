@@ -37,7 +37,20 @@
         <foreach list="${git.private.repo-names}" delimiter="," parallel="false" target="git.clone.private" param="repo-name"/>
     </target>
 
-    <target name="git.clone.private">
+    <target name="check-if-repo-exists">
+        <condition property="repo-exists" value="true" else="false">
+            <available file="${repos}/${repo-name}" type="dir"/>
+        </condition>
+
+        <echo if:true="${repo-exists}" message="The repo '${repo-name}' already exists and cannot be overwritten. Please delete this repo and try again."/>
+
+        <!-- let the command git.clone only fail on error, if the to-be-cloned repo is not yet existing, e.g. on an initial setup -->
+        <condition property="fail-on-error" value="false" else="true">
+            <istrue value="${repo-exists}"/>
+        </condition>
+    </target>
+
+    <target name="git.clone.private" depends="check-if-repo-exists">
         <antcall target="git.clone">
             <param name="local-repo-name" value="${repo-name}"/>
             <param name="origin" value="${git.private.remotes.origin.org}/${repo-name}.git"/>
@@ -54,7 +67,7 @@
         <foreach list="${git.joewiz.repo-names}" delimiter="," parallel="false" target="git.clone.joewiz" param="repo-name"/>
     </target>
 
-    <target name="git.clone.public">
+    <target name="git.clone.public" depends="check-if-repo-exists">
         <antcall target="git.clone">
             <param name="local-repo-name" value="${repo-name}"/>
             <param name="origin" value="${git.public.remotes.origin.org}/${repo-name}.git"/>
@@ -63,7 +76,7 @@
     </target>
 
     <!-- TODO(AR) these should likely move to HistoryAtState -->
-    <target name="git.clone.joewiz">
+    <target name="git.clone.joewiz"  depends="check-if-repo-exists">
         <antcall target="git.clone">
             <param name="local-repo-name" value="${repo-name}"/>
             <param name="origin" value="${git.joewiz.remotes.origin.org}/${repo-name}.git"/>
@@ -515,7 +528,7 @@
 
     <target name="git.clone">
         <echo message="Cloning ${origin}..."/>
-        <exec executable="${git}" outputproperty="git.output" dir="${repos}" failonerror="true">
+        <exec executable="${git}" outputproperty="git.output" dir="${repos}" failonerror="${fail-on-error}">
             <arg line="clone"/>
             <arg line="--depth 1"/>
             <arg line="${origin}"/>
@@ -531,14 +544,14 @@
 
         <echo if:true="${set-upstream}" message="Configuring upstream: ${upstream}..."/>
 
-        <exec if:true="${set-upstream}" executable="${git}" dir="${repos}/${local-repo-name}" failonerror="true">
+        <exec if:true="${set-upstream}" executable="${git}" dir="${repos}/${local-repo-name}" failonerror="${fail-on-error}">
             <arg line="remote"/>
             <arg line="add"/>
             <arg line="upstream"/>
             <arg line="${upstream}"/>
         </exec>
 
-        <exec if:true="${set-upstream}" executable="${git}" dir="${repos}/${local-repo-name}" failonerror="true">
+        <exec if:true="${set-upstream}" executable="${git}" dir="${repos}/${local-repo-name}" failonerror="${fail-on-error}">
             <arg line="fetch"/>
             <arg line="upstream"/>
         </exec>
