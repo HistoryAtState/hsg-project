@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." name="HsgProject" default="all" xmlns:xdb="http://exist-db.org/ant">
+<project basedir="." name="HsgProject" default="all" xmlns:if="ant:if" xmlns:unless="ant:unless" xmlns:xdb="http://exist-db.org/ant">
     <property file="build/local.build.properties"/>
     <property file="build/build.properties"/>
 
     <property name="repos" value="repos"/>
-    <property name="mvn-target" value="target"/>
-    <property name="libs" value="${mvn-target}/dependency"/>
+    <property name="libs" value="lib"/>
     <property name="build" value="build"/>
 
     <property name="build-env" value=""/>
-    
+
     <property name="eXist.home.mac-dmg-installer" value="/Applications/eXist-db.app"/>
     <property name="eXist.data.mac-dmg-installer" value="/Library/Application Support/org.exist"/>
 
     <!-- use "xars" unless called with a "repo-name" property -->
-    <condition property="xars" value="${repo-name}" else="${mvn-target}/xars">
+    <condition property="xars" value="${repo-name}" else="xars">
         <isset property="repo-name"/>
     </condition>
     <property name="instance.tempColl" value="hsg-temp"/>
@@ -23,27 +22,70 @@
     <property name="production.instance.temp" value="${production.instance.uri}${instance.tempPath}"/>
     <property name="development.instance.temp" value="${development.instance.uri}${instance.tempPath}"/>
 
-    <target name="all" depends="ping-localhost,ping-public-repo,clean,update,build,deploy"
-        description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
 
-    <condition property="remotes.include-private">
-        <istrue value="${remotes.include-private}"/>
+    <target name="all" depends="ping-localhost,ping-public-repo,clean,update,build,deploy"
+            description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
+
+    <condition property="git.private.include">
+        <istrue value="${git.private.include}"/>
     </condition>
 
-    <target name="clone-private-repos" if="${remotes.include-private}"
-        description="Clone private packages">
+    <target name="clone-private-repos" if="${git.private.include}"
+            description="Clone private packages">
         <echo message="Cloning private packages into ${repos}..."/>
-        <foreach-js property="remotes.private" target="git.clone"/>
+        <foreach list="${git.private.repo-names}" delimiter="," parallel="false" target="git.clone.private" param="repo-name"/>
+    </target>
+
+    <target name="check-if-repo-exists">
+        <condition property="repo-exists" value="true" else="false">
+            <available file="${repos}/${repo-name}" type="dir"/>
+        </condition>
+
+        <echo if:true="${repo-exists}" message="If you need to re-clone this repo, please delete 'hsg-shell' and try again."/>
+
+        <!-- let the command git.clone only fail on error, if the to-be-cloned repo is not yet existing, e.g. on an initial setup -->
+        <condition property="fail-on-error" value="false" else="true">
+            <istrue value="${repo-exists}"/>
+        </condition>
+    </target>
+
+    <target name="git.clone.private" depends="check-if-repo-exists">
+        <antcall target="git.clone">
+            <param name="local-repo-name" value="${repo-name}"/>
+            <param name="origin" value="${git.private.remotes.origin.org}/${repo-name}.git"/>
+            <param name="upstream" value="${git.private.remotes.upstream.org}/${repo-name}.git"/>
+        </antcall>
     </target>
 
     <target name="clone-public-repos">
         <echo message="Cloning required packages into ${repos}..."
-            description="Clone public packages"/>
-        <foreach-js property="remotes" target="git.clone"/>
+              description="Clone public packages"/>
+        <foreach list="${git.public.repo-names}" delimiter="," parallel="false" target="git.clone.public" param="repo-name"/>
+
+        <!-- TODO(AR) these should likely move to HistoryAtState -->
+        <foreach list="${git.joewiz.repo-names}" delimiter="," parallel="false" target="git.clone.joewiz" param="repo-name"/>
+    </target>
+
+    <target name="git.clone.public" depends="check-if-repo-exists">
+        <antcall target="git.clone">
+            <param name="local-repo-name" value="${repo-name}"/>
+            <param name="origin" value="${git.public.remotes.origin.org}/${repo-name}.git"/>
+            <param name="upstream" value="${git.public.remotes.upstream.org}/${repo-name}.git"/>
+        </antcall>
+    </target>
+
+    <!-- TODO(AR) these should likely move to HistoryAtState -->
+    <target name="git.clone.joewiz"  depends="check-if-repo-exists">
+        <antcall target="git.clone">
+            <param name="local-repo-name" value="${repo-name}"/>
+            <param name="origin" value="${git.joewiz.remotes.origin.org}/${repo-name}.git"/>
+            <param name="upstream" value="${git.joewiz.remotes.upstream.org}/${repo-name}.git"/>
+        </antcall>
     </target>
 
     <target name="setup" depends="prepare,mvn-copy-dependencies,upgrade-local-build-properties,clone-public-repos,clone-private-repos"
-        description="Clone required repositories">
+            description="Clone required repositories">
         <echo message="Completed cloning of repositories..."/>
     </target>
 
@@ -52,43 +94,67 @@
     </target>
 
     <target name="deploy" description="Deploy all packages"
-        depends="ping-localhost,ping-public-repo,deploy.init,deploy.install-packages-from-public-repo,deploy.upload,deploy.deploy,deploy.cleanup"/>
+            depends="ping-localhost,ping-public-repo,deploy.init,deploy.install-packages-from-public-repo,deploy.upload,deploy.deploy,deploy.cleanup"/>
 
     <target name="deploy-one" description="Deploy one package"
-        depends="ping-localhost,ping-public-repo,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
+            depends="ping-localhost,ping-public-repo,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
 
     <target name="deploy-to-production-server" description="Deploy all packages to development server"
-        depends="ping-production,deploy.init,deploy.install-packages-from-public-repo-to-production,deploy.upload-to-production,deploy.deploy-to-production,deploy.cleanup-production"/>
+            depends="ping-production,deploy.init,deploy.install-packages-from-public-repo-to-production,deploy.upload-to-production,deploy.deploy-to-production,deploy.cleanup-production"/>
 
     <target name="deploy-to-dev-server" description="Deploy all packages to development server"
-        depends="ping-dev-server,ping-public-repo,deploy.init,deploy.install-packages-from-public-repo-to-dev,deploy.upload-to-dev,deploy.deploy-to-dev,deploy.cleanup-dev"/>
+            depends="ping-dev-server,ping-public-repo,deploy.init,deploy.install-packages-from-public-repo-to-dev,deploy.upload-to-dev,deploy.deploy-to-dev,deploy.cleanup-dev"/>
 
     <target name="prepare">
-        <!-- The following 2 deletions are needed now that we move libs and xars into target -->
-        <delete dir="lib"/>
-        <delete dir="xars"/>
+        <mkdir dir="${libs}"/>
+        <mkdir dir="${xars}"/>
         <mkdir dir="${repos}"/>
     </target>
-    
+
     <target name="mvn-copy-dependencies" depends="prepare">
+        <delete>
+            <fileset dir="${libs}">
+                <include name="*.jar"/>
+            </fileset>
+        </delete>
         <exec executable="${mvn}" dir=".">
-            <arg line="clean"/>
-            <arg line="dependency:copy-dependencies"/>
-            <arg line="dependency:unpack"/>
+            <arg line="dependency:copy-dependencies -DoutputDirectory=${libs}" />
         </exec>
-        <mkdir dir="${xars}"/>
     </target>
 
     <target name="update">
         <echo message="-------------------------------------"/>
         <echo message="Pulling updates for all repositories"/>
         <echo message="-------------------------------------"/>
-        <iterate target="git.pull"/>
+
+        <antcall target="update-public-repos"/>
+        <antcall target="update-private-repos"/>
+    </target>
+
+    <target name="update-private-repos" if="${git.private.include}"
+            description="Update private packages">
+        <echo message="Cloning private packages into ${repos}..."/>
+        <foreach list="${git.private.repo-names}" delimiter="," parallel="false" target="git.pull-path" param="repo-name"/>
+    </target>
+
+    <target name="update-public-repos">
+        <echo message="Updating required packages into ${repos}..."
+              description="Update public packages"/>
+        <foreach list="${git.public.repo-names}" delimiter="," parallel="false" target="git.pull-path" param="repo-name"/>
+
+        <!-- TODO(AR) these should likely move to HistoryAtState -->
+        <foreach list="${git.joewiz.repo-names}" delimiter="," parallel="false" target="git.pull-path" param="repo-name"/>
+    </target>
+
+    <target name="git.pull-path">
+        <antcall target="git.pull">
+            <param name="local-repo-path" value="${repos}/${repo-name}"/>
+        </antcall>
     </target>
 
     <target name="update-one">
         <antcall target="git.pull">
-            <param name="dir" value="${repos}/${repo-name}"/>
+            <param name="local-repo-path" value="${repos}/${repo-name}"/>
         </antcall>
     </target>
 
@@ -110,7 +176,7 @@
     <target name="deploy.upload">
         <echo message="Uploading packages ..."/>
         <xdb:store uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}" createcollection="true">
+                   password="${local.instance.password}" createcollection="true">
             <fileset dir="${xars}">
                 <include name="*.xar"/>
             </fileset>
@@ -120,7 +186,7 @@
     <target name="deploy.upload-to-production">
         <echo message="Uploading packages ..."/>
         <xdb:store uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}" createcollection="true">
+                   password="${production.instance.password}" createcollection="true">
             <fileset dir="${xars}">
                 <include name="*.xar"/>
             </fileset>
@@ -130,7 +196,7 @@
     <target name="deploy.upload-to-dev">
         <echo message="Uploading packages ..."/>
         <xdb:store uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}" createcollection="true">
+                   password="${development.instance.password}" createcollection="true">
             <fileset dir="${xars}">
                 <include name="*.xar"/>
             </fileset>
@@ -140,15 +206,15 @@
     <target name="deploy.upload-one" depends="deploy.get-xar-filename">
         <echo message="Uploading package ${repo-name} ..."/>
         <xdb:store uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}" createcollection="true"
-            srcfile="${repos}/${repo-name}/${build}/${xar}"/>
+                   password="${local.instance.password}" createcollection="true"
+                   srcfile="${repos}/${repo-name}/${build}/${xar}"/>
     </target>
 
     <target name="deploy.upload-one-to-production" depends="deploy.get-xar-filename">
         <echo message="Uploading package ${repo-name} ..."/>
         <xdb:store uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}" createcollection="true" ssl="true"
-            srcfile="${repos}/${repo-name}/${build}/${xar}"/>
+                   password="${production.instance.password}" createcollection="true" ssl="true"
+                   srcfile="${repos}/${repo-name}/${build}/${xar}"/>
     </target>
 
     <target name="deploy.deploy">
@@ -169,33 +235,33 @@
     <target name="deploy.install-packages-from-public-repo">
         <echo message="Installing packages from public repo..."/>
         <xdb:create uri="${local.instance.uri}/db" user="${local.instance.user}"
-            password="${local.instance.password}" collection="${instance.tempColl}"/>
+                    password="${local.instance.password}" collection="${instance.tempColl}"/>
         <echo message="Installing Shared Resources..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo.lookup}')"/>
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Publisher Libraries..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Crypto Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing SAML Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
@@ -208,33 +274,33 @@
     <target name="deploy.install-packages-from-public-repo-to-production">
         <echo message="Installing packages from eXist-db.org public repo ..."/>
         <xdb:create uri="${production.instance.uri}/db" user="${production.instance.user}"
-            password="${production.instance.password}" collection="${instance.tempColl}"/>
+                    password="${production.instance.password}" collection="${instance.tempColl}"/>
         <echo message="Installing Shared Resources..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}"
-            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo.lookup}')"/>
+                    password="${production.instance.password}"
+                    query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Publisher Libraries..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}"
-            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
+                    password="${production.instance.password}"
+                    query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
+                    password="${production.instance.password}"
+                    query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Crypto Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing SAML Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
@@ -247,33 +313,33 @@
     <target name="deploy.install-packages-from-public-repo-to-dev">
         <echo message="Installing packages from eXist-db.org public repo ..."/>
         <xdb:create uri="${development.instance.uri}/db" user="${development.instance.user}"
-            password="${development.instance.password}" collection="${instance.tempColl}"/>
+                    password="${development.instance.password}" collection="${instance.tempColl}"/>
         <echo message="Installing Shared Resources..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Simple PM..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}"
-            query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo.lookup}')"/>
+                    password="${development.instance.password}"
+                    query="repo:install-and-deploy('http://www.tei-c.org/tei-simple', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing TEI Publisher Libraries..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}"
-            query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
+                    password="${development.instance.password}"
+                    query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Memsort XQuery Module..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
+                    password="${development.instance.password}"
+                    query="repo:install-and-deploy('http://exist-db.org/xquery/memsort', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Crypto Module..."/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}"
-            query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
+                    password="${development.instance.password}"
+                    query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
         <echo message="Installing SAML Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
+                    password="${local.instance.password}"
+                    query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on development system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
@@ -284,9 +350,9 @@
     </target>
 
     <target name="deploy.get-xar-filename" unless="xar">
-        <path id="xar-path-ref"> 
-            <fileset dir="${repos}/${repo-name}/${build}"> 
-                <include name="*.xar"/> 
+        <path id="xar-path-ref">
+            <fileset dir="${repos}/${repo-name}/${build}">
+                <include name="*.xar"/>
             </fileset>
         </path>
         <property name="xar-path" refid="xar-path-ref"/>
@@ -296,8 +362,8 @@
     <target name="deploy.deploy-xar" depends="deploy.get-xar-filename">
         <echo message="Deploying xar ${xar}"/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}" queryFile="${build}/deploy.xql"
-            outputproperty="deploy.output">
+                    password="${local.instance.password}" queryFile="${build}/deploy.xql"
+                    outputproperty="deploy.output">
             <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
             <variable name="repo" value="${eXist.public-repo.lookup}"/>
@@ -308,8 +374,8 @@
     <target name="deploy.deploy-xar-to-production" depends="deploy.get-xar-filename">
         <echo message="Deploying xar ${xar}"/>
         <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}" queryFile="${build}/deploy.xql"
-            outputproperty="deploy.output" ssl="true">
+                    password="${production.instance.password}" queryFile="${build}/deploy.xql"
+                    outputproperty="deploy.output" ssl="true">
             <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
             <variable name="repo" value="${eXist.public-repo.lookup}"/>
@@ -320,8 +386,8 @@
     <target name="deploy.deploy-xar-to-dev" depends="deploy.get-xar-filename">
         <echo message="Deploying xar ${xar}"/>
         <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}" queryFile="${build}/deploy.xql"
-            outputproperty="deploy.output" ssl="true">
+                    password="${development.instance.password}" queryFile="${build}/deploy.xql"
+                    outputproperty="deploy.output" ssl="true">
             <variable name="temp" value="${instance.tempPath}"/>
             <variable name="xar" value="${xar}"/>
             <variable name="repo" value="${eXist.public-repo.lookup}"/>
@@ -332,19 +398,19 @@
     <target name="deploy.cleanup">
         <echo message="Removing temporary collection ..."/>
         <xdb:remove uri="${local.instance.temp}" user="${local.instance.user}"
-            password="${local.instance.password}" collection="${instance.tempPath}"/>
+                    password="${local.instance.password}" collection="${instance.tempPath}"/>
     </target>
 
     <target name="deploy.cleanup-production">
         <echo message="Removing temporary collection ..."/>
         <xdb:remove uri="${production.instance.temp}" user="${production.instance.user}"
-            password="${production.instance.password}" collection="${instance.tempPath}"/>
+                    password="${production.instance.password}" collection="${instance.tempPath}"/>
     </target>
 
     <target name="deploy.cleanup-dev">
         <echo message="Removing temporary collection ..."/>
         <xdb:remove uri="${development.instance.temp}" user="${development.instance.user}"
-            password="${development.instance.password}" collection="${instance.tempPath}"/>
+                    password="${development.instance.password}" collection="${instance.tempPath}"/>
     </target>
 
     <target name="clean" description="Call clean on all package dirs; remove built xars">
@@ -361,9 +427,10 @@
     </target>
 
     <target name="clean-all" depends="clean"
-        description="Clean everything, including checked out repos, downloaded libs, and built xars">
+            description="Clean everything, including checked out repos, downloaded libs, and built xars">
+        <delete dir="${libs}" failonerror="false"/>
         <delete dir="${repos}" failonerror="false"/>
-        <delete dir="${mvn-target}" failonerror="false"/>
+        <delete dir="${xars}" failonerror="false"/>
     </target>
 
     <!-- Called on each directory in repos to build it -->
@@ -378,7 +445,7 @@
                 <include name="build.xml"/>
             </fileset>
         </subant>
-        <copy todir="${xars}" failonerror="false">
+        <copy todir="xars/" failonerror="false">
             <fileset dir="${dir}/build">
                 <include name="*.xar"/>
             </fileset>
@@ -387,13 +454,13 @@
     </target>
 
     <target name="git.pull">
-        <echo message="Updating ${dir}..."/>
-        <delete file="${dir}/package-lock.json"/>
-        <exec executable="${git}" dir="${dir}">
+        <echo message="Updating ${local-repo-path}..."/>
+        <delete file="${local-repo-path}/package-lock.json"/>
+        <exec executable="${git}" dir="${local-repo-path}" failonerror="true">
             <arg line="pull"/>
             <arg line="--recurse-submodules"/>
         </exec>
-        <exec executable="${git}" dir="${dir}">
+        <exec executable="${git}" dir="${local-repo-path}" failonerror="true">
             <arg line="submodule"/>
             <arg line="update"/>
             <arg line="--recursive"/>
@@ -459,34 +526,36 @@
         ]]>
     </scriptdef>
 
-    <scriptdef name="foreach-js" language="javascript">
-        <attribute name="target"/>
-        <attribute name="property"/>
-        <![CDATA[
-            var input = project.getProperty(attributes.get("property"));
-            var items = input.split(/\s*,\s*/);
-            for (i=0; i < items.length; i++) {
-              // create and use a Task via Ant API
-              antc = project.createTask("antcall");
-              var prop = antc.createParam();
-              prop.setName("item");
-              prop.setValue(items[i]);
-
-              antc.setTarget(attributes.get("target"));
-              antc.perform();
-            }
-        ]]>
-    </scriptdef>
-
     <target name="git.clone">
-        <echo message="Cloning ${item}..."/>
-        <exec executable="${git}" outputproperty="git.output" dir="${repos}">
+        <echo message="Cloning ${origin}..."/>
+        <exec executable="${git}" outputproperty="git.output" dir="${repos}" failonerror="${fail-on-error}">
             <arg line="clone"/>
-            <arg line="--depth"/>
-            <arg line="1"/>
-            <arg line="${item}"/>
+            <arg line="--depth 1"/>
+            <arg line="${origin}"/>
+            <arg line="${local-repo-name}"/>
         </exec>
         <echo message="${git.output}"/>
+
+        <condition property="set-upstream">
+            <not>
+                <equals arg1="${origin}" arg2="${upstream}"/>
+            </not>
+        </condition>
+
+        <echo if:true="${set-upstream}" message="Configuring upstream: ${upstream}..."/>
+
+        <exec if:true="${set-upstream}" executable="${git}" dir="${repos}/${local-repo-name}" failonerror="${fail-on-error}">
+            <arg line="remote"/>
+            <arg line="add"/>
+            <arg line="upstream"/>
+            <arg line="${upstream}"/>
+        </exec>
+
+        <exec if:true="${set-upstream}" executable="${git}" dir="${repos}/${local-repo-name}" failonerror="${fail-on-error}">
+            <arg line="fetch"/>
+            <arg line="upstream"/>
+        </exec>
+
     </target>
 
     <target name="test">
@@ -506,8 +575,8 @@
     </target>
 
     <target name="upload-file-to-localhost"
-        description="Upload a file from an hsg-project repo to eXist-db on localhost"
-        depends="deploy.init,validate-if-xml,ping-localhost">
+            description="Upload a file from an hsg-project repo to eXist-db on localhost"
+            depends="deploy.init,validate-if-xml,ping-localhost">
         <property name="directory" value="${directory}"/>
         <property name="file-name" value="${file-name}"/>
         <property name="file-path" value="${directory}/${file-name}"/>
@@ -523,29 +592,29 @@
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
-            unless="${is-hsg-project-repo}"/>
+              unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <propertyregex property="target-collection" input="${file-path.unix}"
-            regexp=".*?/hsg-project/${repos}/(hsg-staging/)?(.*)" select="/db/apps/\2"
-            defaultvalue="Error" override="true"/>
+                       regexp=".*?/hsg-project/${repos}/(hsg-staging/)?(.*)" select="/db/apps/\2"
+                       defaultvalue="Error" override="true"/>
         <property name="target-xmldb-collection-uri"
-            value="${local.instance.uri}${target-collection}"/>
+                  value="${local.instance.uri}${target-collection}"/>
         <xdb:store user="${local.instance.user}" password="${local.instance.password}"
-            uri="${target-xmldb-collection-uri}" createcollection="true" createsubcollections="true">
+                   uri="${target-xmldb-collection-uri}" createcollection="true" createsubcollections="true">
             <fileset refid="file"/>
         </xdb:store>
     </target>
 
     <target name="upload-file-to-production"
-        description="Upload a file from an hsg-project repo to eXist-db on history.state.gov"
-        depends="deploy.init,validate-if-xml,ping-production">
+            description="Upload a file from an hsg-project repo to eXist-db on history.state.gov"
+            depends="deploy.init,validate-if-xml,ping-production">
         <property name="directory" value="${directory}"/>
         <property name="file-name" value="${file-name}"/>
         <property name="file-path" value="${directory}/${file-name}"/>
         <echo
-            message="Uploading ${file-name} from ${directory} to eXist-db on history.state.gov"/>
+                message="Uploading ${file-name} from ${directory} to eXist-db on history.state.gov"/>
         <path id="parent-dir">
             <pathelement path="${directory}"/>
         </path>
@@ -557,28 +626,28 @@
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
-            unless="${is-hsg-project-repo}"/>
+              unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail
-            message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be uploaded to the production server"
-            if="${is-hsg-staging-repo}"/>
+                message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be uploaded to the production server"
+                if="${is-hsg-staging-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
-            regexp=".*?/hsg-project/${repos}/(.*)" select="/db/apps/\1" defaultvalue="Error"
-            override="true"/>
+                       regexp=".*?/hsg-project/${repos}/(.*)" select="/db/apps/\1" defaultvalue="Error"
+                       override="true"/>
         <property name="target-xmldb-collection-uri"
-            value="${production.instance.uri}${target-collection}"/>
+                  value="${production.instance.uri}${target-collection}"/>
         <xdb:store user="${production.instance.user}" password="${production.instance.password}"
-            uri="${target-xmldb-collection-uri}" ssl="true" createcollection="true"
-            createsubcollections="true">
+                   uri="${target-xmldb-collection-uri}" ssl="true" createcollection="true"
+                   createsubcollections="true">
             <fileset refid="file"/>
         </xdb:store>
     </target>
 
     <target name="delete-file-from-localhost"
-        description="Delete a file from an hsg-project repo from eXist-db on localhost"
-        depends="deploy.init">
+            description="Delete a file from an hsg-project repo from eXist-db on localhost"
+            depends="deploy.init">
         <property name="directory" value="${directory}"/>
         <property name="file-name" value="${file-name}"/>
         <property name="file-path" value="${directory}/${file-name}"/>
@@ -594,19 +663,19 @@
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
-            unless="${is-hsg-project-repo}"/>
+              unless="${is-hsg-project-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
-            regexp=".*?/hsg-project/${repos}/(hsg-staging/)?(.*)" select="/db/apps/\2"
-            defaultvalue="Error" override="true"/>
+                       regexp=".*?/hsg-project/${repos}/(hsg-staging/)?(.*)" select="/db/apps/\2"
+                       defaultvalue="Error" override="true"/>
         <property name="target-xmldb-collection-uri"
-            value="${local.instance.uri}${target-collection}"/>
+                  value="${local.instance.uri}${target-collection}"/>
         <xdb:remove user="${local.instance.user}" password="${local.instance.password}"
-            uri="${target-xmldb-collection-uri}" resource="${file-name}"/>
+                    uri="${target-xmldb-collection-uri}" resource="${file-name}"/>
     </target>
 
     <target name="delete-file-from-production"
-        description="Delete a file from an hsg-project repo from eXist-db on history.state.gov"
-        depends="deploy.init">
+            description="Delete a file from an hsg-project repo from eXist-db on history.state.gov"
+            depends="deploy.init">
         <property name="directory" value="${directory}"/>
         <property name="file-name" value="${file-name}"/>
         <property name="file-path" value="${directory}/${file-name}"/>
@@ -622,25 +691,25 @@
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
-            unless="${is-hsg-project-repo}"/>
+              unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail
-            message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be uploaded to the production server"
-            if="${is-hsg-staging-repo}"/>
+                message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be uploaded to the production server"
+                if="${is-hsg-staging-repo}"/>
         <propertyregex property="target-collection" input="${file-path.unix}"
-            regexp=".*?/hsg-project/repos/(.*)" select="/db/apps/\1" defaultvalue="Error"
-            override="true"/>
+                       regexp=".*?/hsg-project/repos/(.*)" select="/db/apps/\1" defaultvalue="Error"
+                       override="true"/>
         <property name="target-xmldb-collection-uri"
-            value="${production.instance.uri}${target-collection}"/>
+                  value="${production.instance.uri}${target-collection}"/>
         <xdb:remove user="${production.instance.user}" password="${production.instance.password}"
-            uri="${target-xmldb-collection-uri}" resource="${file-name}" ssl="true"/>
+                    uri="${target-xmldb-collection-uri}" resource="${file-name}" ssl="true"/>
     </target>
 
     <target name="update-repo"
-        description="Pull updates for the parent repo of a file (from an hsg-project repo)"
-        depends="deploy.init">
+            description="Pull updates for the parent repo of a file (from an hsg-project repo)"
+            depends="deploy.init">
         <property name="directory" value="${directory}"/>
         <path id="parent-dir">
             <pathelement path="${directory}"/>
@@ -652,11 +721,11 @@
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
-            unless="${is-hsg-project-repo}"/>
+              unless="${is-hsg-project-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
-            regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
+                       regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
         <antcall target="git.pull">
-            <param name="dir" value="${repos}/${repo-name}"/>
+            <param name="local-repo-path" value="${repos}/${repo-name}"/>
         </antcall>
     </target>
 
@@ -675,8 +744,8 @@
     </target>
 
     <target name="deploy-repo-to-localhost"
-        description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on localhost"
-        depends="deploy.init">
+            description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on localhost"
+            depends="deploy.init">
         <path id="parent-dir">
             <pathelement path="${directory}"/>
         </path>
@@ -687,16 +756,16 @@
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
-            unless="${is-hsg-project-repo}"/>
+              unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail
-            message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be deployed"
-            if="${is-hsg-staging-repo}"/>
+                message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be deployed"
+                if="${is-hsg-staging-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
-            regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error"
-            override="true"/>
+                       regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error"
+                       override="true"/>
         <echo>Validating well-formedness of XML files in ${repo-name}</echo>
         <xmlvalidate lenient="true">
             <fileset dir="${repos}/${repo-name}" includes="**/**.xml,**/**.xconf" excludes="node_modules/**"/>
@@ -712,8 +781,8 @@
     </target>
 
     <target name="deploy-repo-to-production"
-        description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on history.state.gov"
-        depends="deploy.init">
+            description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on history.state.gov"
+            depends="deploy.init">
         <path id="parent-dir">
             <pathelement path="${directory}"/>
         </path>
@@ -724,15 +793,15 @@
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
         </condition>
         <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
-            unless="${is-hsg-project-repo}"/>
+              unless="${is-hsg-project-repo}"/>
         <condition property="is-hsg-staging-repo">
             <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
         </condition>
         <fail
-            message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be deployed"
-            if="${is-hsg-staging-repo}"/>
+                message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be deployed"
+                if="${is-hsg-staging-repo}"/>
         <propertyregex property="repo-name" input="${file-path.unix}"
-            regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
+                       regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
         <echo>Validating well-formedness of XML files in ${repo-name}</echo>
         <xmlvalidate lenient="true">
             <fileset dir="${repos}/${repo-name}" includes="**/**.xml,**/**.xconf" excludes="node_modules/**"/>
@@ -750,7 +819,7 @@
     </target>
 
     <target name="open-repo-in-github-desktop"
-        description="Opens an hsg-project repo in oXygen XML Editor" depends="deploy.init">
+            description="Opens an hsg-project repo in oXygen XML Editor" depends="deploy.init">
         <property name="directory" value="${directory}"/>
         <path id="parent-dir">
             <pathelement path="${directory}"/>
@@ -759,7 +828,7 @@
             <map from="c:" to=""/>
         </pathconvert>
         <propertyregex property="repo-basepath" input="${file-path.unix}"
-            regexp="(.*?/hsg-project/${repos}/[^/]*)" select="\1" defaultvalue="ERROR" override=""/>
+                       regexp="(.*?/hsg-project/${repos}/[^/]*)" select="\1" defaultvalue="ERROR" override=""/>
         <fail message="ERROR: The directory ${file-path.unix} is not an hsg-project repo">
             <condition>
                 <equals arg1="${repo-basepath}" arg2="ERROR"/>
@@ -771,7 +840,7 @@
     </target>
 
     <target name="open-repo-in-vscode" description="Opens an hsg-project repo in Visual Studio Code"
-        depends="deploy.init">
+            depends="deploy.init">
         <property name="directory" value="${directory}"/>
         <path id="parent-dir">
             <pathelement path="${directory}"/>
@@ -780,16 +849,16 @@
             <map from="c:" to=""/>
         </pathconvert>
         <propertyregex property="repo-basepath" input="${file-path.unix}"
-            regexp="(.*?/hsg-project/${repos}/[^/]*)" select="\1" defaultvalue="ERROR" override=""/>
+                       regexp="(.*?/hsg-project/${repos}/[^/]*)" select="\1" defaultvalue="ERROR" override=""/>
         <fail message="ERROR: The directory ${file-path.unix} is not an hsg-project repo">
             <condition>
                 <equals arg1="${repo-basepath}" arg2="ERROR"/>
             </condition>
         </fail>
         <propertyregex property="repo" input="${file-path.unix}"
-            regexp=".*?/hsg-project/${repos}/([^/]*)" select="\1" override=""/>
+                       regexp=".*?/hsg-project/${repos}/([^/]*)" select="\1" override=""/>
         <copy file="${build}/vscode-existdb_tmpl.json" tofile="${repo-basepath}/.existdb.json"
-            overwrite="yes"/>
+              overwrite="yes"/>
         <replace file="${repo-basepath}/.existdb.json" token="@@@" value="${repo}"/>
         <exec executable="${vscode}" dir="${repo-basepath}">
             <arg line="."/>
@@ -805,21 +874,21 @@
 
     <target name="ping-production">
         <condition property="exist-running">
-            <http requestmethod="GET" url="${production.instance.http}/test" />
+            <http requestmethod="GET" url="${production.instance.http}/test"/>
         </condition>
         <fail unless="${exist-running}" message="The production server cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
 
     <target name="ping-dev-server">
         <condition property="exist-running">
-            <http requestmethod="GET" url="${development.instance.http}" />
+            <http requestmethod="GET" url="${development.instance.http}"/>
         </condition>
         <fail unless="${exist-running}" message="The development server cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
-    
+
     <target name="ping-public-repo">
         <condition property="public-repo-accessible">
-            <http requestmethod="HEAD" url="${eXist.public-repo.lookup}?abbrev=functx" followRedirects="true"/>
+            <http requestmethod="HEAD" url="${eXist.public-repo.lookup}?abbrev=functx" />
         </condition>
         <fail unless="${public-repo-accessible}" message="The package repository at ${eXist.public-repo} cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
@@ -829,10 +898,10 @@
     <!-- =================================================================== -->
     <target name="wipe-exist-data" description="Wipe eXist data">
         <condition property="exist-running">
-            <http requestmethod="GET" url="http://localhost:8080/exist/status"/>
+            <http requestmethod="GET" url="http://localhost:8080/exist"/>
         </condition>
         <fail if="${exist-running}"
-            message="eXist is still running. Please shut down eXist and try again."/>
+              message="eXist is still running. Please shut down eXist and try again."/>
         <condition property="eXist.data-exists">
             <available file="${eXist.data}"/>
         </condition>
@@ -840,21 +909,7 @@
         <echo message="-------------------------"/>
         <echo message="Wiping eXist data"/>
         <echo message="-------------------------"/>
-        <delete dir="${eXist.data}/backup"/>
-        <delete dir="${eXist.data}/blob"/>
-        <delete dir="${eXist.data}/expathrepo"/>
-        <delete dir="${eXist.data}/fs"/>
-        <delete dir="${eXist.data}/fs.journal"/>
-        <delete dir="${eXist.data}/journal"/>
-        <delete dir="${eXist.data}/lucene"/>
-        <delete dir="${eXist.data}/metadata"/>
-        <delete dir="${eXist.data}/range"/>
-        <delete dir="${eXist.data}/sanity"/>
-        <delete>
-            <fileset dir="${eXist.data}"
-                includes="*.dbx,*.log,*.lck,spatial_index.*,counters,restxq.registry"
-                excludes=".DO_NOT_DELETE"/>
-        </delete>
+        <delete dir="${eXist.data}"/>
     </target>
 
     <target name="wipe-exist-data-with-confirmation" description="Wipe eXist data">
@@ -863,17 +918,17 @@
             <equals arg1="${are-you-sure}" arg2="true"/>
         </condition>
         <fail unless="${proceed}"
-            message="Halted 'Wipe eXist database' thanks to your selection of 'No'."/>
+              message="Halted 'Wipe eXist database' thanks to your selection of 'No'."/>
         <antcall target="wipe-exist-data"/>
     </target>
 
     <target name="create-new-local-build-properties"
-        description="Create a new local copy of build.properties, overwriting any existing copy">
+            description="Create a new local copy of build.properties, overwriting any existing copy">
         <copy file="${build}/build.properties" tofile="${build}/local.build.properties" overwrite="yes"/>
     </target>
 
     <target name="check-local-build-properties"
-        description="Check to make sure a local copy of build.properties is available" unless="exists-local-build-properties">
+            description="Check to make sure a local copy of build.properties is available" unless="exists-local-build-properties">
         <copy file="${build}/build.properties" tofile="${build}/local.build.properties"/>
     </target>
 
@@ -882,7 +937,7 @@
     </condition>
 
     <target name="upgrade-local-build-properties"
-        description="Upgrade local.build.properties file to latest build.properties while preserving passwords" depends="create-new-local-build-properties">
+            description="Upgrade local.build.properties file to latest build.properties while preserving passwords" depends="check-local-build-properties">
         <echo message="------------------------------------------------------------"/>
         <echo message="Upgrading local.build.properties file (preserving passwords)"/>
         <echo message="------------------------------------------------------------"/>
@@ -896,12 +951,12 @@
             <entry key="production.instance.password" value="${production.instance.password}"/>
             <entry key="development.instance.user" value="${development.instance.user}"/>
             <entry key="development.instance.password" value="${development.instance.password}"/>
-            <entry key="remotes.include-private" value="${remotes.include-private}"/>
+            <entry key="git.private.include" value="${git.private.include}"/>
         </propertyfile>
     </target>
 
     <target name="store-production-password"
-        description="Store production password in local.build.properties" depends="check-local-build-properties">
+            description="Store production password in local.build.properties" depends="check-local-build-properties">
         <property name="password" value="${password}"/>
         <propertyfile file="${build}/local.build.properties" comment="Updated with production.instance.password">
             <entry key="production.instance.password" value="${password}"/>
@@ -909,7 +964,7 @@
     </target>
 
     <target name="configure-for-exist-on-mac-system"
-        description="Configure hsg-project for use with eXist on a Mac system" depends="check-local-build-properties">
+            description="Configure hsg-project for use with eXist on a Mac system" depends="check-local-build-properties">
         <property name="user-home" value="${user-home}"/>
         <propertyfile file="${build}/local.build.properties" comment="Updated to use eXist data and home locations, assuming macOS DMG installer, for ${user-home}">
             <entry key="eXist.data" value="${user-home}${eXist.data.mac-dmg-installer}"/>
@@ -918,8 +973,8 @@
     </target>
 
     <target name="apply-hsg-project-customizations-to-exist"
-        description="Apply hsg-project customizations to eXist"
-        depends="upgrade-local-build-properties,prepare-exist-configuration"/>
+            description="Apply hsg-project customizations to eXist"
+            depends="upgrade-local-build-properties,prepare-exist-configuration"/>
 
     <target name="prepare-exist-configuration" depends="back-up-exist-configuration-file">
         <echo message="-------------------------------------------------------"/>
