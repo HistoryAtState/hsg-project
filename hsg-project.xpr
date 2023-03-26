@@ -837,6 +837,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -996,6 +999,9 @@
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="enableAssertions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowSyntaxExtensions">
                                                     <Boolean>false</Boolean>
                                                 </field>
                                                 <field name="showVersionWarnings">
@@ -1159,6 +1165,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -1318,6 +1327,9 @@
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="enableAssertions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowSyntaxExtensions">
                                                     <Boolean>false</Boolean>
                                                 </field>
                                                 <field name="showVersionWarnings">
@@ -1481,6 +1493,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -1640,6 +1655,9 @@
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="enableAssertions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowSyntaxExtensions">
                                                     <Boolean>false</Boolean>
                                                 </field>
                                                 <field name="showVersionWarnings">
@@ -1803,6 +1821,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -1962,6 +1983,9 @@
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="enableAssertions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowSyntaxExtensions">
                                                     <Boolean>false</Boolean>
                                                 </field>
                                                 <field name="showVersionWarnings">
@@ -2125,6 +2149,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -2284,6 +2311,9 @@
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="enableAssertions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowSyntaxExtensions">
                                                     <Boolean>false</Boolean>
                                                 </field>
                                                 <field name="showVersionWarnings">
@@ -2447,6 +2477,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -2606,6 +2639,9 @@
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="enableAssertions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowSyntaxExtensions">
                                                     <Boolean>false</Boolean>
                                                 </field>
                                                 <field name="showVersionWarnings">
@@ -2769,6 +2805,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -2928,6 +2967,9 @@
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="enableAssertions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowSyntaxExtensions">
                                                     <Boolean>false</Boolean>
                                                 </field>
                                                 <field name="showVersionWarnings">
@@ -3091,6 +3133,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -3250,6 +3295,9 @@
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="enableAssertions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowSyntaxExtensions">
                                                     <Boolean>false</Boolean>
                                                 </field>
                                                 <field name="showVersionWarnings">
@@ -3413,6 +3461,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -3572,6 +3623,9 @@
                                                     <Boolean>true</Boolean>
                                                 </field>
                                                 <field name="enableAssertions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowSyntaxExtensions">
                                                     <Boolean>false</Boolean>
                                                 </field>
                                                 <field name="showVersionWarnings">
@@ -3735,6 +3789,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -3896,6 +3953,9 @@
                                                 <field name="enableAssertions">
                                                     <Boolean>false</Boolean>
                                                 </field>
+                                                <field name="allowSyntaxExtensions">
+                                                    <Boolean>false</Boolean>
+                                                </field>
                                                 <field name="showVersionWarnings">
                                                     <Boolean>false</Boolean>
                                                 </field>
@@ -4024,6 +4084,422 @@
                                     <String-array/>
                                 </field>
                             </scenario>
+                            <antScenario>
+                                <field name="additionalAntArgs">
+                                    <String></String>
+                                </field>
+                                <field name="buildTarget">
+                                    <String></String>
+                                </field>
+                                <field name="buildFilePath">
+                                    <String>build.xml</String>
+                                </field>
+                                <field name="ditaParams">
+                                    <list>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>catalog</String>
+                                            </field>
+                                            <field name="description">
+                                                <String>The path to catalog files that will be used for all XSLTs involved in the XSpec execution. Separated by semicolons (;).</String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${xmlCatalogFilesList}</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>catalog.is.uri</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>true</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>clean.output.dir</String>
+                                            </field>
+                                            <field name="description">
+                                                <String>Cleans up all the intermediate files created by the unit process. Set in to false if you want to inspect these files.</String>
+                                            </field>
+                                            <field name="value">
+                                                <String>true</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>test.type</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${xpath_eval(((doc('${currentFileURL}')!*:description!(@query,@schematron)!substring(name(),1,1)),'t')[1])}</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.fail</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>false</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.project.dir</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${frameworksDir}/xspec/</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.result.html</String>
+                                            </field>
+                                            <field name="description">
+                                                <String>The file path where the test result HTML will be created.</String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${cfd}/${cfn}-result.html</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.schematron.preprocessor.step1</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>#none</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.schematron.preprocessor.step2</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>#none</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.schematron.preprocessor.step3</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${pd}/target/dependency/schxslt-xslt-only/pipeline-for-svrl.xsl</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>xspec.xml</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${cf}</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                        <antParameter>
+                                            <field name="name">
+                                                <String>saxon.custom.options</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <null/>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </antParameter>
+                                    </list>
+                                </field>
+                                <field name="jvmArgs">
+                                    <String>-Xmx256m</String>
+                                </field>
+                                <field name="useCustomJavaHome">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="customJavaHomeDir">
+                                    <String></String>
+                                </field>
+                                <field name="useCustomANTHome">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="customANTHomeDir">
+                                    <String></String>
+                                </field>
+                                <field name="workingDir">
+                                    <String>${pd}/target/dependency/xspec/</String>
+                                </field>
+                                <field name="showConsoleAlways">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="advancedOptionsMap">
+                                    <null/>
+                                </field>
+                                <field name="name">
+                                    <String>Run XSpec Test (HSG)</String>
+                                </field>
+                                <field name="baseURL">
+                                    <null/>
+                                </field>
+                                <field name="footerURL">
+                                    <null/>
+                                </field>
+                                <field name="fOPMethod">
+                                    <null/>
+                                </field>
+                                <field name="fOProcessorName">
+                                    <null/>
+                                </field>
+                                <field name="headerURL">
+                                    <null/>
+                                </field>
+                                <field name="inputXSLURL">
+                                    <null/>
+                                </field>
+                                <field name="inputXMLURL">
+                                    <null/>
+                                </field>
+                                <field name="defaultScenario">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="isFOPPerforming">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="type">
+                                    <String>ANT</String>
+                                </field>
+                                <field name="saveAs">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="openInBrowser">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="outputResource">
+                                    <null/>
+                                </field>
+                                <field name="openOtherLocationInBrowser">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="locationToOpenInBrowserURL">
+                                    <String>${cfd}/${cfn}-result.html</String>
+                                </field>
+                                <field name="openInEditor">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInHTMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInXMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInSVGPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInResultSetPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="useXSLTInput">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="xsltParams">
+                                    <list/>
+                                </field>
+                                <field name="cascadingStylesheets">
+                                    <String-array/>
+                                </field>
+                                <field name="xslTransformer">
+                                    <String>ANT</String>
+                                </field>
+                                <field name="extensionURLs">
+                                    <String-array>
+                                        <String>${oxygenHome}/classes</String>
+                                        <String>${oxygenHome}/lib/oxygenCommons.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen.jar</String>
+                                        <String>${oxygenHome}/lib/oxygenDeveloper.jar</String>
+                                        <String>${oxygenHome}/lib/oxygenEclipse.jar</String>
+                                        <String>${oxygenHome}/lib/oxygenDeveloperEclipse.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen-sandbox.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen-license.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen-basic-utilities.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen-editor-variables-parser.jar</String>
+                                        <String>${oxygenHome}/lib/xml-apis.jar</String>
+                                        <String>${oxygenHome}/lib/*resolver*.jar</String>
+                                        <String>${oxygenHome}/lib/*saxon*10*.jar</String>
+                                        <String>${oxygenHome}/lib/*saxon*9*.jar</String>
+                                        <String>${oxygenHome}/lib/oxygen-patched-slf4j.jar</String>
+                                        <String>${oxygenHome}/lib/logback-classic-*.jar</String>
+                                        <String>${oxygenHome}/lib/logback-core-*.jar</String>
+                                        <String>${oxygenHome}/lib/log4j-over-slf4j-*.jar</String>
+                                        <String>${oxygenHome}/lib/log4j-to-slf4j-*.jar</String>
+                                        <String>${oxygenHome}/lib/log4j-api-*.jar</String>
+                                        <String>${oxygenHome}/lib/*xerces*.jar</String>
+                                        <String>${oxygenHome}/lib/guava-*.jar</String>
+                                    </String-array>
+                                </field>
+                            </antScenario>
                             <scenario>
                                 <field name="advancedOptionsMap">
                                     <serializableOrderedMap>
@@ -4648,343 +5124,81 @@
                                     <String-array/>
                                 </field>
                             </scenario>
-                            <antScenario>
-                                <field name="additionalAntArgs">
-                                    <String></String>
-                                </field>
-                                <field name="buildTarget">
-                                    <String></String>
-                                </field>
-                                <field name="buildFilePath">
-                                    <String>build.xml</String>
-                                </field>
-                                <field name="ditaParams">
-                                    <list>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>catalog</String>
-                                            </field>
-                                            <field name="description">
-                                                <String>The path to catalog files that will be used for all XSLTs involved in the XSpec execution. Separated by semicolons (;).</String>
-                                            </field>
-                                            <field name="value">
-                                                <String>${xmlCatalogFilesList}</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>catalog.is.uri</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <String>true</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>clean.output.dir</String>
-                                            </field>
-                                            <field name="description">
-                                                <String>Cleans up all the intermediate files created by the unit process. Set in to false if you want to inspect these files.</String>
-                                            </field>
-                                            <field name="value">
-                                                <String>true</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>test.type</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <String>${xpath_eval(((doc('${currentFileURL}')!*:description!(@query,@schematron)!substring(name(),1,1)),'t')[1])}</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>xspec.fail</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <String>false</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>xspec.project.dir</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <String>${frameworksDir}/xspec/</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>xspec.result.html</String>
-                                            </field>
-                                            <field name="description">
-                                                <String>The file path where the test result HTML will be created.</String>
-                                            </field>
-                                            <field name="value">
-                                                <String>${cfd}/${cfn}-result.html</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>xspec.schematron.preprocessor.step1</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <String>#none</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>xspec.schematron.preprocessor.step2</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <String>#none</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>xspec.schematron.preprocessor.step3</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <String>${pd}/target/dependency/schxslt-xslt-only/pipeline-for-svrl.xsl</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>xspec.xml</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <String>${cf}</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                        <antParameter>
-                                            <field name="name">
-                                                <String>saxon.custom.options</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <null/>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </antParameter>
-                                    </list>
-                                </field>
-                                <field name="jvmArgs">
-                                    <String>-Xmx256m</String>
-                                </field>
-                                <field name="useCustomJavaHome">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="customJavaHomeDir">
-                                    <String></String>
-                                </field>
-                                <field name="useCustomANTHome">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="customANTHomeDir">
-                                    <String></String>
-                                </field>
-                                <field name="workingDir">
-                                    <String>${pd}/target/dependency/xspec/</String>
-                                </field>
-                                <field name="showConsoleAlways">
-                                    <Boolean>false</Boolean>
-                                </field>
+                            <scenario>
                                 <field name="advancedOptionsMap">
-                                    <null/>
+                                    <serializableOrderedMap>
+                                        <entry>
+                                            <String>Saxon-EE XQuery</String>
+                                            <xquerySaxonSAAdvancedOptions>
+                                                <field name="sourceValidation">
+                                                    <String>saxon.source.no.schema.based.validation</String>
+                                                </field>
+                                                <field name="treatResultValidationErrorsAsWarnings">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="enableXQueryUpdate">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="enableBackup">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="addCommentsForValidationErrors">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                                <field name="allowCallsOnExtensionFunctions">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="isEnabledLinkedTreeModel">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="stripWS">
+                                                    <String>saxon.strip.ws.none</String>
+                                                </field>
+                                                <field name="optimizationEnabled">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="useConfigFile">
+                                                    <Boolean>true</Boolean>
+                                                </field>
+                                                <field name="configSystemID">
+                                                    <String>${pdu}/repos/frus/schema/saxon-configuration.xml</String>
+                                                </field>
+                                                <field name="initializer">
+                                                    <String></String>
+                                                </field>
+                                                <field name="profilingOutputFile">
+                                                    <null/>
+                                                </field>
+                                                <field name="isProfilingEnabled">
+                                                    <Boolean>false</Boolean>
+                                                </field>
+                                            </xquerySaxonSAAdvancedOptions>
+                                        </entry>
+                                    </serializableOrderedMap>
                                 </field>
                                 <field name="name">
-                                    <String>Run XSpec Test (HSG)</String>
+                                    <String>Refresh facsimile</String>
                                 </field>
                                 <field name="baseURL">
-                                    <null/>
+                                    <String></String>
                                 </field>
                                 <field name="footerURL">
-                                    <null/>
+                                    <String></String>
                                 </field>
                                 <field name="fOPMethod">
-                                    <null/>
+                                    <String>pdf</String>
                                 </field>
                                 <field name="fOProcessorName">
-                                    <null/>
+                                    <String>Apache FOP</String>
                                 </field>
                                 <field name="headerURL">
-                                    <null/>
+                                    <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <null/>
+                                    <String>${pdu}/repos/frus/schema/refresh-facsimile.xq</String>
                                 </field>
                                 <field name="inputXMLURL">
-                                    <null/>
+                                    <String>${currentFileURL}</String>
                                 </field>
                                 <field name="defaultScenario">
                                     <Boolean>false</Boolean>
@@ -4993,22 +5207,22 @@
                                     <Boolean>false</Boolean>
                                 </field>
                                 <field name="type">
-                                    <String>ANT</String>
+                                    <String>XML_XQUERY</String>
                                 </field>
                                 <field name="saveAs">
                                     <Boolean>true</Boolean>
                                 </field>
                                 <field name="openInBrowser">
-                                    <Boolean>true</Boolean>
+                                    <Boolean>false</Boolean>
                                 </field>
                                 <field name="outputResource">
-                                    <null/>
+                                    <String>${cf}</String>
                                 </field>
                                 <field name="openOtherLocationInBrowser">
-                                    <Boolean>true</Boolean>
+                                    <Boolean>false</Boolean>
                                 </field>
                                 <field name="locationToOpenInBrowserURL">
-                                    <String>${cfd}/${cfn}-result.html</String>
+                                    <null/>
                                 </field>
                                 <field name="openInEditor">
                                     <Boolean>false</Boolean>
@@ -5026,44 +5240,46 @@
                                     <Boolean>false</Boolean>
                                 </field>
                                 <field name="useXSLTInput">
-                                    <Boolean>false</Boolean>
+                                    <Boolean>true</Boolean>
                                 </field>
                                 <field name="xsltParams">
-                                    <list/>
+                                    <list>
+                                        <transformationParameter>
+                                            <field name="paramDescription">
+                                                <paramDescriptor>
+                                                    <field name="localName">
+                                                        <String>path</String>
+                                                    </field>
+                                                    <field name="prefix">
+                                                        <null/>
+                                                    </field>
+                                                    <field name="namespace">
+                                                        <null/>
+                                                    </field>
+                                                </paramDescriptor>
+                                            </field>
+                                            <field name="value">
+                                                <String>${cf}</String>
+                                            </field>
+                                            <field name="hasXPathValue">
+                                                <Boolean>false</Boolean>
+                                            </field>
+                                            <field name="isStatic">
+                                                <Boolean>false</Boolean>
+                                            </field>
+                                        </transformationParameter>
+                                    </list>
                                 </field>
                                 <field name="cascadingStylesheets">
                                     <String-array/>
                                 </field>
                                 <field name="xslTransformer">
-                                    <String>ANT</String>
+                                    <String>Saxon-EE XQuery</String>
                                 </field>
                                 <field name="extensionURLs">
-                                    <String-array>
-                                        <String>${oxygenHome}/classes</String>
-                                        <String>${oxygenHome}/lib/oxygenCommons.jar</String>
-                                        <String>${oxygenHome}/lib/oxygen.jar</String>
-                                        <String>${oxygenHome}/lib/oxygenDeveloper.jar</String>
-                                        <String>${oxygenHome}/lib/oxygenEclipse.jar</String>
-                                        <String>${oxygenHome}/lib/oxygenDeveloperEclipse.jar</String>
-                                        <String>${oxygenHome}/lib/oxygen-sandbox.jar</String>
-                                        <String>${oxygenHome}/lib/oxygen-license.jar</String>
-                                        <String>${oxygenHome}/lib/oxygen-basic-utilities.jar</String>
-                                        <String>${oxygenHome}/lib/oxygen-editor-variables-parser.jar</String>
-                                        <String>${oxygenHome}/lib/xml-apis.jar</String>
-                                        <String>${oxygenHome}/lib/*resolver*.jar</String>
-                                        <String>${oxygenHome}/lib/*saxon*10*.jar</String>
-                                        <String>${oxygenHome}/lib/*saxon*9*.jar</String>
-                                        <String>${oxygenHome}/lib/oxygen-patched-slf4j.jar</String>
-                                        <String>${oxygenHome}/lib/logback-classic-*.jar</String>
-                                        <String>${oxygenHome}/lib/logback-core-*.jar</String>
-                                        <String>${oxygenHome}/lib/log4j-over-slf4j-*.jar</String>
-                                        <String>${oxygenHome}/lib/log4j-to-slf4j-*.jar</String>
-                                        <String>${oxygenHome}/lib/log4j-api-*.jar</String>
-                                        <String>${oxygenHome}/lib/*xerces*.jar</String>
-                                        <String>${oxygenHome}/lib/guava-*.jar</String>
-                                    </String-array>
+                                    <String-array/>
                                 </field>
-                            </antScenario>
+                            </scenario>
                         </scenario-array>
                     </entry>
                     <entry>
@@ -5075,24 +5291,10 @@
                             <String>*.sharepoint.com</String>
                             <String>*saxonica.com</String>
                             <String>history.state.gov:443</String>
-                            <String>52.200.84.214:443</String>
-                            <String>54.164.101.218:443</String>
-                            <String>54.152.182.196:443</String>
-                            <String>54.174.181.92:443</String>
-                            <String>52.4.170.87:443</String>
-                            <String>50.17.135.173:443</String>
-                            <String>52.204.107.186:443</String>
-                            <String>52.72.160.12:443</String>
-                            <String>52.23.3.177:443</String>
-                            <String>54.210.14.44:443</String>
-                            <String>52.20.58.218:443</String>
-                            <String>54.174.172.19:443</String>
-                            <String>34.226.85.97:443</String>
-                            <String>localhost:631</String>
-                            <String>1861.history.state.gov:443</String>
                             <String>www.tei-c.org:443</String>
                             <String>localhost:8080</String>
                             <String>maven.apache.org:443</String>
+                            <String>static.history.state.gov:443</String>
                         </String-array>
                     </entry>
                     <entry>
