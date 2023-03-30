@@ -9,9 +9,6 @@
 
     <property name="build-env" value=""/>
 
-    <property name="eXist.home.mac-dmg-installer" value="/Applications/eXist-db.app"/>
-    <property name="eXist.data.mac-dmg-installer" value="/Library/Application Support/org.exist"/>
-
     <!-- use "xars" unless called with a "repo-name" property -->
     <condition property="xars" value="${repo-name}" else="xars">
         <isset property="repo-name"/>
@@ -84,7 +81,7 @@
         </antcall>
     </target>
 
-    <target name="setup" depends="prepare,mvn-copy-dependencies,upgrade-local-build-properties,clone-public-repos,clone-private-repos"
+    <target name="setup" depends="prepare,upgrade-local-build-properties,mvn-copy-dependencies,clone-public-repos,clone-private-repos"
             description="Clone required repositories">
         <echo message="Completed cloning of repositories..."/>
     </target>
@@ -936,16 +933,40 @@
         <available file="${build}/local.build.properties"/>
     </condition>
 
+    <!-- 
+        Set properties for the macOS-based hsg development environment, which uses Homebrew to install dependencies
+    
+        According to Homebrew's documentation, Homebrew's pre-built binary packages are installed in the following locations:
+        - /usr/local for macOS Intel
+        - /opt/homebrew for Apple Silicon
+        - /home/linuxbrew/.linuxbrew for Linux 
+        @see https://docs.brew.sh/FAQ#why-should-i-install-homebrew-in-the-default-location
+    -->
+    <condition property="homebrew-prefix" value="/usr/local/bin/">
+        <os family="mac" arch="x86_64"/>
+    </condition>
+    <condition property="homebrew-prefix" value="/usr/local/bin/">
+        <os family="mac" arch="arm64"/>
+    </condition>
+    <condition property="exist-home" value="/Applications/eXist-db.app">
+        <os family="mac"/>
+    </condition>
+    <condition property="exist-data" value="${user.home}/Library/Application Support/org.exist">
+        <os family="mac"/>
+    </condition>
+
     <target name="upgrade-local-build-properties"
             description="Upgrade local.build.properties file to latest build.properties while preserving passwords" depends="check-local-build-properties">
         <echo message="------------------------------------------------------------"/>
         <echo message="Upgrading local.build.properties file (preserving passwords)"/>
         <echo message="------------------------------------------------------------"/>
         <propertyfile file="${build}/local.build.properties" comment="Updated with latest hsg-project settings">
-            <entry key="eXist.data" value="${eXist.data}"/>
-            <entry key="eXist.home" value="${eXist.home}"/>
-            <entry key="git" value="${git}"/>
-            <entry key="github" value="${github}"/>
+            <entry key="eXist.data" value="${exist-data}"/>
+            <entry key="eXist.home" value="${exist-home}"/>
+            <entry key="git" value="${homebrew-prefix}git"/>
+            <entry key="github" value="${homebrew-prefix}github"/>
+            <entry key="mvn" value="${homebrew-prefix}mvn"/>
+            <entry key="vscode" value="${homebrew-prefix}code"/>
             <entry key="local.instance.password" value="${local.instance.password}"/>
             <entry key="production.instance.user" value="${production.instance.user}"/>
             <entry key="production.instance.password" value="${production.instance.password}"/>
@@ -960,33 +981,6 @@
         <property name="password" value="${password}"/>
         <propertyfile file="${build}/local.build.properties" comment="Updated with production.instance.password">
             <entry key="production.instance.password" value="${password}"/>
-        </propertyfile>
-    </target>
-
-    <!-- 
-        Set properties for the macOS-based hsg development environment, which uses Homebrew to install dependencies
-    
-        According to Homebrew's documentation, Homebrew's pre-built binary packages are installed in the following locations:
-        - /usr/local for macOS Intel
-        - /opt/homebrew for Apple Silicon
-        - /home/linuxbrew/.linuxbrew for Linux 
-        @see https://docs.brew.sh/FAQ#why-should-i-install-homebrew-in-the-default-location
-    -->
-    <condition property="homebrew-prefix" value="/usr/local">
-        <os family="mac" arch="x86_64"/>
-    </condition>
-    <condition property="homebrew-prefix" value="/opt/homebrew">
-        <os family="mac" arch="arm64"/>
-    </condition>        
-    <target name="configure-for-exist-on-mac-system"
-            description="Configure hsg-project for use with eXist on a Mac system" depends="check-local-build-properties">
-        <property name="user-home" value="${user-home}"/>
-        <propertyfile file="${build}/local.build.properties" comment="Updated to use eXist data and home locations, assuming macOS DMG installer, for ${user-home}">
-            <entry key="eXist.data" value="${user-home}${eXist.data.mac-dmg-installer}"/>
-            <entry key="eXist.home" value="${eXist.home.mac-dmg-installer}"/>
-            <entry key="github" value="${homebrew-prefix}/bin/github"/>
-            <entry key="mvn" value="${homebrew-prefix}/bin/mvn"/>
-            <entry key="vscode" value="${homebrew-prefix}/bin/vscode"/>
         </propertyfile>
     </target>
 
