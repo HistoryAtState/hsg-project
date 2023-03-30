@@ -963,12 +963,30 @@
         </propertyfile>
     </target>
 
+    <!-- 
+        Set properties for the macOS-based hsg development environment, which uses Homebrew to install dependencies
+    
+        According to Homebrew's documentation, Homebrew's pre-built binary packages are installed in the following locations:
+        - /usr/local for macOS Intel
+        - /opt/homebrew for Apple Silicon
+        - /home/linuxbrew/.linuxbrew for Linux 
+        @see https://docs.brew.sh/FAQ#why-should-i-install-homebrew-in-the-default-location
+    -->
+    <condition property="homebrew-prefix" value="/usr/local">
+        <os family="mac" arch="x86_64"/>
+    </condition>
+    <condition property="homebrew-prefix" value="/opt/homebrew">
+        <os family="mac" arch="arm64"/>
+    </condition>        
     <target name="configure-for-exist-on-mac-system"
             description="Configure hsg-project for use with eXist on a Mac system" depends="check-local-build-properties">
         <property name="user-home" value="${user-home}"/>
         <propertyfile file="${build}/local.build.properties" comment="Updated to use eXist data and home locations, assuming macOS DMG installer, for ${user-home}">
             <entry key="eXist.data" value="${user-home}${eXist.data.mac-dmg-installer}"/>
             <entry key="eXist.home" value="${eXist.home.mac-dmg-installer}"/>
+            <entry key="github" value="${homebrew-prefix}/bin/github"/>
+            <entry key="mvn" value="${homebrew-prefix}/bin/mvn"/>
+            <entry key="vscode" value="${homebrew-prefix}/bin/vscode"/>
         </propertyfile>
     </target>
 
