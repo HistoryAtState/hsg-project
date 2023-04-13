@@ -425,7 +425,6 @@
 
     <target name="git.pull">
         <echo message="Updating ${local-repo-path}..."/>
-        <delete file="${local-repo-path}/package-lock.json"/>
         <exec executable="${git}" dir="${local-repo-path}" failonerror="true">
             <arg line="pull"/>
             <arg line="--recurse-submodules"/>
