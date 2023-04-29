@@ -911,14 +911,23 @@
         According to Homebrew's documentation, Homebrew's pre-built binary packages are installed in the following locations:
         - /usr/local for macOS Intel
         - /opt/homebrew for Apple Silicon
-        - /home/linuxbrew/.linuxbrew for Linux 
         @see https://docs.brew.sh/FAQ#why-should-i-install-homebrew-in-the-default-location
+        
+        For macOS, we set the $homebrew-prefix property to the appropriate location. 
+        For other platforms, we will assume that the binaries are on the PATH and set $homebrew-prefix to an empty string.
     -->
     <condition property="homebrew-prefix" value="/usr/local/bin/">
         <os family="mac" arch="x86_64"/>
     </condition>
-    <condition property="homebrew-prefix" value="/usr/local/bin/">
-        <os family="mac" arch="arm64"/>
+    <condition property="homebrew-prefix" value="/opt/homebrew/bin/">
+        <os family="mac" arch="aarch64"/>
+    </condition>
+    <condition property="homebrew-prefix" value="">
+        <not>
+            <or>
+                <os family="mac"/>
+            </or>
+        </not>
     </condition>
     <condition property="exist-home" value="/Applications/eXist-db.app">
         <os family="mac"/>
