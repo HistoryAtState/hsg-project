@@ -924,9 +924,7 @@
     </condition>
     <condition property="homebrew-prefix" value="">
         <not>
-            <or>
-                <os family="mac"/>
-            </or>
+            <os family="mac"/>
         </not>
     </condition>
     <condition property="exist-home" value="/Applications/eXist-db.app">
