@@ -857,7 +857,7 @@
 
     <target name="ping-public-repo">
         <condition property="public-repo-accessible">
-            <http requestmethod="HEAD" url="${eXist.public-repo.lookup}?abbrev=tei-publisher-lib" />
+            <http requestmethod="GET" url="${eXist.public-repo}" />
         </condition>
         <fail unless="${public-repo-accessible}" message="The package repository at ${eXist.public-repo} cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
