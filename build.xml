@@ -411,6 +411,8 @@
             <fileset dir="${dir}" includes="**/**.xml,**/**.xconf" excludes="node_modules/**"/>
         </xmlvalidate>
         <subant target="xar${build-env}">
+            <!-- set version for repos deployed to localhost during development, since CI sets versions at time of release -->
+            <property name="app.version" value="0.0.0-development"/>
             <fileset dir="${dir}">
                 <include name="build.xml"/>
             </fileset>
@@ -740,6 +742,8 @@
             <fileset dir="${repos}/${repo-name}" includes="**/**.xml,**/**.xconf" excludes="node_modules/**"/>
         </xmlvalidate>
         <subant>
+            <!-- set version for repos deployed to localhost during development, since CI sets versions at time of release -->
+            <property name="app.version" value="0.0.0-development"/>
             <fileset dir="${repos}/${repo-name}">
                 <include name="build.xml"/>
             </fileset>
