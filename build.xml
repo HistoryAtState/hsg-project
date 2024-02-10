@@ -19,7 +19,7 @@
     <property name="production.instance.temp" value="${production.instance.uri}${instance.tempPath}"/>
     <property name="development.instance.temp" value="${development.instance.uri}${instance.tempPath}"/>
 
-    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpath="build/lib/ant-contrib-1.0b3.jar"/>
 
     <target name="all" depends="ping-localhost,ping-public-repo,clean,update,build,deploy"
             description="Clean, update, build, and deploy all packages (assumes 'setup' has already been run)"/>
