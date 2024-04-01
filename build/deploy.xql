@@ -1,13 +1,9 @@
 xquery version "3.0";
 
 import module namespace console="http://exist-db.org/xquery/console";
-import module namespace dbutil="http://exist-db.org/xquery/dbutil";
 import module namespace repo="http://exist-db.org/xquery/repo";
 
 declare namespace expath="http://expath.org/ns/pkg";
-
-(: functions from replication.xql are pasted in below, since xdb:query can't import modules that aren't on the remote server :)
-declare namespace ru="http://exist-db.org/xquery/replication-util";
 
 declare variable $temp external;
 declare variable $xar external;
@@ -43,44 +39,6 @@ declare %private function local:entry-data($path as xs:anyURI, $type as xs:strin
     </entry>
 };
 
-declare variable $ru:sync-metadata :=
-    if (util:registered-modules() = "http://exist-db.org/xquery/replication-util") then
-        let $tryImport :=
-            try {
-                util:import-module(xs:anyURI("http://exist-db.org/xquery/replication"), "replication",
-                    xs:anyURI("java:org.exist.jms.xquery.ReplicationModule")),
-                true()
-            } catch * {
-                false()
-            }
-        return
-            if ($tryImport) then
-                function-lookup(xs:QName("replication:sync-metadata"), 1)
-            else
-                ()
-    else
-        ()
-;
-
-declare function ru:sync($root as xs:anyURI, $delay as xs:long) {
-    util:wait($delay),
-    ru:sync($root)
-};
-
-declare function ru:sync($root as xs:anyURI) {
-    if (exists($ru:sync-metadata)) then
-        dbutil:scan($root, function($collection, $resource) {
-            if ($resource) then
-                $ru:sync-metadata($resource)
-            else if ($collection != $root) then
-                $ru:sync-metadata($collection)
-            else
-                ()
-        })
-    else
-        ()
-};
-
 let $xarPath := $temp || "/" || $xar
 let $check-if-xar-exists := 
     if (util:binary-doc-available($xarPath)) then 
@@ -114,6 +72,4 @@ return
             repo:install-and-deploy-from-db($xarPath, $repo)
         else
             repo:install-and-deploy-from-db($xarPath)
-        ,
-        ru:sync(xs:anyURI("/db/apps/" || $target), 3000)
     )
