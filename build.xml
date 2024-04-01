@@ -17,7 +17,6 @@
     <property name="instance.tempPath" value="/db/${instance.tempColl}"/>
     <property name="local.instance.temp" value="${local.instance.uri}${instance.tempPath}"/>
     <property name="production.instance.temp" value="${production.instance.uri}${instance.tempPath}"/>
-    <property name="development.instance.temp" value="${development.instance.uri}${instance.tempPath}"/>
 
     <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpath="build/lib/ant-contrib-1.0b3.jar"/>
 
@@ -95,12 +94,6 @@
 
     <target name="deploy-one" description="Deploy one package"
             depends="ping-localhost,ping-public-repo,deploy.init,deploy.upload-one,deploy.deploy-xar,deploy.cleanup"/>
-
-    <target name="deploy-to-production-server" description="Deploy all packages to development server"
-            depends="ping-production,deploy.init,deploy.install-packages-from-public-repo-to-production,deploy.upload-to-production,deploy.deploy-to-production,deploy.cleanup-production"/>
-
-    <target name="deploy-to-dev-server" description="Deploy all packages to development server"
-            depends="ping-dev-server,ping-public-repo,deploy.init,deploy.install-packages-from-public-repo-to-dev,deploy.upload-to-dev,deploy.deploy-to-dev,deploy.cleanup-dev"/>
 
     <target name="prepare">
         <mkdir dir="${libs}"/>
@@ -190,16 +183,6 @@
         </xdb:store>
     </target>
 
-    <target name="deploy.upload-to-dev">
-        <echo message="Uploading packages ..."/>
-        <xdb:store uri="${development.instance.temp}" user="${development.instance.user}"
-                   password="${development.instance.password}" createcollection="true">
-            <fileset dir="${xars}">
-                <include name="*.xar"/>
-            </fileset>
-        </xdb:store>
-    </target>
-
     <target name="deploy.upload-one" depends="deploy.get-xar-filename">
         <echo message="Uploading package ${repo-name} ..."/>
         <xdb:store uri="${local.instance.temp}" user="${local.instance.user}"
@@ -207,26 +190,9 @@
                    srcfile="${repos}/${repo-name}/${build}/${xar}"/>
     </target>
 
-    <target name="deploy.upload-one-to-production" depends="deploy.get-xar-filename">
-        <echo message="Uploading package ${repo-name} ..."/>
-        <xdb:store uri="${production.instance.temp}" user="${production.instance.user}"
-                   password="${production.instance.password}" createcollection="true" ssl="true"
-                   srcfile="${repos}/${repo-name}/${build}/${xar}"/>
-    </target>
-
     <target name="deploy.deploy">
         <echo message="Installing packages ..."/>
         <iterate-xars target="deploy.deploy-xar"/>
-    </target>
-
-    <target name="deploy.deploy-to-production">
-        <echo message="Installing packages ..."/>
-        <iterate-xars target="deploy.deploy-xar-to-production"/>
-    </target>
-
-    <target name="deploy.deploy-to-dev">
-        <echo message="Installing packages ..."/>
-        <iterate-xars target="deploy.deploy-xar-to-dev"/>
     </target>
 
     <target name="deploy.install-packages-from-public-repo">
@@ -259,66 +225,6 @@
         -->
     </target>
 
-    <target name="deploy.install-packages-from-public-repo-to-production">
-        <echo message="Installing packages from eXist-db.org public repo ..."/>
-        <xdb:create uri="${production.instance.uri}/db" user="${production.instance.user}"
-                    password="${production.instance.password}" collection="${instance.tempColl}"/>
-        <echo message="Installing Shared Resources..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-                    password="${local.instance.password}"
-                    query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
-        <echo message="Installing TEI Publisher Libraries..."/>
-        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-                    password="${production.instance.password}"
-                    query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
-        />
-        <echo message="Installing Crypto Module..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-                    password="${local.instance.password}"
-                    query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
-        <echo message="Installing SAML Module..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-                    password="${local.instance.password}"
-                    query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
-        <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment,
-            but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
-        <!--
-        <echo message="Installing Messaging and Replication..."/>
-        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}" password="${production.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo.lookup}')"/>
-        -->
-    </target>
-
-    <target name="deploy.install-packages-from-public-repo-to-dev">
-        <echo message="Installing packages from eXist-db.org public repo ..."/>
-        <xdb:create uri="${development.instance.uri}/db" user="${development.instance.user}"
-                    password="${development.instance.password}" collection="${instance.tempColl}"/>
-        <echo message="Installing Shared Resources..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-                    password="${local.instance.password}"
-                    query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
-        <echo message="Installing TEI Publisher Libraries..."/>
-        <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-                    password="${development.instance.password}"
-                    query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
-        />
-        <echo message="Installing Crypto Module..."/>
-        <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-                    password="${development.instance.password}"
-                    query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
-        <echo message="Installing SAML Module..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-                    password="${local.instance.password}"
-                    query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
-        <!-- NOTE: Messaging and Replication app is needed on development system in ApacheMQ environment,
-            but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
-        <!--
-        <echo message="Installing Messaging and Replication..."/>
-        <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}" password="${development.instance.password}"
-            query="repo:install-and-deploy('http://exist-db.org/messaging-replication', '${eXist.public-repo.lookup}')"/>
-        -->
-    </target>
-
     <target name="deploy.get-xar-filename" unless="xar">
         <path id="xar-path-ref">
             <fileset dir="${repos}/${repo-name}/${build}">
@@ -341,46 +247,10 @@
         <echo message="${deploy.output}"/>
     </target>
 
-    <target name="deploy.deploy-xar-to-production" depends="deploy.get-xar-filename">
-        <echo message="Deploying xar ${xar}"/>
-        <xdb:xquery uri="${production.instance.temp}" user="${production.instance.user}"
-                    password="${production.instance.password}" queryFile="${build}/deploy.xql"
-                    outputproperty="deploy.output" ssl="true">
-            <variable name="temp" value="${instance.tempPath}"/>
-            <variable name="xar" value="${xar}"/>
-            <variable name="repo" value="${eXist.public-repo.lookup}"/>
-        </xdb:xquery>
-        <echo message="${deploy.output}"/>
-    </target>
-
-    <target name="deploy.deploy-xar-to-dev" depends="deploy.get-xar-filename">
-        <echo message="Deploying xar ${xar}"/>
-        <xdb:xquery uri="${development.instance.temp}" user="${development.instance.user}"
-                    password="${development.instance.password}" queryFile="${build}/deploy.xql"
-                    outputproperty="deploy.output" ssl="true">
-            <variable name="temp" value="${instance.tempPath}"/>
-            <variable name="xar" value="${xar}"/>
-            <variable name="repo" value="${eXist.public-repo.lookup}"/>
-        </xdb:xquery>
-        <echo message="${deploy.output}"/>
-    </target>
-
     <target name="deploy.cleanup">
         <echo message="Removing temporary collection ..."/>
         <xdb:remove uri="${local.instance.temp}" user="${local.instance.user}"
                     password="${local.instance.password}" collection="${instance.tempPath}"/>
-    </target>
-
-    <target name="deploy.cleanup-production">
-        <echo message="Removing temporary collection ..."/>
-        <xdb:remove uri="${production.instance.temp}" user="${production.instance.user}"
-                    password="${production.instance.password}" collection="${instance.tempPath}"/>
-    </target>
-
-    <target name="deploy.cleanup-dev">
-        <echo message="Removing temporary collection ..."/>
-        <xdb:remove uri="${development.instance.temp}" user="${development.instance.user}"
-                    password="${development.instance.password}" collection="${instance.tempPath}"/>
     </target>
 
     <target name="clean" description="Call clean on all package dirs; remove built xars">
@@ -753,44 +623,6 @@
         <antcall target="deploy.cleanup"/>
     </target>
 
-    <target name="deploy-repo-to-production"
-            description="Packages and deploys the parent repo of a file (from an hsg-project repo) to eXist-db on history.state.gov"
-            depends="deploy.init">
-        <path id="parent-dir">
-            <pathelement path="${directory}"/>
-        </path>
-        <pathconvert targetos="unix" property="file-path.unix" refid="parent-dir">
-            <map from="c:" to=""/>
-        </pathconvert>
-        <condition property="is-hsg-project-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/"/>
-        </condition>
-        <fail message="ERROR: The directory ${directory} is not an hsg-project repo"
-              unless="${is-hsg-project-repo}"/>
-        <condition property="is-hsg-staging-repo">
-            <contains string="${file-path.unix}" substring="/hsg-project/${repos}/hsg-staging"/>
-        </condition>
-        <fail
-                message="ERROR: The directory ${directory} is part of the hsg-staging repo and cannot be deployed"
-                if="${is-hsg-staging-repo}"/>
-        <propertyregex property="repo-name" input="${file-path.unix}"
-                       regexp=".*/hsg-project/${repos}/([^/]+)" select="\1" defaultvalue="Error" override="true"/>
-        <echo>Validating well-formedness of XML files in ${repo-name}</echo>
-        <xmlvalidate lenient="true">
-            <fileset dir="${repos}/${repo-name}" includes="**/**.xml,**/**.xconf" excludes="node_modules/**"/>
-        </xmlvalidate>
-        <!-- for hsg-shell's npm start process, we need to set NODE_ENV to "production" and ensure this property is inherited by subant -->
-        <property name="NODE_ENV" value="production"/>
-        <subant inheritall="true">
-            <fileset dir="${repos}/${repo-name}">
-                <include name="build.xml"/>
-            </fileset>
-        </subant>
-        <antcall target="deploy.upload-one-to-production"/>
-        <antcall target="deploy.deploy-xar-to-production"/>
-        <antcall target="deploy.cleanup-production"/>
-    </target>
-
     <target name="open-repo-in-github-desktop"
             description="Opens an hsg-project repo in oXygen XML Editor" depends="deploy.init">
         <property name="directory" value="${directory}"/>
@@ -850,13 +682,6 @@
             <http requestmethod="GET" url="${production.instance.http}/test"/>
         </condition>
         <fail unless="${exist-running}" message="The production server cannot be reached. Please confirm you are connected to the internet and try again."/>
-    </target>
-
-    <target name="ping-dev-server">
-        <condition property="exist-running">
-            <http requestmethod="GET" url="${development.instance.http}"/>
-        </condition>
-        <fail unless="${exist-running}" message="The development server cannot be reached. Please confirm you are connected to the internet and try again."/>
     </target>
 
     <target name="ping-public-repo">
@@ -953,8 +778,6 @@
             <entry key="local.instance.password" value="${local.instance.password}"/>
             <entry key="production.instance.user" value="${production.instance.user}"/>
             <entry key="production.instance.password" value="${production.instance.password}"/>
-            <entry key="development.instance.user" value="${development.instance.user}"/>
-            <entry key="development.instance.password" value="${development.instance.password}"/>
             <entry key="git.private.include" value="${git.private.include}"/>
         </propertyfile>
     </target>
