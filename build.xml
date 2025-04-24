@@ -853,17 +853,18 @@
             <env key="PATH" value="/usr/local/bin:${env.PATH}"/>
             <arg line="doctor"/>
         </exec>
-        <echo message="--------------------"/>
-        <echo message="brew list --versions"/>
-        <echo message="--------------------"/>
-        <exec executable="/usr/local/bin/brew" dir=".">
+        <echo message="-------------------------------"/>
+        <echo message="brew list --formulae --versions"/>
+        <echo message="-------------------------------"/>
+        <exec executable="${homebrew-prefix}brew" dir=".">
             <arg line="list"/>
+            <arg line="--formulae"/>
             <arg line="--versions"/>
         </exec>
         <echo message="----------------------------"/>
         <echo message="brew list --casks --versions"/>
         <echo message="----------------------------"/>
-        <exec executable="/usr/local/bin/brew" dir=".">
+        <exec executable="${homebrew-prefix}brew" dir=".">
             <arg line="list"/>
             <arg line="--casks"/>
             <arg line="--versions"/>
