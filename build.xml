@@ -19,6 +19,17 @@
     <property name="default.public-repo.lookup" value="https://exist-db.org/exist/apps/public-repo/find"/>
     <property name="default.tei-publisher-lib.version" value="2.10.1"/>
 
+    <!--
+        The set of repositories that "build", "clean", and "repo-status" operate on.
+        This is the same set that "update" and "setup" use, so all of them stay in
+        agreement. Private repositories are included only when explicitly enabled.
+    -->
+    <condition property="iterate.repo-names"
+               value="${git.public.repo-names},${git.joewiz.repo-names},${git.private.repo-names}"
+               else="${git.public.repo-names},${git.joewiz.repo-names}">
+        <istrue value="${git.private.include}"/>
+    </condition>
+
     <!-- use "xars" unless called with a "repo-name" property -->
     <condition property="xars" value="${repo-name}" else="xars">
         <isset property="repo-name"/>
@@ -96,7 +107,25 @@
     </target>
 
     <target name="build" depends="prepare" description="Build all packages">
-        <iterate target="build-xar"/>
+        <foreach list="${iterate.repo-names}" delimiter="," param="repo-name"
+                 target="build-xar-if-present" inheritall="true"/>
+    </target>
+
+    <!-- Build one repo, skipping (with a warning) any that has not been cloned yet -->
+    <target name="build-xar-if-present">
+        <property name="dir" value="${repos}/${repo-name}"/>
+        <if>
+            <available file="${dir}/build.xml"/>
+            <then>
+                <antcall target="build-xar">
+                    <param name="dir" value="${dir}"/>
+                </antcall>
+            </then>
+            <else>
+                <echo level="warning"
+                      message="Skipping ${dir} - no build.xml found (not cloned yet?)"/>
+            </else>
+        </if>
     </target>
 
     <target name="deploy" description="Deploy all packages"
@@ -202,7 +231,13 @@
 
     <target name="deploy.deploy">
         <echo message="Installing packages ..."/>
-        <iterate-xars target="deploy.deploy-xar"/>
+        <fileset id="deploy.xars" dir="${xars}" includes="*.xar"/>
+        <!-- flatten to bare filenames; deploy.deploy-xar expects a name, not a path -->
+        <pathconvert property="deploy.xars.list" refid="deploy.xars" pathsep=",">
+            <mapper type="flatten"/>
+        </pathconvert>
+        <foreach list="${deploy.xars.list}" delimiter="," param="xar"
+                 target="deploy.deploy-xar" inheritall="true"/>
     </target>
 
     <target name="deploy.install-packages-from-public-repo">
@@ -314,64 +349,7 @@
         </exec>
     </target>
 
-    <!-- Iterate through directory of repos and call target for each -->
-    <scriptdef name="iterate" language="javascript">
-        <attribute name="target"/>
-        <![CDATA[
-            repos = project.getProperty("repos");
 
-            fs = project.createDataType("fileset");
-            fs.setDir(new java.io.File(repos));
-            fs.setIncludes("*/build.xml");
-
-            ds = fs.getDirectoryScanner(project);
-            descriptors = ds.getIncludedFiles();
-
-            var basedir = fs.getDir(project);
-
-            for (i=0; i < descriptors.length; i++) {
-              var descriptor = new java.io.File(basedir, descriptors[i]);
-              var dir = descriptor.getParent();
-
-              // create and use a Task via Ant API
-              antc = project.createTask("antcall");
-              var prop = antc.createParam();
-              prop.setName("dir");
-              prop.setValue(dir);
-
-              antc.setTarget(attributes.get("target"));
-              antc.perform();
-            }
-        ]]>
-    </scriptdef>
-
-    <!-- Iterate through directory of xars and call target for each xar -->
-    <scriptdef name="iterate-xars" language="javascript">
-        <attribute name="target"/>
-        <![CDATA[
-            xarsDir = project.getProperty("xars");
-
-            fs = project.createDataType("fileset");
-            fs.setDir(new java.io.File(xarsDir));
-            fs.setIncludes("*.xar");
-
-            ds = fs.getDirectoryScanner(project);
-            xars = ds.getIncludedFiles();
-
-            var basedir = fs.getDir(project);
-
-            for (i=0; i < xars.length; i++) {
-              // create and use a Task via Ant API
-              antc = project.createTask("antcall");
-              var prop = antc.createParam();
-              prop.setName("xar");
-              prop.setValue(xars[i]);
-
-              antc.setTarget(attributes.get("target"));
-              antc.perform();
-            }
-        ]]>
-    </scriptdef>
 
     <target name="git.clone">
         <echo message="Cloning ${origin}..."/>
@@ -951,7 +929,23 @@
     </target>
 
     <target name="repo-status">
-        <iterate target="git.rev-parse"/>
+        <foreach list="${iterate.repo-names}" delimiter="," param="repo-name"
+                 target="git.rev-parse-if-present" inheritall="true"/>
+    </target>
+
+    <target name="git.rev-parse-if-present">
+        <property name="dir" value="${repos}/${repo-name}"/>
+        <if>
+            <available file="${dir}/.git"/>
+            <then>
+                <antcall target="git.rev-parse">
+                    <param name="dir" value="${dir}"/>
+                </antcall>
+            </then>
+            <else>
+                <echo level="warning" message="Skipping ${dir} - not cloned"/>
+            </else>
+        </if>
     </target>
 
     <target name="git.rev-parse">
