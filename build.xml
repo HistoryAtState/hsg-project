@@ -9,6 +9,16 @@
 
     <property name="build-env" value=""/>
 
+    <!--
+        Canonical package-repository settings. These are held under distinct names because
+        build/local.build.properties is loaded first and its values win; an existing
+        local.build.properties would otherwise pin users to a stale repository forever.
+        The "upgrade-local-build-properties" target writes these over the local copy.
+    -->
+    <property name="default.public-repo" value="https://exist-db.org/exist/apps/public-repo"/>
+    <property name="default.public-repo.lookup" value="https://exist-db.org/exist/apps/public-repo/find"/>
+    <property name="default.tei-publisher-lib.version" value="2.10.1"/>
+
     <!-- use "xars" unless called with a "repo-name" property -->
     <condition property="xars" value="${repo-name}" else="xars">
         <isset property="repo-name"/>
@@ -203,19 +213,15 @@
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
                     password="${local.instance.password}"
                     query="repo:install-and-deploy('http://exist-db.org/apps/shared', '${eXist.public-repo.lookup}')"/>
-        <echo message="Installing TEI Publisher Libraries..."/>
+        <echo message="Installing TEI Publisher Libraries (${tei-publisher-lib.version})..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
                     password="${local.instance.password}"
-                    query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${eXist.public-repo.lookup}')"
+                    query="repo:install-and-deploy('http://existsolutions.com/apps/tei-publisher-lib', '${tei-publisher-lib.version}', '${eXist.public-repo.lookup}')"
         />
         <echo message="Installing Crypto Module..."/>
         <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
                     password="${local.instance.password}"
                     query="repo:install-and-deploy('http://expath.org/ns/crypto', '${eXist.public-repo.lookup}')"/>
-        <echo message="Installing SAML Module..."/>
-        <xdb:xquery uri="${local.instance.temp}" user="${local.instance.user}"
-                    password="${local.instance.password}"
-                    query="repo:install-and-deploy('http://exist-db.org/xquery/exsaml', '${eXist.public-repo.lookup}')"/>
         <!-- NOTE: Messaging and Replication app is needed on production system in ApacheMQ environment,
             but without ApacheMQ listening, deploying an app that registers the replication trigger will fail. -->
         <!--
@@ -771,6 +777,9 @@
         <propertyfile file="${build}/local.build.properties" comment="Updated with latest hsg-project settings">
             <entry key="eXist.data" value="${exist-data}"/>
             <entry key="eXist.home" value="${exist-home}"/>
+            <entry key="eXist.public-repo" value="${default.public-repo}"/>
+            <entry key="eXist.public-repo.lookup" value="${default.public-repo.lookup}"/>
+            <entry key="tei-publisher-lib.version" value="${default.tei-publisher-lib.version}"/>
             <entry key="git" value="${homebrew-prefix}git"/>
             <entry key="github" value="${homebrew-prefix}github"/>
             <entry key="mvn" value="${homebrew-prefix}mvn"/>
